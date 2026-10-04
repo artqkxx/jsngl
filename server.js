@@ -1075,43 +1075,85 @@ app.post(
       code
     } = req.body;
 
-    if (
+    const promoCode =
       code &&
-      code.toUpperCase() ===
-        'FREE100'
-    ) {
+      code.toUpperCase();
 
-      req.user.balance +=
-        100;
-
-      saveUser(
-        req.user
-      );
+    // Разрешён только SOGRADER10000
+    if (promoCode !== 'SOGRADER10000') {
 
       return res.json({
-
-        success:
-          true,
-
-        added:
-          100,
-
-        newBalance:
-          req.user.balance
+        success: false,
+        message: 'Неверный промокод'
       });
     }
 
-    res.json({
+    const db = readDB();
 
-      success:
-        false,
+    // Если промокод уже использовали глобально
+    if (
+      db.promoCodes &&
+      db.promoCodes.SOGRADER10000 &&
+      db.promoCodes.SOGRADER10000.used
+    ) {
 
-      message:
-        'Неверный промокод'
+      return res.json({
+        success: false,
+        message: 'Этот промокод уже был использован'
+      });
+    }
+
+    // Создаём запись промокода, если её ещё нет
+    if (!db.promoCodes) {
+      db.promoCodes = {};
+    }
+
+    if (!db.promoCodes.SOGRADER10000) {
+      db.promoCodes.SOGRADER10000 = {
+        reward: 10000,
+        used: false,
+        usedBy: null,
+        usedAt: null
+      };
+    }
+
+    // Начисляем 10 000 Gold
+    req.user.balance =
+      Number(req.user.balance || 0) +
+      10000;
+
+    // Отмечаем промокод использованным
+    db.promoCodes.SOGRADER10000.used =
+      true;
+
+    db.promoCodes.SOGRADER10000.usedBy =
+      req.user.id;
+
+    db.promoCodes.SOGRADER10000.usedAt =
+      new Date().toISOString();
+
+    // Обновляем пользователя в базе
+    const userIndex =
+      db.users.findIndex(
+        user => user.id === req.user.id
+      );
+
+    if (userIndex !== -1) {
+      db.users[userIndex] =
+        req.user;
+    }
+
+    // Сохраняем изменения
+    writeDB(db);
+
+    return res.json({
+      success: true,
+      added: 10000,
+      newBalance:
+        req.user.balance
     });
   }
 );
-
 // ======================================================
 // UPGRADE
 // ======================================================
