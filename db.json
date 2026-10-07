@@ -359,7 +359,7 @@
         },
         {
           "id": "upg_1791130485640_08cmv",
-          "date": "2026-10-04T16:14:45.640Z",
+          "date": "2026-10-04T16:14:45.64Z",
           "chance": 1.8314255983350676,
           "rolled": 66.80249841495143,
           "result": "loss",
@@ -378,7 +378,7 @@
         },
         {
           "id": "upg_1791130481100_slu25",
-          "date": "2026-10-04T16:14:41.100Z",
+          "date": "2026-10-04T16:14:41.1Z",
           "chance": 1.8314255983350676,
           "rolled": 84.96949890190292,
           "result": "loss",
@@ -1077,277 +1077,3249 @@
       "id": 669555,
       "username": "kochevnik",
       "password": "$2b$10$mrcHs68Inwk3ws8cXFY09exlYtkhyVBxJL2m4CO/za37wuYMJ1Wiq",
-      "balance": 288,
+      "balance": 88835.52,
       "inventory": [
         {
-          "id": "inv_1791137373312_s8twli",
+          "id": "inv_1791370769061_co2kcq",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "rarity": "epic",
+          "image": "/img/skins_batch/st_24.png"
+        },
+        {
+          "id": "inv_1791370783022_alwh",
+          "name": "M40 \"Venom Shade\"",
+          "price": 9.9,
+          "rarity": "epic",
+          "image": "/img/skins_batch/st_48.png"
+        }
+      ],
+      "upgradesCount": 231,
+      "bestDrop": {
+        "id": "inv_1791224912864_bjv5",
+        "name": "M9 Bayonet | Scratch",
+        "price": 19220,
+        "rarity": "nameless",
+        "image": "/img/m9_bayonet_scratch.png"
+      },
+      "paymentHistory": [],
+      "upgradeHistory": [
+        {
+          "id": "upg_1791370783022_xtpf9",
+          "date": "2026-10-07T10:59:43.022Z",
+          "chance": 50.505050505050505,
+          "balanceStake": 0,
+          "rolled": 13.447470136979689,
+          "result": "win",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            },
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            },
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            },
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            },
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "M40 \"Venom Shade\"",
+            "price": 9.9,
+            "image": "/img/skins_batch/st_48.png"
+          }
+        },
+        {
+          "id": "upg_1791369695209_kxztv",
+          "date": "2026-10-07T10:41:35.209Z",
+          "chance": 48.78048780487806,
+          "balanceStake": 0,
+          "rolled": 91.8078751088468,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "Desert Eagle \"Thunder Storm\"",
+              "price": 2,
+              "image": "/img/skins_batch/st_27.png"
+            }
+          ],
+          "targetItem": {
+            "name": "MAC10 \"Wild Rage\"",
+            "price": 4.1,
+            "image": "/img/skins_batch/st_33.png"
+          }
+        },
+        {
+          "id": "upg_1791369377190_twfvi",
+          "date": "2026-10-07T10:36:17.190Z",
+          "chance": 50,
+          "balanceStake": 0,
+          "rolled": 7.548081026906306,
+          "result": "win",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "Desert Eagle \"Thunder Storm\"",
+            "price": 2,
+            "image": "/img/skins_batch/st_27.png"
+          }
+        },
+        {
+          "id": "upg_1791369359987_zvyee",
+          "date": "2026-10-07T10:35:59.987Z",
+          "chance": 2.8125,
+          "balanceStake": 0,
+          "rolled": 35.60453678414848,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "M40 \"Venom Shade\"",
+              "price": 9.9,
+              "image": "/img/skins_batch/st_48.png"
+            }
+          ],
+          "targetItem": {
+            "name": "AKR Dragon",
+            "price": 352,
+            "image": "/img/AKR_dragon.png"
+          }
+        },
+        {
+          "id": "upg_1791368966869_eytc4",
+          "date": "2026-10-07T10:29:26.869Z",
+          "chance": 64.54545454545455,
+          "balanceStake": 0,
+          "rolled": 89.01520469607688,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "Box \"Fable\"",
+              "price": 2.13,
+              "image": "/img/skins_batch/st_28.png"
+            }
+          ],
+          "targetItem": {
+            "name": "Desert Eagle \"Winner\"",
+            "price": 3.3,
+            "image": "/img/skins_batch/st_30.png"
+          }
+        },
+        {
+          "id": "upg_1791368959642_4clgx",
+          "date": "2026-10-07T10:29:19.642Z",
+          "chance": 78.87323943661973,
+          "balanceStake": 0,
+          "rolled": 32.38097837233597,
+          "result": "win",
+          "inputItems": [
+            {
+              "name": "AKR12 \"Spring\"",
+              "price": 1.68,
+              "image": "/img/skins_batch/st_26.png"
+            }
+          ],
+          "targetItem": {
+            "name": "Box \"Fable\"",
+            "price": 2.13,
+            "image": "/img/skins_batch/st_28.png"
+          }
+        },
+        {
+          "id": "upg_1791368953576_ht5bo",
+          "date": "2026-10-07T10:29:13.576Z",
+          "chance": 59.523809523809526,
+          "balanceStake": 0,
+          "rolled": 48.661690990650754,
+          "result": "win",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "AKR12 \"Spring\"",
+            "price": 1.68,
+            "image": "/img/skins_batch/st_26.png"
+          }
+        },
+        {
+          "id": "upg_1791368742361_aijqc",
+          "date": "2026-10-07T10:25:42.361Z",
+          "chance": 1.164772727272727,
+          "balanceStake": 0,
+          "rolled": 2.996752979436823,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "MAC10 \"Wild Rage\"",
+              "price": 4.1,
+              "image": "/img/skins_batch/st_33.png"
+            }
+          ],
+          "targetItem": {
+            "name": "AKR Dragon",
+            "price": 352,
+            "image": "/img/AKR_dragon.png"
+          }
+        },
+        {
+          "id": "upg_1791368725043_bxk02",
+          "date": "2026-10-07T10:25:25.043Z",
+          "chance": 24.39024390243903,
+          "balanceStake": 0,
+          "rolled": 5.262064385898646,
+          "result": "win",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "MAC10 \"Wild Rage\"",
+            "price": 4.1,
+            "image": "/img/skins_batch/st_33.png"
+          }
+        },
+        {
+          "id": "upg_1791363992418_ybu2h",
+          "date": "2026-10-07T09:06:32.418Z",
+          "chance": 26.341463414634152,
+          "balanceStake": 0,
+          "rolled": 46.142697506454255,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "G22 \"Yellow Line\"",
+              "price": 1.08,
+              "image": "/img/skins_batch/st_25.png"
+            }
+          ],
+          "targetItem": {
+            "name": "MAC10 \"Wild Rage\"",
+            "price": 4.1,
+            "image": "/img/skins_batch/st_33.png"
+          }
+        },
+        {
+          "id": "upg_1791317738777_q0wpk",
+          "date": "2026-10-06T20:15:38.777Z",
+          "chance": 50,
+          "balanceStake": 0,
+          "rolled": 89.20453668637973,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "Desert Eagle \"Thunder Storm\"",
+            "price": 2,
+            "image": "/img/skins_batch/st_27.png"
+          }
+        },
+        {
+          "id": "upg_1791317733389_3sq1o",
+          "date": "2026-10-06T20:15:33.389Z",
+          "chance": 0.042143600416233086,
+          "balanceStake": 0,
+          "rolled": 10.061642332984455,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            },
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            },
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            },
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            },
+            {
+              "name": "MAC10 \"Wild Rage\"",
+              "price": 4.1,
+              "image": "/img/skins_batch/st_33.png"
+            }
+          ],
+          "targetItem": {
+            "name": "M9 Bayonet | Scratch",
+            "price": 19220,
+            "image": "/img/m9_bayonet_scratch.png"
+          }
+        },
+        {
+          "id": "upg_1791317601128_36ubn",
+          "date": "2026-10-06T20:13:21.128Z",
+          "chance": 24.39024390243903,
+          "balanceStake": 0,
+          "rolled": 70.60056512751432,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "MAC10 \"Wild Rage\"",
+            "price": 4.1,
+            "image": "/img/skins_batch/st_33.png"
+          }
+        },
+        {
+          "id": "upg_1791317575315_cjv44",
+          "date": "2026-10-06T20:12:55.315Z",
+          "chance": 24.39024390243903,
+          "balanceStake": 0,
+          "rolled": 29.1006068651669,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "MAC10 \"Wild Rage\"",
+            "price": 4.1,
+            "image": "/img/skins_batch/st_33.png"
+          }
+        },
+        {
+          "id": "upg_1791317570584_7zwp9",
+          "date": "2026-10-06T20:12:50.584Z",
+          "chance": 24.39024390243903,
+          "balanceStake": 0,
+          "rolled": 65.33821897103998,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "MAC10 \"Wild Rage\"",
+            "price": 4.1,
+            "image": "/img/skins_batch/st_33.png"
+          }
+        },
+        {
+          "id": "upg_1791317565778_qhykc",
+          "date": "2026-10-06T20:12:45.778Z",
+          "chance": 24.39024390243903,
+          "balanceStake": 0,
+          "rolled": 7.915126092946356,
+          "result": "win",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "MAC10 \"Wild Rage\"",
+            "price": 4.1,
+            "image": "/img/skins_batch/st_33.png"
+          }
+        },
+        {
+          "id": "upg_1791317560981_goxk1",
+          "date": "2026-10-06T20:12:40.981Z",
+          "chance": 24.39024390243903,
+          "balanceStake": 0,
+          "rolled": 51.709468001582906,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "MAC10 \"Wild Rage\"",
+            "price": 4.1,
+            "image": "/img/skins_batch/st_33.png"
+          }
+        },
+        {
+          "id": "upg_1791317527175_of74o",
+          "date": "2026-10-06T20:12:07.175Z",
+          "chance": 24.39024390243903,
+          "balanceStake": 0,
+          "rolled": 99.69741718353727,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "MAC10 \"Wild Rage\"",
+            "price": 4.1,
+            "image": "/img/skins_batch/st_33.png"
+          }
+        },
+        {
+          "id": "upg_1791317509235_oun0d",
+          "date": "2026-10-06T20:11:49.235Z",
+          "chance": 24.39024390243903,
+          "balanceStake": 0,
+          "rolled": 48.68594631231294,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "MAC10 \"Wild Rage\"",
+            "price": 4.1,
+            "image": "/img/skins_batch/st_33.png"
+          }
+        },
+        {
+          "id": "upg_1791317499946_tecdo",
+          "date": "2026-10-06T20:11:39.946Z",
+          "chance": 24.69135802469136,
+          "balanceStake": 0,
+          "rolled": 53.15601022480987,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "Desert Eagle \"Thunder Storm\"",
+              "price": 2,
+              "image": "/img/skins_batch/st_27.png"
+            }
+          ],
+          "targetItem": {
+            "name": "USP \"Warden\"",
+            "price": 8.1,
+            "image": "/img/skins_batch/st_44.png"
+          }
+        },
+        {
+          "id": "upg_1791317492961_801zt",
+          "date": "2026-10-06T20:11:32.961Z",
+          "chance": 50,
+          "balanceStake": 0,
+          "rolled": 6.2354914957338465,
+          "result": "win",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "Desert Eagle \"Thunder Storm\"",
+            "price": 2,
+            "image": "/img/skins_batch/st_27.png"
+          }
+        },
+        {
+          "id": "upg_1791317481086_3bod1",
+          "date": "2026-10-06T20:11:21.086Z",
+          "chance": 41.41414141414141,
+          "balanceStake": 0,
+          "rolled": 58.60607670892004,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "MAC10 \"Wild Rage\"",
+              "price": 4.1,
+              "image": "/img/skins_batch/st_33.png"
+            }
+          ],
+          "targetItem": {
+            "name": "M40 \"Venom Shade\"",
+            "price": 9.9,
+            "image": "/img/skins_batch/st_48.png"
+          }
+        },
+        {
+          "id": "upg_1791317475978_0l75c",
+          "date": "2026-10-06T20:11:15.978Z",
+          "chance": 0.026534859521331944,
+          "balanceStake": 0,
+          "rolled": 59.43812911214105,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "MAC10 \"Wild Rage\"",
+              "price": 4.1,
+              "image": "/img/skins_batch/st_33.png"
+            },
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "M9 Bayonet | Scratch",
+            "price": 19220,
+            "image": "/img/m9_bayonet_scratch.png"
+          }
+        },
+        {
+          "id": "upg_1791317421519_gpdmr",
+          "date": "2026-10-06T20:10:21.519Z",
+          "chance": 24.69135802469136,
+          "balanceStake": 0,
+          "rolled": 89.72598659159588,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "Desert Eagle \"Thunder Storm\"",
+              "price": 2,
+              "image": "/img/skins_batch/st_27.png"
+            }
+          ],
+          "targetItem": {
+            "name": "USP \"Warden\"",
+            "price": 8.1,
+            "image": "/img/skins_batch/st_44.png"
+          }
+        },
+        {
+          "id": "upg_1791317414326_2euuu",
+          "date": "2026-10-06T20:10:14.326Z",
+          "chance": 24.39024390243903,
+          "balanceStake": 0,
+          "rolled": 74.44611677980653,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "MAC10 \"Wild Rage\"",
+            "price": 4.1,
+            "image": "/img/skins_batch/st_33.png"
+          }
+        },
+        {
+          "id": "upg_1791317409713_u73li",
+          "date": "2026-10-06T20:10:09.713Z",
+          "chance": 24.39024390243903,
+          "balanceStake": 0,
+          "rolled": 3.233507533467239,
+          "result": "win",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "MAC10 \"Wild Rage\"",
+            "price": 4.1,
+            "image": "/img/skins_batch/st_33.png"
+          }
+        },
+        {
+          "id": "upg_1791317405241_kwxxh",
+          "date": "2026-10-06T20:10:05.241Z",
+          "chance": 24.39024390243903,
+          "balanceStake": 0,
+          "rolled": 19.35828013623453,
+          "result": "win",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "MAC10 \"Wild Rage\"",
+            "price": 4.1,
+            "image": "/img/skins_batch/st_33.png"
+          }
+        },
+        {
+          "id": "upg_1791317400802_qrfl1",
+          "date": "2026-10-06T20:10:00.802Z",
+          "chance": 24.39024390243903,
+          "balanceStake": 0,
+          "rolled": 70.19926185038796,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "MAC10 \"Wild Rage\"",
+            "price": 4.1,
+            "image": "/img/skins_batch/st_33.png"
+          }
+        },
+        {
+          "id": "upg_1791317394801_tf2yx",
+          "date": "2026-10-06T20:09:54.801Z",
+          "chance": 50,
+          "balanceStake": 0,
+          "rolled": 7.299719934769955,
+          "result": "win",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "Desert Eagle \"Thunder Storm\"",
+            "price": 2,
+            "image": "/img/skins_batch/st_27.png"
+          }
+        },
+        {
+          "id": "upg_1791317390186_fk2l6",
+          "date": "2026-10-06T20:09:50.186Z",
+          "chance": 50,
+          "balanceStake": 0,
+          "rolled": 62.49513673332486,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "Desert Eagle \"Thunder Storm\"",
+            "price": 2,
+            "image": "/img/skins_batch/st_27.png"
+          }
+        },
+        {
+          "id": "upg_1791317385737_gjhe8",
+          "date": "2026-10-06T20:09:45.737Z",
+          "chance": 50,
+          "balanceStake": 0,
+          "rolled": 87.68383026464869,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "Desert Eagle \"Thunder Storm\"",
+            "price": 2,
+            "image": "/img/skins_batch/st_27.png"
+          }
+        },
+        {
+          "id": "upg_1791317381246_lnc3x",
+          "date": "2026-10-06T20:09:41.246Z",
+          "chance": 50,
+          "balanceStake": 0,
+          "rolled": 70.83529893936111,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "Desert Eagle \"Thunder Storm\"",
+            "price": 2,
+            "image": "/img/skins_batch/st_27.png"
+          }
+        },
+        {
+          "id": "upg_1791317376664_kww69",
+          "date": "2026-10-06T20:09:36.664Z",
+          "chance": 50,
+          "balanceStake": 0,
+          "rolled": 67.3139043175741,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "Desert Eagle \"Thunder Storm\"",
+            "price": 2,
+            "image": "/img/skins_batch/st_27.png"
+          }
+        },
+        {
+          "id": "upg_1791317371456_m3sod",
+          "date": "2026-10-06T20:09:31.456Z",
+          "chance": 50,
+          "balanceStake": 0,
+          "rolled": 63.0612619611013,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "Desert Eagle \"Thunder Storm\"",
+            "price": 2,
+            "image": "/img/skins_batch/st_27.png"
+          }
+        },
+        {
+          "id": "upg_1791317361226_p5inc",
+          "date": "2026-10-06T20:09:21.226Z",
+          "chance": 50,
+          "balanceStake": 0,
+          "rolled": 88.2069155298424,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "Desert Eagle \"Thunder Storm\"",
+            "price": 2,
+            "image": "/img/skins_batch/st_27.png"
+          }
+        },
+        {
+          "id": "upg_1791317300926_grvix",
+          "date": "2026-10-06T20:08:20.926Z",
+          "chance": 0.005202913631633715,
+          "balanceStake": 0,
+          "rolled": 69.33096782649191,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "M9 Bayonet | Scratch",
+            "price": 19220,
+            "image": "/img/m9_bayonet_scratch.png"
+          }
+        },
+        {
+          "id": "upg_1791317286231_gt3q5",
+          "date": "2026-10-06T20:08:06.231Z",
+          "chance": 24.39024390243903,
+          "balanceStake": 0,
+          "rolled": 36.08432720967875,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "M4A1 \"Kitsune\"",
+              "price": 1,
+              "image": "/img/skins_batch/st_24.png"
+            }
+          ],
+          "targetItem": {
+            "name": "MAC10 \"Wild Rage\"",
+            "price": 4.1,
+            "image": "/img/skins_batch/st_33.png"
+          }
+        },
+        {
+          "id": "upg_1791296801702_zuh61",
+          "date": "2026-10-06T14:26:41.702Z",
+          "chance": 27.99167533818939,
+          "balanceStake": 1425,
+          "rolled": 42.33611535568792,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "Karambit | Frozen",
+              "price": 3955,
+              "image": "/img/karambit_frozen.png"
+            }
+          ],
+          "targetItem": {
+            "name": "M9 Bayonet | Scratch",
+            "price": 19220,
+            "image": "/img/m9_bayonet_scratch.png"
+          }
+        },
+        {
+          "id": "upg_1791296796046_2fwqy",
+          "date": "2026-10-06T14:26:36.046Z",
+          "chance": 20.577523413111344,
+          "balanceStake": 0,
+          "rolled": 74.72288295559379,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "Karambit | Frozen",
+              "price": 3955,
+              "image": "/img/karambit_frozen.png"
+            }
+          ],
+          "targetItem": {
+            "name": "M9 Bayonet | Scratch",
+            "price": 19220,
+            "image": "/img/m9_bayonet_scratch.png"
+          }
+        },
+        {
+          "id": "upg_1791296791052_l0bk0",
+          "date": "2026-10-06T14:26:31.052Z",
+          "chance": 20.577523413111344,
+          "balanceStake": 0,
+          "rolled": 58.946085046336385,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "Karambit | Frozen",
+              "price": 3955,
+              "image": "/img/karambit_frozen.png"
+            }
+          ],
+          "targetItem": {
+            "name": "M9 Bayonet | Scratch",
+            "price": 19220,
+            "image": "/img/m9_bayonet_scratch.png"
+          }
+        },
+        {
+          "id": "upg_1791296786774_ct53x",
+          "date": "2026-10-06T14:26:26.774Z",
+          "chance": 20.577523413111344,
+          "balanceStake": 0,
+          "rolled": 79.86107030613475,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "Karambit | Frozen",
+              "price": 3955,
+              "image": "/img/karambit_frozen.png"
+            }
+          ],
+          "targetItem": {
+            "name": "M9 Bayonet | Scratch",
+            "price": 19220,
+            "image": "/img/m9_bayonet_scratch.png"
+          }
+        },
+        {
+          "id": "upg_1791296782319_tcnpd",
+          "date": "2026-10-06T14:26:22.319Z",
+          "chance": 20.577523413111344,
+          "balanceStake": 0,
+          "rolled": 23.916044075124233,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "Karambit | Frozen",
+              "price": 3955,
+              "image": "/img/karambit_frozen.png"
+            }
+          ],
+          "targetItem": {
+            "name": "M9 Bayonet | Scratch",
+            "price": 19220,
+            "image": "/img/m9_bayonet_scratch.png"
+          }
+        },
+        {
+          "id": "upg_1791296753705_teli0",
+          "date": "2026-10-06T14:25:53.705Z",
+          "chance": 61.73257023933403,
+          "balanceStake": 0,
+          "rolled": 86.80490341615639,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "Karambit | Frozen",
+              "price": 3955,
+              "image": "/img/karambit_frozen.png"
+            },
+            {
+              "name": "Karambit | Frozen",
+              "price": 3955,
+              "image": "/img/karambit_frozen.png"
+            },
+            {
+              "name": "Karambit | Frozen",
+              "price": 3955,
+              "image": "/img/karambit_frozen.png"
+            }
+          ],
+          "targetItem": {
+            "name": "M9 Bayonet | Scratch",
+            "price": 19220,
+            "image": "/img/m9_bayonet_scratch.png"
+          }
+        },
+        {
+          "id": "upg_1791296748353_8pnrb",
+          "date": "2026-10-06T14:25:48.353Z",
+          "chance": 20.577523413111344,
+          "balanceStake": 0,
+          "rolled": 39.12748198732993,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "Karambit | Frozen",
+              "price": 3955,
+              "image": "/img/karambit_frozen.png"
+            }
+          ],
+          "targetItem": {
+            "name": "M9 Bayonet | Scratch",
+            "price": 19220,
+            "image": "/img/m9_bayonet_scratch.png"
+          }
+        },
+        {
+          "id": "upg_1791296744122_nnzy7",
+          "date": "2026-10-06T14:25:44.122Z",
+          "chance": 20.577523413111344,
+          "balanceStake": 0,
+          "rolled": 85.12605059358648,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "Karambit | Frozen",
+              "price": 3955,
+              "image": "/img/karambit_frozen.png"
+            }
+          ],
+          "targetItem": {
+            "name": "M9 Bayonet | Scratch",
+            "price": 19220,
+            "image": "/img/m9_bayonet_scratch.png"
+          }
+        },
+        {
+          "id": "upg_1791296739612_f1c0q",
+          "date": "2026-10-06T14:25:39.612Z",
+          "chance": 20.577523413111344,
+          "balanceStake": 0,
+          "rolled": 16.57789871830525,
+          "result": "win",
+          "inputItems": [
+            {
+              "name": "Karambit | Frozen",
+              "price": 3955,
+              "image": "/img/karambit_frozen.png"
+            }
+          ],
+          "targetItem": {
+            "name": "M9 Bayonet | Scratch",
+            "price": 19220,
+            "image": "/img/m9_bayonet_scratch.png"
+          }
+        },
+        {
+          "id": "upg_1791296658209_47p07",
+          "date": "2026-10-06T14:24:18.209Z",
+          "chance": 62.43496357960458,
+          "balanceStake": 0,
+          "rolled": 20.96334347982132,
+          "result": "win",
+          "inputItems": [
+            {
+              "name": "Karambit Gold",
+              "price": 12000,
+              "image": "/img/karambit_gold.png"
+            }
+          ],
+          "targetItem": {
+            "name": "M9 Bayonet | Scratch",
+            "price": 19220,
+            "image": "/img/m9_bayonet_scratch.png"
+          }
+        },
+        {
+          "id": "upg_1791296652300_4liht",
+          "date": "2026-10-06T14:24:12.3Z",
+          "chance": 47.5,
+          "balanceStake": 0,
+          "rolled": 62.632413913704696,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "Gloves | Geometric",
+              "price": 5700,
+              "image": "/img/gloves_geometric.png"
+            }
+          ],
+          "targetItem": {
+            "name": "Karambit Gold",
+            "price": 12000,
+            "image": "/img/karambit_gold.png"
+          }
+        },
+        {
+          "id": "upg_1791296643621_v868y",
+          "date": "2026-10-06T14:24:03.621Z",
+          "chance": 69.38596491228071,
+          "balanceStake": 0,
+          "rolled": 81.83158102574995,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "Karambit | Frozen",
+              "price": 3955,
+              "image": "/img/karambit_frozen.png"
+            }
+          ],
+          "targetItem": {
+            "name": "Gloves | Geometric",
+            "price": 5700,
+            "image": "/img/gloves_geometric.png"
+          }
+        },
+        {
+          "id": "upg_1791296639019_l3cqm",
+          "date": "2026-10-06T14:23:59.019Z",
+          "chance": 69.38596491228071,
+          "balanceStake": 0,
+          "rolled": 78.87937359234988,
+          "result": "loss",
+          "inputItems": [
+            {
+              "name": "Karambit | Frozen",
+              "price": 3955,
+              "image": "/img/karambit_frozen.png"
+            }
+          ],
+          "targetItem": {
+            "name": "Gloves | Geometric",
+            "price": 5700,
+            "image": "/img/gloves_geometric.png"
+          }
+        }
+      ],
+      "itemHistory": [
+        {
+          "id": "inv_1791370783022_alwh",
+          "name": "M40 \"Venom Shade\"",
+          "price": 9.9,
+          "image": "/img/skins_batch/st_48.png",
+          "rarity": "epic",
+          "date": "2026-10-07T10:59:43.022Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791370769062_ymhxv1",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-07T10:59:29.062Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791370769061_pnj66y",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-07T10:59:29.061Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791370769061_co2kcq",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-07T10:59:29.061Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791370769060_wt2qv9",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-07T10:59:29.060Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791370769060_fekv6z",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-07T10:59:29.060Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791370663671_86qavc",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-07T10:57:43.671Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791369695209_kxztv_0",
+          "name": "Desert Eagle \"Thunder Storm\"",
+          "price": 2,
+          "image": "/img/skins_batch/st_27.png",
+          "rarity": "common",
+          "date": "2026-10-07T10:41:35.209Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791369377190_zqtd",
+          "name": "Desert Eagle \"Thunder Storm\"",
+          "price": 2,
+          "image": "/img/skins_batch/st_27.png",
+          "rarity": "epic",
+          "date": "2026-10-07T10:36:17.190Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791369377190_twfvi_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-07T10:36:17.190Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791369377190_twfvi",
+          "name": "Desert Eagle \"Thunder Storm\"",
+          "price": 2,
+          "image": "/img/skins_batch/st_27.png",
+          "rarity": "common",
+          "date": "2026-10-07T10:36:17.190Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "inv_1791369374733_08gkw9",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-07T10:36:14.733Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791369359987_zvyee_0",
+          "name": "M40 \"Venom Shade\"",
+          "price": 9.9,
+          "image": "/img/skins_batch/st_48.png",
+          "rarity": "common",
+          "date": "2026-10-07T10:35:59.987Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791369117349_7c2tyj",
+          "name": "M40 \"Venom Shade\"",
+          "price": 9.9,
+          "image": "/img/skins_batch/st_48.png",
+          "rarity": "epic",
+          "date": "2026-10-07T10:31:57.349Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791368966869_eytc4_0",
+          "name": "Box \"Fable\"",
+          "price": 2.13,
+          "image": "/img/skins_batch/st_28.png",
+          "rarity": "common",
+          "date": "2026-10-07T10:29:26.869Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791368959642_en18",
+          "name": "Box \"Fable\"",
+          "price": 2.13,
+          "image": "/img/skins_batch/st_28.png",
+          "rarity": "epic",
+          "date": "2026-10-07T10:29:19.642Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791368959642_4clgx_0",
+          "name": "AKR12 \"Spring\"",
+          "price": 1.68,
+          "image": "/img/skins_batch/st_26.png",
+          "rarity": "common",
+          "date": "2026-10-07T10:29:19.642Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791368959642_4clgx",
+          "name": "Box \"Fable\"",
+          "price": 2.13,
+          "image": "/img/skins_batch/st_28.png",
+          "rarity": "common",
+          "date": "2026-10-07T10:29:19.642Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "inv_1791368953576_hf0o",
+          "name": "AKR12 \"Spring\"",
+          "price": 1.68,
+          "image": "/img/skins_batch/st_26.png",
+          "rarity": "epic",
+          "date": "2026-10-07T10:29:13.576Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791368953576_ht5bo_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-07T10:29:13.576Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791368953576_ht5bo",
+          "name": "AKR12 \"Spring\"",
+          "price": 1.68,
+          "image": "/img/skins_batch/st_26.png",
+          "rarity": "common",
+          "date": "2026-10-07T10:29:13.576Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "inv_1791368934755_po3hdi",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-07T10:28:54.755Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791368742361_aijqc_0",
+          "name": "MAC10 \"Wild Rage\"",
+          "price": 4.1,
+          "image": "/img/skins_batch/st_33.png",
+          "rarity": "common",
+          "date": "2026-10-07T10:25:42.361Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791368725043_bxk02_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-07T10:25:25.043Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791368725043_bxk02",
+          "name": "MAC10 \"Wild Rage\"",
+          "price": 4.1,
+          "image": "/img/skins_batch/st_33.png",
+          "rarity": "common",
+          "date": "2026-10-07T10:25:25.043Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "inv_1791368725042_k5bw",
+          "name": "MAC10 \"Wild Rage\"",
+          "price": 4.1,
+          "image": "/img/skins_batch/st_33.png",
+          "rarity": "epic",
+          "date": "2026-10-07T10:25:25.042Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791368652116_17sq4m",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-07T10:24:12.116Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791367153813_g6covm",
+          "name": "Box \"Revenge\"",
+          "price": 3.5,
+          "image": "/img/skins_batch/st_31.png",
+          "rarity": "epic",
+          "date": "2026-10-07T09:59:13.813Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791367119983_1ua6ma",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-07T09:58:39.983Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791364015209_tnxhvy",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-07T09:06:55.209Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791363992418_ybu2h_0",
+          "name": "G22 \"Yellow Line\"",
+          "price": 1.08,
+          "image": "/img/skins_batch/st_25.png",
+          "rarity": "common",
+          "date": "2026-10-07T09:06:32.418Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791363988929_pugfvd",
+          "name": "G22 \"Yellow Line\"",
+          "price": 1.08,
+          "image": "/img/skins_batch/st_25.png",
+          "rarity": "epic",
+          "date": "2026-10-07T09:06:28.929Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791317738777_q0wpk_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:15:38.777Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791317733389_3sq1o_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:15:33.389Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791317733389_3sq1o_1",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:15:33.389Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791317733389_3sq1o_2",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:15:33.389Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791317733389_3sq1o_3",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:15:33.389Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791317733389_3sq1o_4",
+          "name": "MAC10 \"Wild Rage\"",
+          "price": 4.1,
+          "image": "/img/skins_batch/st_33.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:15:33.389Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791317601128_36ubn_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:13:21.128Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791317575315_cjv44_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:12:55.315Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791317570584_7zwp9_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:12:50.584Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791317565778_1lql",
+          "name": "MAC10 \"Wild Rage\"",
+          "price": 4.1,
+          "image": "/img/skins_batch/st_33.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:12:45.778Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791317565778_qhykc_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:12:45.778Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791317565778_qhykc",
+          "name": "MAC10 \"Wild Rage\"",
+          "price": 4.1,
+          "image": "/img/skins_batch/st_33.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:12:45.778Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "legacy_upg_1791317560981_goxk1_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:12:40.981Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791317534197_vfrc4g",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:12:14.197Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791317534197_sfbw85",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:12:14.197Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791317534196_hfy18p",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:12:14.196Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791317534196_znkd9k",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:12:14.196Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791317534196_syvmgt",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:12:14.196Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791317534196_xq20e4",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:12:14.196Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791317534195_8pa9ti",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:12:14.195Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791317534195_09gj7c",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:12:14.195Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791317534195_phy669",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:12:14.195Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791317534194_yxrd8j",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:12:14.194Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791317527175_of74o_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:12:07.175Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791317524954_stsmkp",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:12:04.954Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791317509235_oun0d_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:11:49.235Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791317507187_ibfwhu",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:11:47.187Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791317499946_tecdo_0",
+          "name": "Desert Eagle \"Thunder Storm\"",
+          "price": 2,
+          "image": "/img/skins_batch/st_27.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:11:39.946Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791317492961_vzh3",
+          "name": "Desert Eagle \"Thunder Storm\"",
+          "price": 2,
+          "image": "/img/skins_batch/st_27.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:11:32.961Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791317492961_801zt_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:11:32.961Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791317492961_801zt",
+          "name": "Desert Eagle \"Thunder Storm\"",
+          "price": 2,
+          "image": "/img/skins_batch/st_27.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:11:32.961Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "inv_1791317490399_womjsg",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:11:30.399Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791317481086_3bod1_0",
+          "name": "MAC10 \"Wild Rage\"",
+          "price": 4.1,
+          "image": "/img/skins_batch/st_33.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:11:21.086Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791317475978_0l75c_0",
+          "name": "MAC10 \"Wild Rage\"",
+          "price": 4.1,
+          "image": "/img/skins_batch/st_33.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:11:15.978Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791317475978_0l75c_1",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:11:15.978Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791317444847_adcjwl",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:10:44.847Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791317421519_gpdmr_0",
+          "name": "Desert Eagle \"Thunder Storm\"",
+          "price": 2,
+          "image": "/img/skins_batch/st_27.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:10:21.519Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791317414326_2euuu_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:10:14.326Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791317409713_u73li_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:10:09.713Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791317409713_u73li",
+          "name": "MAC10 \"Wild Rage\"",
+          "price": 4.1,
+          "image": "/img/skins_batch/st_33.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:10:09.713Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "inv_1791317409712_i1c5",
+          "name": "MAC10 \"Wild Rage\"",
+          "price": 4.1,
+          "image": "/img/skins_batch/st_33.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:10:09.712Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791317405241_ukv0",
+          "name": "MAC10 \"Wild Rage\"",
+          "price": 4.1,
+          "image": "/img/skins_batch/st_33.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:10:05.241Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791317405241_kwxxh_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:10:05.241Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791317405241_kwxxh",
+          "name": "MAC10 \"Wild Rage\"",
+          "price": 4.1,
+          "image": "/img/skins_batch/st_33.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:10:05.241Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "legacy_upg_1791317400802_qrfl1_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:10:00.802Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791317394801_tf2yx_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:09:54.801Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791317394801_tf2yx",
+          "name": "Desert Eagle \"Thunder Storm\"",
+          "price": 2,
+          "image": "/img/skins_batch/st_27.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:09:54.801Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "inv_1791317394800_j3d2",
+          "name": "Desert Eagle \"Thunder Storm\"",
+          "price": 2,
+          "image": "/img/skins_batch/st_27.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:09:54.800Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791317390186_fk2l6_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:09:50.186Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791317385737_gjhe8_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:09:45.737Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791317381246_lnc3x_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:09:41.246Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791317376664_kww69_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:09:36.664Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791317371456_m3sod_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:09:31.456Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791317369269_m60nal",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:09:29.269Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791317369269_7ntei2",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:09:29.269Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791317369269_j3ae2a",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:09:29.269Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791317369268_en6x6t",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:09:29.268Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791317369268_kxdkje",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:09:29.268Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791317369268_0ar4bf",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:09:29.268Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791317369267_xru3bs",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:09:29.267Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791317369267_haq0os",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:09:29.267Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791317369266_tor4iz",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:09:29.266Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791317369266_n5fyme",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:09:29.266Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791317361226_p5inc_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:09:21.226Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791317309077_seajxd",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:08:29.077Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791317300926_grvix_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:08:20.926Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791317293609_uxahim",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:08:13.609Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791317286231_gt3q5_0",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "common",
+          "date": "2026-10-06T20:08:06.231Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791317282465_e7ctsm",
+          "name": "M4A1 \"Kitsune\"",
+          "price": 1,
+          "image": "/img/skins_batch/st_24.png",
+          "rarity": "epic",
+          "date": "2026-10-06T20:08:02.465Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791296801702_zuh61_0",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:26:41.702Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296796046_2fwqy_0",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:26:36.046Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296791052_l0bk0_0",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:26:31.052Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296786774_ct53x_0",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:26:26.774Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296782319_tcnpd_0",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:26:22.319Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791296779757_l0h9en",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "nameless",
+          "date": "2026-10-06T14:26:19.757Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791296779757_tas9ba",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "nameless",
+          "date": "2026-10-06T14:26:19.757Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791296779757_rdb05l",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "nameless",
+          "date": "2026-10-06T14:26:19.757Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791296779756_eip84l",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "nameless",
+          "date": "2026-10-06T14:26:19.756Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791296779756_r1vou9",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "nameless",
+          "date": "2026-10-06T14:26:19.756Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791296753705_teli0_0",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:25:53.705Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296753705_teli0_1",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:25:53.705Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296753705_teli0_2",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:25:53.705Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296748353_8pnrb_0",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:25:48.353Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296744122_nnzy7_0",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:25:44.122Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296739612_f1c0q_0",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:25:39.612Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791296739612_f1c0q",
+          "name": "M9 Bayonet | Scratch",
+          "price": 19220,
+          "image": "/img/m9_bayonet_scratch.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:25:39.612Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "inv_1791296739611_0im6",
+          "name": "M9 Bayonet | Scratch",
+          "price": 19220,
+          "image": "/img/m9_bayonet_scratch.png",
+          "rarity": "nameless",
+          "date": "2026-10-06T14:25:39.611Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791296677601_75zfxn",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "nameless",
+          "date": "2026-10-06T14:24:37.601Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791296674031_2zq147",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "nameless",
+          "date": "2026-10-06T14:24:34.031Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791296674031_5yn66e",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "nameless",
+          "date": "2026-10-06T14:24:34.031Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791296674031_53ph5h",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "nameless",
+          "date": "2026-10-06T14:24:34.031Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791296674031_y2g1bs",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "nameless",
+          "date": "2026-10-06T14:24:34.031Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791296674031_wpxu9z",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "nameless",
+          "date": "2026-10-06T14:24:34.031Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791296658209_b3ux",
+          "name": "M9 Bayonet | Scratch",
+          "price": 19220,
+          "image": "/img/m9_bayonet_scratch.png",
+          "rarity": "nameless",
+          "date": "2026-10-06T14:24:18.209Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791296658209_47p07_0",
+          "name": "Karambit Gold",
+          "price": 12000,
+          "image": "/img/karambit_gold.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:24:18.209Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791296658209_47p07",
+          "name": "M9 Bayonet | Scratch",
+          "price": 19220,
+          "image": "/img/m9_bayonet_scratch.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:24:18.209Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "legacy_upg_1791296652300_4liht_0",
+          "name": "Gloves | Geometric",
+          "price": 5700,
+          "image": "/img/gloves_geometric.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:24:12.3Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296643621_v868y_0",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:24:03.621Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296639019_l3cqm_0",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:23:59.019Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296634383_e6l4l_0",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:23:54.383Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791296629650_jizi",
+          "name": "Gloves | Geometric",
+          "price": 5700,
+          "image": "/img/gloves_geometric.png",
+          "rarity": "arcane",
+          "date": "2026-10-06T14:23:49.65Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791296629650_xnl19_0",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:23:49.65Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791296629650_xnl19",
+          "name": "Gloves | Geometric",
+          "price": 5700,
+          "image": "/img/gloves_geometric.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:23:49.65Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "inv_1791296620407_wa03",
+          "name": "Karambit Gold",
+          "price": 12000,
+          "image": "/img/karambit_gold.png",
+          "rarity": "nameless",
+          "date": "2026-10-06T14:23:40.407Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791296620407_ymbdl_0",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:23:40.407Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791296620407_ymbdl",
+          "name": "Karambit Gold",
+          "price": 12000,
+          "image": "/img/karambit_gold.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:23:40.407Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "legacy_upg_1791296605192_pcew9_0",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:23:25.192Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791296600689_03zd",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "nameless",
+          "date": "2026-10-06T14:23:20.689Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791296600689_y2k1u_0",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:23:20.689Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791296600689_y2k1u",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:23:20.689Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "legacy_upg_1791296595611_lpbit_0",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:23:15.611Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296591259_qa590_0",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:23:11.259Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296586962_rscq7_0",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:23:06.962Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296582615_slius_0",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:23:02.615Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296577675_yc0h1_0",
+          "name": "Kukri | Gold Trim",
+          "price": 600,
+          "image": "/img/kukri_gold_trim.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:22:57.675Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791296572781_4vva",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "nameless",
+          "date": "2026-10-06T14:22:52.781Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791296572781_jx9sl_0",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:22:52.781Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791296572781_jx9sl",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:22:52.781Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "inv_1791296567926_808l",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "nameless",
+          "date": "2026-10-06T14:22:47.926Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791296567926_qpa39_0",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:22:47.926Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791296567926_qpa39",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:22:47.926Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "legacy_upg_1791296563279_tbpuo_0",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:22:43.279Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296558849_3pmt7_0",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:22:38.849Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296553502_xbfbg_0",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:22:33.502Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296553502_xbfbg_1",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:22:33.502Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791296548390_zp4j",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "nameless",
+          "date": "2026-10-06T14:22:28.39Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791296548390_8l47y_0",
+          "name": "Kukri | Gold Trim",
+          "price": 600,
+          "image": "/img/kukri_gold_trim.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:22:28.39Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296548390_8l47y_1",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:22:28.39Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791296548390_8l47y",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:22:28.39Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "inv_1791296453140_ix3r",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "nameless",
+          "date": "2026-10-06T14:20:53.14Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791296453140_yb8r2_0",
+          "name": "Kukri | Gold Trim",
+          "price": 600,
+          "image": "/img/kukri_gold_trim.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:20:53.14Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296453140_yb8r2_1",
+          "name": "Kukri | Gold Trim",
+          "price": 600,
+          "image": "/img/kukri_gold_trim.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:20:53.14Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296453140_yb8r2_2",
+          "name": "Gloves | Flicker",
+          "price": 640,
+          "image": "/img/gloves_flicker.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:20:53.14Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791296453140_yb8r2",
+          "name": "Karambit | Frozen",
+          "price": 3955,
+          "image": "/img/karambit_frozen.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:20:53.14Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "legacy_upg_1791296408531_vbu3j_0",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:20:08.531Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296408531_vbu3j_1",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:20:08.531Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296408531_vbu3j_2",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:20:08.531Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296408531_vbu3j_3",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:20:08.531Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296397737_82tt1_0",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:19:57.737Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791296397737_82tt1",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:19:57.737Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "inv_1791296397736_inf7",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "arcane",
+          "date": "2026-10-06T14:19:57.736Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791296393031_4whk8_0",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:19:53.031Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296388720_f1e57_0",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:19:48.72Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296384129_iby6v_0",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:19:44.129Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296379089_4fwd5_0",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:19:39.089Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791296379089_4fwd5",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:19:39.089Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "inv_1791296379088_2ze9",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "arcane",
+          "date": "2026-10-06T14:19:39.088Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791296374682_q7xkb_0",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:19:34.682Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296370256_s0t1i_0",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:19:30.256Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791296370256_s0t1i",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:19:30.256Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "inv_1791296370255_bnh6",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "arcane",
+          "date": "2026-10-06T14:19:30.255Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791296365517_1iuj",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "arcane",
+          "date": "2026-10-06T14:19:25.517Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791296365517_lm8xp_0",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:19:25.517Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791296365517_lm8xp",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:19:25.517Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "inv_1791296360701_mqyd",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "arcane",
+          "date": "2026-10-06T14:19:20.702Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791296360702_i0eef_0",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:19:20.702Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791296360702_i0eef",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:19:20.702Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "legacy_upg_1791296356192_mgo6s_0",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:19:16.192Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296351088_c1iq1_0",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:19:11.088Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791296346146_lfon",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "arcane",
+          "date": "2026-10-06T14:19:06.146Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791296346146_0gpgc_0",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:19:06.146Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791296346146_0gpgc",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:19:06.146Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "legacy_upg_1791296340689_dodyu_0",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:19:00.689Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296336150_0l03v_0",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:18:56.15Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296327292_w8pkj_0",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:18:47.292Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296322765_hr9l2_0",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:18:42.765Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296318235_wzjwx_0",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:18:38.235Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_upg_1791296313609_0eupi_0",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T14:18:33.609Z",
+          "source": "upgrade-input"
+        }
+      ],
+      "avatar": "/uploads/avatars/669555-4e228c900a602a10.webp"
+    },
+    {
+      "id": 882921,
+      "username": "asdsd",
+      "password": "$2b$10$q8ivKjkPmCrAEd6H8nl79OQZZp/NTGRQ4aaut4H0JY1n7A7RJ/HCm",
+      "balance": 2,
+      "inventory": [],
+      "upgradesCount": 0,
+      "bestDrop": null,
+      "paymentHistory": [],
+      "upgradeHistory": []
+    },
+    {
+      "id": 122372,
+      "username": "111a",
+      "password": "$2b$10$GqW9UAOMstNLJJNpGO9WTO4q0qH/znO0KQG1/Yd8v3WKAFh9Wpn6e",
+      "balance": 2,
+      "inventory": [],
+      "upgradesCount": 0,
+      "bestDrop": null,
+      "paymentHistory": [],
+      "upgradeHistory": []
+    },
+    {
+      "id": 785530,
+      "username": "aaA1",
+      "password": "$2b$10$Y2dRuVhsM3I6U/D3CkkRduJPgZbQoLmgmpi5itreSx6.ryv0gnl.W",
+      "balance": 2,
+      "inventory": [],
+      "itemHistory": [],
+      "upgradesCount": 0,
+      "bestDrop": null,
+      "paymentHistory": [],
+      "upgradeHistory": []
+    },
+    {
+      "id": 174161,
+      "username": "kiki11K",
+      "password": "$2b$10$yEZd4CGI/auoAxStjwsf9OLiuCTYQbZiOCQOKYCi3YcX9jXSMq6KG",
+      "balance": 2,
+      "inventory": [],
+      "itemHistory": [],
+      "upgradesCount": 0,
+      "bestDrop": null,
+      "paymentHistory": [],
+      "upgradeHistory": []
+    },
+    {
+      "id": 225894,
+      "username": "kokokoks12K",
+      "password": "$2b$10$zz2g0aBiv9gMLuz032yUcOzrOCp4S7riX3YiZ3l/DcM0LZnlEPwPW",
+      "balance": 2,
+      "inventory": [],
+      "itemHistory": [],
+      "upgradesCount": 0,
+      "bestDrop": null,
+      "paymentHistory": [],
+      "upgradeHistory": []
+    },
+    {
+      "id": 165424,
+      "username": "a133",
+      "password": "$2b$10$5PzznEd3eSpq4RjtIRbKyufaT4eTHRjoyE9pb9vF8Osww1aKv7Nf.",
+      "balance": 2,
+      "inventory": [],
+      "itemHistory": [],
+      "upgradesCount": 0,
+      "bestDrop": null,
+      "paymentHistory": [],
+      "upgradeHistory": []
+    },
+    {
+      "id": 166215,
+      "username": "111aa",
+      "password": "$2b$10$TkVj/CFKEDyIG2LlBoCpGO807GwPBCymwsIp1jKt7isVtlTrBIV0a",
+      "balance": 17646,
+      "inventory": [
+        {
+          "id": "inv_1791301935228_giqk56",
           "name": "AKR Dragon",
           "price": 352,
           "rarity": "arcane",
           "image": "/img/AKR_dragon.png"
         },
         {
-          "id": "inv_1791137373312_2tsg9z",
+          "id": "inv_1791301935228_xgfl1y",
           "name": "AKR Dragon",
           "price": 352,
           "rarity": "arcane",
           "image": "/img/AKR_dragon.png"
         },
         {
-          "id": "inv_1791137373312_aq7jg2",
+          "id": "inv_1791301935228_32iz2j",
           "name": "AKR Dragon",
           "price": 352,
           "rarity": "arcane",
           "image": "/img/AKR_dragon.png"
         },
         {
-          "id": "inv_1791137373312_2dypig",
+          "id": "inv_1791301935228_6aig2d",
           "name": "AKR Dragon",
           "price": 352,
           "rarity": "arcane",
           "image": "/img/AKR_dragon.png"
         },
         {
-          "id": "inv_1791137373312_bb1veq",
+          "id": "inv_1791301935228_lt75o9",
           "name": "AKR Dragon",
           "price": 352,
           "rarity": "arcane",
           "image": "/img/AKR_dragon.png"
         },
         {
-          "id": "inv_1791137373312_gjn0i5",
+          "id": "inv_1791301935228_wi8bmf",
           "name": "AKR Dragon",
           "price": 352,
           "rarity": "arcane",
           "image": "/img/AKR_dragon.png"
         },
         {
-          "id": "inv_1791137373312_af8pe0",
+          "id": "inv_1791301935228_c4h7n8",
           "name": "AKR Dragon",
           "price": 352,
           "rarity": "arcane",
           "image": "/img/AKR_dragon.png"
         },
         {
-          "id": "inv_1791137373312_dzsnon",
+          "id": "inv_1791301935228_zy15l1",
           "name": "AKR Dragon",
           "price": 352,
           "rarity": "arcane",
           "image": "/img/AKR_dragon.png"
         },
         {
-          "id": "inv_1791137373312_3p23qh",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_pvlb33",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_pq9ld6",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_qbw53q",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_ev8vgo",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_5dnza0",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_8xgpkx",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_1nuppc",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_savtbv",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_k04zwn",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_x54o5z",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_h67a2g",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_5h3514",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_jy5jwr",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_a1g7iy",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_qp7cwv",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_l1f8u1",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_3cdqex",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_3j6tfr",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_4upflw",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_nuvi5m",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_mnkuzl",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_kovfbn",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_n2gz8o",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_rxpwvl",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_wufs41",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_apxxmc",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_xic9sv",
-          "name": "AKR Dragon",
-          "price": 352,
-          "rarity": "arcane",
-          "image": "/img/AKR_dragon.png"
-        },
-        {
-          "id": "inv_1791137373312_4odvu4",
+          "id": "inv_1791301935228_my1to4",
           "name": "AKR Dragon",
           "price": 352,
           "rarity": "arcane",
           "image": "/img/AKR_dragon.png"
         }
       ],
-      "upgradesCount": 19,
-      "bestDrop": null,
+      "itemHistory": [
+        {
+          "id": "inv_1791301935228_3f8h3r",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "arcane",
+          "date": "2026-10-06T15:52:15.228Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791301935228_giqk56",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "arcane",
+          "date": "2026-10-06T15:52:15.228Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791301935228_xgfl1y",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "arcane",
+          "date": "2026-10-06T15:52:15.228Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791301935228_32iz2j",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "arcane",
+          "date": "2026-10-06T15:52:15.228Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791301935228_6aig2d",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "arcane",
+          "date": "2026-10-06T15:52:15.228Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791301935228_lt75o9",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "arcane",
+          "date": "2026-10-06T15:52:15.228Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791301935228_wi8bmf",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "arcane",
+          "date": "2026-10-06T15:52:15.228Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791301935228_c4h7n8",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "arcane",
+          "date": "2026-10-06T15:52:15.228Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791301935228_zy15l1",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "arcane",
+          "date": "2026-10-06T15:52:15.228Z",
+          "source": "inventory"
+        },
+        {
+          "id": "inv_1791301935228_my1to4",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "arcane",
+          "date": "2026-10-06T15:52:15.228Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791301928010_ks81d_0",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T15:52:08.010Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791301877418_nfdpdm",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "arcane",
+          "date": "2026-10-06T15:51:17.418Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791301713692_y81bd_0",
+          "name": "AWM Sport",
+          "price": 2800,
+          "image": "/img/awm_sport.png",
+          "rarity": "common",
+          "date": "2026-10-06T15:48:33.692Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791301708530_06gr",
+          "name": "AWM Sport",
+          "price": 2800,
+          "image": "/img/awm_sport.png",
+          "rarity": "legendary",
+          "date": "2026-10-06T15:48:28.530Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791301708530_6fdau_0",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "common",
+          "date": "2026-10-06T15:48:28.530Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791301708530_6fdau",
+          "name": "AWM Sport",
+          "price": 2800,
+          "image": "/img/awm_sport.png",
+          "rarity": "common",
+          "date": "2026-10-06T15:48:28.530Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "inv_1791301701356_da1e",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "arcane",
+          "date": "2026-10-06T15:48:21.356Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791301701356_ryhtc_0",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T15:48:21.356Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "legacy_win_upg_1791301701356_ryhtc",
+          "name": "Tanto | Yakuza",
+          "price": 1330,
+          "image": "/img/tanto_yakuza.png",
+          "rarity": "common",
+          "date": "2026-10-06T15:48:21.356Z",
+          "source": "upgrade-win"
+        },
+        {
+          "id": "inv_1791301698624_qwwlfq",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "arcane",
+          "date": "2026-10-06T15:48:18.624Z",
+          "source": "inventory"
+        },
+        {
+          "id": "legacy_upg_1791301692143_leqla_0",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "common",
+          "date": "2026-10-06T15:48:12.143Z",
+          "source": "upgrade-input"
+        },
+        {
+          "id": "inv_1791301664071_67whkr",
+          "name": "AKR Dragon",
+          "price": 352,
+          "image": "/img/AKR_dragon.png",
+          "rarity": "arcane",
+          "date": "2026-10-06T15:47:44.071Z",
+          "source": "inventory"
+        }
+      ],
+      "upgradesCount": 6,
+      "bestDrop": {
+        "id": "inv_1791301708530_06gr",
+        "name": "AWM Sport",
+        "price": 2800,
+        "rarity": "legendary",
+        "image": "/img/awm_sport.png"
+      },
       "paymentHistory": [],
       "upgradeHistory": [
         {
-          "id": "upg_1791137417307_6m22o",
-          "date": "2026-10-04T18:10:17.307Z",
-          "chance": 1.8314255983350676,
-          "rolled": 62.80806148087456,
+          "id": "upg_1791301948000_2a60p",
+          "date": "2026-10-06T15:52:28.000Z",
+          "chance": 9.312169312169312,
+          "balanceStake": 0,
+          "rolled": 26.811159778482917,
           "result": "loss",
           "inputItems": [
             {
@@ -1357,16 +4329,17 @@
             }
           ],
           "targetItem": {
-            "name": "M9 Bayonet | Scratch",
-            "price": 19220,
-            "image": "/img/m9_bayonet_scratch.png"
+            "name": "Karambit | Nebula",
+            "price": 3780,
+            "image": "/img/karambit_nebula.png"
           }
         },
         {
-          "id": "upg_1791137415509_z1gmn",
-          "date": "2026-10-04T18:10:15.509Z",
-          "chance": 1.8314255983350676,
-          "rolled": 28.139799007397627,
+          "id": "upg_1791301928010_ks81d",
+          "date": "2026-10-06T15:52:08.010Z",
+          "chance": 26.466165413533833,
+          "balanceStake": 0,
+          "rolled": 36.343491484926304,
           "result": "loss",
           "inputItems": [
             {
@@ -1376,55 +4349,58 @@
             }
           ],
           "targetItem": {
-            "name": "M9 Bayonet | Scratch",
-            "price": 19220,
-            "image": "/img/m9_bayonet_scratch.png"
+            "name": "Tanto | Yakuza",
+            "price": 1330,
+            "image": "/img/tanto_yakuza.png"
           }
         },
         {
-          "id": "upg_1791137413620_2pmth",
-          "date": "2026-10-04T18:10:13.620Z",
-          "chance": 1.8314255983350676,
-          "rolled": 20.707814383861177,
+          "id": "upg_1791301713692_y81bd",
+          "date": "2026-10-06T15:48:33.692Z",
+          "chance": 49.122807017543856,
+          "balanceStake": 0,
+          "rolled": 72.21506331915928,
           "result": "loss",
           "inputItems": [
             {
-              "name": "AKR Dragon",
-              "price": 352,
-              "image": "/img/AKR_dragon.png"
+              "name": "AWM Sport",
+              "price": 2800,
+              "image": "/img/awm_sport.png"
             }
           ],
           "targetItem": {
-            "name": "M9 Bayonet | Scratch",
-            "price": 19220,
-            "image": "/img/m9_bayonet_scratch.png"
+            "name": "Gloves | Geometric",
+            "price": 5700,
+            "image": "/img/gloves_geometric.png"
           }
         },
         {
-          "id": "upg_1791137411808_zympe",
-          "date": "2026-10-04T18:10:11.808Z",
-          "chance": 1.8314255983350676,
-          "rolled": 58.388592764973545,
-          "result": "loss",
+          "id": "upg_1791301708530_6fdau",
+          "date": "2026-10-06T15:48:28.530Z",
+          "chance": 47.5,
+          "balanceStake": 0,
+          "rolled": 7.735270794372817,
+          "result": "win",
           "inputItems": [
             {
-              "name": "AKR Dragon",
-              "price": 352,
-              "image": "/img/AKR_dragon.png"
+              "name": "Tanto | Yakuza",
+              "price": 1330,
+              "image": "/img/tanto_yakuza.png"
             }
           ],
           "targetItem": {
-            "name": "M9 Bayonet | Scratch",
-            "price": 19220,
-            "image": "/img/m9_bayonet_scratch.png"
+            "name": "AWM Sport",
+            "price": 2800,
+            "image": "/img/awm_sport.png"
           }
         },
         {
-          "id": "upg_1791137409992_h9udq",
-          "date": "2026-10-04T18:10:09.992Z",
-          "chance": 1.8314255983350676,
-          "rolled": 77.44189036402982,
-          "result": "loss",
+          "id": "upg_1791301701356_ryhtc",
+          "date": "2026-10-06T15:48:21.356Z",
+          "chance": 26.466165413533833,
+          "balanceStake": 0,
+          "rolled": 2.802206596475465,
+          "result": "win",
           "inputItems": [
             {
               "name": "AKR Dragon",
@@ -1433,16 +4409,17 @@
             }
           ],
           "targetItem": {
-            "name": "M9 Bayonet | Scratch",
-            "price": 19220,
-            "image": "/img/m9_bayonet_scratch.png"
+            "name": "Tanto | Yakuza",
+            "price": 1330,
+            "image": "/img/tanto_yakuza.png"
           }
         },
         {
-          "id": "upg_1791137408121_edao8",
-          "date": "2026-10-04T18:10:08.121Z",
-          "chance": 1.8314255983350676,
-          "rolled": 23.50446389054173,
+          "id": "upg_1791301692143_leqla",
+          "date": "2026-10-06T15:48:12.143Z",
+          "chance": 26.466165413533833,
+          "balanceStake": 0,
+          "rolled": 91.44242595125203,
           "result": "loss",
           "inputItems": [
             {
@@ -1452,273 +4429,115 @@
             }
           ],
           "targetItem": {
-            "name": "M9 Bayonet | Scratch",
-            "price": 19220,
-            "image": "/img/m9_bayonet_scratch.png"
-          }
-        },
-        {
-          "id": "upg_1791137406052_6zp97",
-          "date": "2026-10-04T18:10:06.052Z",
-          "chance": 1.8314255983350676,
-          "rolled": 35.56312540710881,
-          "result": "loss",
-          "inputItems": [
-            {
-              "name": "AKR Dragon",
-              "price": 352,
-              "image": "/img/AKR_dragon.png"
-            }
-          ],
-          "targetItem": {
-            "name": "M9 Bayonet | Scratch",
-            "price": 19220,
-            "image": "/img/m9_bayonet_scratch.png"
-          }
-        },
-        {
-          "id": "upg_1791137404332_016rj",
-          "date": "2026-10-04T18:10:04.332Z",
-          "chance": 1.8314255983350676,
-          "rolled": 46.049983659038375,
-          "result": "loss",
-          "inputItems": [
-            {
-              "name": "AKR Dragon",
-              "price": 352,
-              "image": "/img/AKR_dragon.png"
-            }
-          ],
-          "targetItem": {
-            "name": "M9 Bayonet | Scratch",
-            "price": 19220,
-            "image": "/img/m9_bayonet_scratch.png"
-          }
-        },
-        {
-          "id": "upg_1791137402583_jncwm",
-          "date": "2026-10-04T18:10:02.583Z",
-          "chance": 1.8314255983350676,
-          "rolled": 38.53539546931308,
-          "result": "loss",
-          "inputItems": [
-            {
-              "name": "AKR Dragon",
-              "price": 352,
-              "image": "/img/AKR_dragon.png"
-            }
-          ],
-          "targetItem": {
-            "name": "M9 Bayonet | Scratch",
-            "price": 19220,
-            "image": "/img/m9_bayonet_scratch.png"
-          }
-        },
-        {
-          "id": "upg_1791137400443_o6zfa",
-          "date": "2026-10-04T18:10:00.443Z",
-          "chance": 1.8314255983350676,
-          "rolled": 54.211429542145716,
-          "result": "loss",
-          "inputItems": [
-            {
-              "name": "AKR Dragon",
-              "price": 352,
-              "image": "/img/AKR_dragon.png"
-            }
-          ],
-          "targetItem": {
-            "name": "M9 Bayonet | Scratch",
-            "price": 19220,
-            "image": "/img/m9_bayonet_scratch.png"
-          }
-        },
-        {
-          "id": "upg_1791137398701_lq3a6",
-          "date": "2026-10-04T18:09:58.701Z",
-          "chance": 1.8314255983350676,
-          "rolled": 25.182187956946567,
-          "result": "loss",
-          "inputItems": [
-            {
-              "name": "AKR Dragon",
-              "price": 352,
-              "image": "/img/AKR_dragon.png"
-            }
-          ],
-          "targetItem": {
-            "name": "M9 Bayonet | Scratch",
-            "price": 19220,
-            "image": "/img/m9_bayonet_scratch.png"
-          }
-        },
-        {
-          "id": "upg_1791137396915_0qpfq",
-          "date": "2026-10-04T18:09:56.915Z",
-          "chance": 1.8314255983350676,
-          "rolled": 30.329471093169868,
-          "result": "loss",
-          "inputItems": [
-            {
-              "name": "AKR Dragon",
-              "price": 352,
-              "image": "/img/AKR_dragon.png"
-            }
-          ],
-          "targetItem": {
-            "name": "M9 Bayonet | Scratch",
-            "price": 19220,
-            "image": "/img/m9_bayonet_scratch.png"
-          }
-        },
-        {
-          "id": "upg_1791137394524_7nznz",
-          "date": "2026-10-04T18:09:54.524Z",
-          "chance": 1.8314255983350676,
-          "rolled": 4.444582610728465,
-          "result": "loss",
-          "inputItems": [
-            {
-              "name": "AKR Dragon",
-              "price": 352,
-              "image": "/img/AKR_dragon.png"
-            }
-          ],
-          "targetItem": {
-            "name": "M9 Bayonet | Scratch",
-            "price": 19220,
-            "image": "/img/m9_bayonet_scratch.png"
-          }
-        },
-        {
-          "id": "upg_1791137392698_xb28d",
-          "date": "2026-10-04T18:09:52.698Z",
-          "chance": 1.8314255983350676,
-          "rolled": 48.22236680379704,
-          "result": "loss",
-          "inputItems": [
-            {
-              "name": "AKR Dragon",
-              "price": 352,
-              "image": "/img/AKR_dragon.png"
-            }
-          ],
-          "targetItem": {
-            "name": "M9 Bayonet | Scratch",
-            "price": 19220,
-            "image": "/img/m9_bayonet_scratch.png"
-          }
-        },
-        {
-          "id": "upg_1791137390715_umtry",
-          "date": "2026-10-04T18:09:50.715Z",
-          "chance": 1.8314255983350676,
-          "rolled": 95.09118793584018,
-          "result": "loss",
-          "inputItems": [
-            {
-              "name": "AKR Dragon",
-              "price": 352,
-              "image": "/img/AKR_dragon.png"
-            }
-          ],
-          "targetItem": {
-            "name": "M9 Bayonet | Scratch",
-            "price": 19220,
-            "image": "/img/m9_bayonet_scratch.png"
-          }
-        },
-        {
-          "id": "upg_1791137389313_it715",
-          "date": "2026-10-04T18:09:49.313Z",
-          "chance": 1.8314255983350676,
-          "rolled": 53.599316839766075,
-          "result": "loss",
-          "inputItems": [
-            {
-              "name": "AKR Dragon",
-              "price": 352,
-              "image": "/img/AKR_dragon.png"
-            }
-          ],
-          "targetItem": {
-            "name": "M9 Bayonet | Scratch",
-            "price": 19220,
-            "image": "/img/m9_bayonet_scratch.png"
-          }
-        },
-        {
-          "id": "upg_1791137387917_vfi3k",
-          "date": "2026-10-04T18:09:47.917Z",
-          "chance": 1.8314255983350676,
-          "rolled": 47.637101455438035,
-          "result": "loss",
-          "inputItems": [
-            {
-              "name": "AKR Dragon",
-              "price": 352,
-              "image": "/img/AKR_dragon.png"
-            }
-          ],
-          "targetItem": {
-            "name": "M9 Bayonet | Scratch",
-            "price": 19220,
-            "image": "/img/m9_bayonet_scratch.png"
-          }
-        },
-        {
-          "id": "upg_1791137386199_nn732",
-          "date": "2026-10-04T18:09:46.199Z",
-          "chance": 1.8314255983350676,
-          "rolled": 39.82367430602891,
-          "result": "loss",
-          "inputItems": [
-            {
-              "name": "AKR Dragon",
-              "price": 352,
-              "image": "/img/AKR_dragon.png"
-            }
-          ],
-          "targetItem": {
-            "name": "M9 Bayonet | Scratch",
-            "price": 19220,
-            "image": "/img/m9_bayonet_scratch.png"
-          }
-        },
-        {
-          "id": "upg_1791137384152_izfzq",
-          "date": "2026-10-04T18:09:44.152Z",
-          "chance": 1.8314255983350676,
-          "rolled": 5.938646208117582,
-          "result": "loss",
-          "inputItems": [
-            {
-              "name": "AKR Dragon",
-              "price": 352,
-              "image": "/img/AKR_dragon.png"
-            }
-          ],
-          "targetItem": {
-            "name": "M9 Bayonet | Scratch",
-            "price": 19220,
-            "image": "/img/m9_bayonet_scratch.png"
+            "name": "Tanto | Yakuza",
+            "price": 1330,
+            "image": "/img/tanto_yakuza.png"
           }
         }
-      ]
+      ],
+      "avatar": "/uploads/avatars/166215-7f064f6610e398e9.webp"
+    },
+    {
+      "id": 628117,
+      "username": "Artem (2)",
+      "password": null,
+      "googleSub": "111476549275385968589",
+      "email": "yakivchikpro@gmail.com",
+      "avatar": "https://lh3.googleusercontent.com/a/ACg8ocLliRgQQyKTJmDaUINsOSWauaEBbPLDacadrsEQZsHYRMEj0uM8=s96-c",
+      "balance": 0,
+      "inventory": [],
+      "itemHistory": [],
+      "upgradesCount": 0,
+      "bestDrop": null,
+      "paymentHistory": [],
+      "upgradeHistory": []
+    },
+    {
+      "id": 193467,
+      "username": "Артем Яківчик",
+      "password": null,
+      "googleSub": "115658812750379767522",
+      "email": "a.yakiv29@gmail.com",
+      "avatar": "https://lh3.googleusercontent.com/a/ACg8ocL5VDXz0QVKxs1tbBIooK3kKGnvFiXDUuQuwIot3Xw9MatRaw=s96-c",
+      "balance": 0,
+      "inventory": [],
+      "itemHistory": [],
+      "upgradesCount": 0,
+      "bestDrop": null,
+      "paymentHistory": [],
+      "upgradeHistory": []
+    },
+    {
+      "id": 548085,
+      "username": "Voice Chat",
+      "password": null,
+      "googleSub": "112615419717102924560",
+      "email": "voicechatroblox1225@gmail.com",
+      "avatar": "/uploads/avatars/548085-bea49cd9896d4912.webp",
+      "balance": 0,
+      "inventory": [],
+      "itemHistory": [],
+      "upgradesCount": 0,
+      "bestDrop": null,
+      "paymentHistory": [],
+      "upgradeHistory": []
+    },
+    {
+      "id": 451365,
+      "username": "Xros Cases",
+      "password": null,
+      "googleSub": "111680268171788799190",
+      "googlePicture": "https://lh3.googleusercontent.com/a/ACg8ocIW20jWz7XaI0mY67sUAasP1fQJZFdvjnjqj7ZXX8Macxh3hQ=s96-c",
+      "email": "xroscases@gmail.com",
+      "avatar": "/uploads/avatars/451365-4c0b03e978dd0230.png",
+      "balance": 0,
+      "inventory": [],
+      "itemHistory": [],
+      "upgradesCount": 0,
+      "bestDrop": null,
+      "paymentHistory": [],
+      "upgradeHistory": []
     }
   ],
-  "promoCodes": {
-    "FREE100": {
-      "reward": 100,
-      "used": false,
-      "usedBy": null,
-      "usedAt": null
+  "withdrawalRequests": [
+    {
+      "quoteId": "00e640e2e6fcb74b8998e296dc841a00",
+      "userId": 669555,
+      "itemId": "inv_1791364015209_tnxhvy",
+      "status": "sent",
+      "createdAt": "2026-10-07T09:38:48.242Z"
     },
-    "SOGRADER10000": {
-      "reward": 10000,
-      "used": true,
-      "usedBy": 186399,
-      "usedAt": "2026-10-04T17:37:20.264Z"
+    {
+      "quoteId": "bca05ff387294e1aa65c6cf6b6ef5bb3",
+      "userId": 669555,
+      "itemId": "inv_1791367119983_1ua6ma",
+      "itemName": "M4A1 \"Kitsune\"",
+      "itemImage": "/img/skins_batch/st_24.png",
+      "itemPrice": 1,
+      "listingPrice": 1.16,
+      "status": "withdrawn",
+      "reason": "",
+      "telegramChatId": "8756145707",
+      "telegramControlMessageId": 11,
+      "createdAt": "2026-10-07T09:58:50.503Z",
+      "updatedAt": "2026-10-07T09:59:02.064Z"
+    },
+    {
+      "quoteId": "55b65ce88c7a290cab4c1b0fcaeb98d3",
+      "userId": 669555,
+      "itemId": "inv_1791367153813_g6covm",
+      "itemName": "Box \"Revenge\"",
+      "itemImage": "/img/skins_batch/st_31.png",
+      "itemPrice": 3.5,
+      "listingPrice": 4.29,
+      "status": "rejected",
+      "reason": "Перекупство",
+      "telegramChatId": "8756145707",
+      "telegramControlMessageId": 14,
+      "createdAt": "2026-10-07T09:59:24.070Z",
+      "updatedAt": "2026-10-07T09:59:36.249Z"
     }
-  }
+  ],
+  "telegramUpdateOffset": 183216750,
+  "pendingWithdrawalRejections": {}
 }

@@ -23,11 +23,12 @@
     }
   </script>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap');
     body { 
       background: linear-gradient(180deg, #3b3a5b 0%, #302a43 48%, #1f1527 100%);
       background-attachment: fixed;
       color: #e5e7eb; 
-      font-family: system-ui, -apple-system, sans-serif; 
+      font-family: 'Oswald', 'Arial Narrow', system-ui, sans-serif; 
     }
     .custom-scrollbar::-webkit-scrollbar { width: 5px; }
     .custom-scrollbar::-webkit-scrollbar-track { background: #25243b; }
@@ -207,8 +208,10 @@
       filter: drop-shadow(0 0 18px rgba(126, 143, 195, 0.38));
     }
 
-    #chanceCircleArc {
-      stroke: #8ea1cf !important;
+    #chanceCircleArc,
+    #chanceCircleArcReverse {
+      stroke: #8ea1cf;
+      transition: stroke-dashoffset 300ms ease;
     }
 
     #pointerArrow {
@@ -243,6 +246,19 @@
       color: #aab0c2 !important;
     }
 
+    #upgradeBtn.upgrade-button-pressed {
+      animation: upgradeButtonPress .42s cubic-bezier(.2,.8,.25,1);
+    }
+    @keyframes upgradeButtonPress {
+      0% { transform: scale(1); filter: brightness(1); box-shadow: 0 6px 18px rgba(24,27,50,.38); }
+      32% { transform: scale(.96); filter: brightness(1.18); box-shadow: 0 0 0 4px rgba(142,161,207,.16), 0 0 26px rgba(142,161,207,.48); }
+      68% { transform: scale(1.025); filter: brightness(1.1); box-shadow: 0 0 18px rgba(142,161,207,.36); }
+      100% { transform: scale(1); filter: brightness(1); box-shadow: 0 6px 18px rgba(24,27,50,.38); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #upgradeBtn.upgrade-button-pressed { animation-duration: .01ms; }
+    }
+
     /* Панель быстрых кнопок под апгрейдом */
     #multButtonsContainer button,
     #chanceButtonsContainer button,
@@ -266,24 +282,29 @@
       border-radius: 2px !important;
     }
 
-    #leftTabInvBtn.bg-brand-gold,
-    #leftTabShopBtn.bg-brand-gold {
-      background: #8799c5 !important;
+    #leftTabInvBtn.is-active,
+    #leftTabShopBtn.is-active {
+      background: #8798c1 !important;
       color: #182033 !important;
       box-shadow: inset 0 0 0 1px rgba(220, 228, 247, 0.18);
     }
 
-    #leftTabInvBtn:not(.bg-brand-gold),
-    #leftTabShopBtn:not(.bg-brand-gold) {
+    #leftTabInvBtn:not(.is-active),
+    #leftTabShopBtn:not(.is-active) {
       background: #2a2b42 !important;
       color: #8d95ad !important;
       border: 1px solid #474a67 !important;
     }
 
-    #leftTabInvBtn:hover,
-    #leftTabShopBtn:hover {
+    #leftTabInvBtn:hover:not(.is-active),
+    #leftTabShopBtn:hover:not(.is-active) {
       color: #e8ecf5 !important;
       background: #373a55 !important;
+    }
+    #leftTabInvBtn:hover.is-active,
+    #leftTabShopBtn:hover.is-active {
+      background: #91a1c7 !important;
+      color: #182033 !important;
     }
 
     /* Верхние панели выбранного/целевого предмета */
@@ -292,6 +313,334 @@
       scrollbar-color: #59617e #25263c;
     }
 
+
+    /* ===== UPGRADE SELECTION WINDOW ===== */
+    .upgrade-columns {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(380px, 1.5fr) minmax(0, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+    .selection-card {
+      position: relative;
+      height: 340px;
+      min-width: 0;
+      overflow: hidden;
+      padding: 13px 12px 10px;
+      border: 1px solid #3b3e58;
+      border-radius: 2px;
+      background:
+        radial-gradient(circle at 50% 55%, rgba(100, 112, 167, .09), transparent 55%),
+        linear-gradient(180deg, rgba(30, 31, 49, .98), rgba(25, 26, 42, .98));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.015), 0 10px 30px rgba(7, 8, 18, .18);
+    }
+
+    .selection-heading {
+      position: relative;
+      z-index: 4;
+      text-align: center;
+      color: #f1f3f8;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 900;
+      letter-spacing: .01em;
+      text-transform: uppercase;
+      white-space: normal;
+      padding: 0 18px;
+    }
+
+    .selection-subheading {
+      position: relative;
+      z-index: 4;
+      margin-top: 2px;
+      text-align: center;
+      color: #7895d0;
+      font-size: 9px;
+      line-height: 12px;
+      font-weight: 600;
+    }
+
+    .selection-fast-btn {
+      position: absolute;
+      top: 9px;
+      right: 8px;
+      z-index: 5;
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(188, 197, 222, .38);
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      transition: color .16s ease, transform .16s ease;
+    }
+
+    .selection-fast-btn:hover {
+      color: #b9c5e3;
+      transform: scale(1.06);
+    }
+
+    .selection-stage {
+      position: relative;
+      height: 207px;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .selection-empty-state {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease;
+    }
+
+    .selection-weapon {
+      position: absolute;
+      width: 92%;
+      max-width: 300px;
+      max-height: 170px;
+      object-fit: contain;
+      opacity: .22;
+      filter: drop-shadow(0 8px 18px rgba(0,0,0,.35));
+      transform: translateY(4px);
+      user-select: none;
+    }
+
+    .selection-chevrons {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: -1px;
+      transform: translateY(18px);
+      filter: drop-shadow(0 3px 7px rgba(0,0,0,.42));
+    }
+
+    .selection-chevrons span {
+      display: block;
+      width: 30px;
+      height: 30px;
+      border-right: 7px solid rgba(243, 245, 250, .92);
+      border-bottom: 7px solid rgba(243, 245, 250, .92);
+      transform: rotate(45deg);
+      margin-top: -13px;
+    }
+
+    .selection-chevrons span:first-child { margin-top: 0; }
+
+    .selection-items-preview {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      max-height: 196px;
+      padding: 12px 4px 4px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-content: center;
+      justify-content: center;
+      overflow-y: auto;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease;
+    }
+
+    .selection-card.has-selection .selection-empty-state {
+      opacity: .10;
+      transform: scale(.96);
+    }
+
+    .selection-card.has-selection .selection-items-preview {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #mySelectionCard.has-selection .selection-items-preview { transform: translateY(-25px); }
+
+    .selection-card.has-selection,
+    .selection-card.has-target {
+      border-color: rgba(120, 143, 197, .72);
+      background:
+        radial-gradient(circle at 50% 55%, rgba(121, 143, 198, .17), transparent 62%),
+        linear-gradient(180deg, rgba(31, 33, 53, .99), rgba(25, 26, 42, .99));
+      box-shadow: inset 0 0 0 1px rgba(164, 180, 222, .06), 0 0 24px rgba(100, 121, 180, .14), 0 10px 30px rgba(7, 8, 18, .2);
+    }
+
+    .selection-items-preview .selection-item-card {
+      width: 86px;
+      min-height: 96px;
+      padding: 5px 4px 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      border: 1px solid #4d5373;
+      border-radius: 2px;
+      background: rgba(35, 37, 58, .92);
+      box-shadow: 0 5px 14px rgba(0,0,0,.18);
+    }
+
+    .selection-items-preview .selection-item-card img {
+      width: 72px;
+      height: 56px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,.3));
+    }
+
+    .selection-items-preview .selection-item-name {
+      width: 100%;
+      color: #e9edf6;
+      font-size: 8px;
+      line-height: 10px;
+      font-weight: 800;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: center;
+    }
+
+    .selection-items-preview .selection-item-price {
+      color: #9ca9cc;
+      font-size: 8px;
+      line-height: 10px;
+      font-weight: 900;
+    }
+
+    .selection-items-preview .selection-item-card-featured {
+      width: min(100%, 230px);
+      min-height: 176px;
+      border-color: transparent;
+      background: transparent;
+      box-shadow: none;
+    }
+    .selection-items-preview .selection-item-card-featured img {
+      width: min(220px, 100%);
+      height: 138px;
+      filter: drop-shadow(0 9px 15px rgba(0, 0, 0, .42));
+    }
+    .selection-items-preview .selection-item-card-featured .selection-item-name { font-size: 12px; line-height: 15px; }
+
+    .selection-total {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 9px;
+      z-index: 4;
+      display: flex;
+      justify-content: center;
+      gap: 3px;
+      color: rgba(190, 197, 216, .68);
+      font-size: 10px;
+      line-height: 12px;
+      font-weight: 700;
+    }
+
+    .upgrade-balance-control {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 27px;
+      z-index: 5;
+      padding: 6px 8px 3px;
+      background: rgba(37, 36, 59, .88);
+      border: 1px solid rgba(71, 74, 103, .75);
+    }
+    .upgrade-balance-control input[type="range"] {
+      width: 100%; height: 4px; accent-color: #8799c5; cursor: pointer;
+    }
+    .upgrade-balance-control input[type="range"]:disabled { accent-color: #737789; cursor: not-allowed; opacity: .55; }
+    .upgrade-balance-control.is-disabled { background: rgba(42, 43, 61, .72); }
+
+    .target-selection-empty::before {
+      content: "";
+      position: absolute;
+      inset: 8%;
+      background: radial-gradient(ellipse, rgba(118, 131, 184, .2), transparent 68%);
+    }
+    #targetItemPreview { position: relative; z-index: 3; }
+    #targetSelectionCard.has-target #targetSelectionEmpty { opacity: .12; transform: scale(.96); }
+    .target-item-display {
+      width: 100%;
+      height: 100%;
+      padding: 0 6px;
+      border-radius: 4px;
+      background: radial-gradient(ellipse at 50% 44%, rgba(132, 148, 198, .17), rgba(34, 37, 59, .05) 58%, transparent 76%);
+    }
+    .target-item-display .target-item-name {
+      width: 100%;
+      color: #e9edf6;
+      font-size: 12px;
+      line-height: 15px;
+      font-weight: 800;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: center;
+    }
+    .target-item-display .target-item-price { font-size: 14px; line-height: 18px; margin-top: 0; }
+    .target-item-display img {
+      width: min(220px, 100%);
+      height: 138px;
+      flex: 0 0 138px;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 15px rgba(4, 6, 15, .55));
+    }
+
+    #targetSelectionCard::after {
+      content: "";
+      position: absolute;
+      inset: -35%;
+      z-index: 6;
+      pointer-events: none;
+      opacity: 0;
+      mix-blend-mode: screen;
+      background:
+        radial-gradient(circle at 22% 31%, rgba(224, 240, 255, .85) 0 1px, transparent 2px),
+        radial-gradient(circle at 76% 25%, rgba(255, 229, 161, .9) 0 1.5px, transparent 2.5px),
+        radial-gradient(circle at 69% 72%, rgba(209, 231, 255, .8) 0 1px, transparent 2px),
+        radial-gradient(circle at 27% 78%, rgba(255, 238, 195, .8) 0 1px, transparent 2px),
+        radial-gradient(ellipse at 50% 50%, rgba(255, 221, 145, .2), transparent 58%);
+    }
+    #targetSelectionCard.upgrade-win-celebration {
+      animation: targetCardWin .9s cubic-bezier(.2,.8,.25,1);
+      transform-origin: center;
+    }
+    #targetSelectionCard.upgrade-win-celebration::after {
+      animation: targetCardSparks 1.05s ease-out;
+    }
+    @keyframes targetCardWin {
+      0%, 100% { transform: scale(1) rotate(0); box-shadow: inset 0 0 0 1px rgba(164,180,222,.06), 0 0 24px rgba(100,121,180,.14), 0 10px 30px rgba(7,8,18,.2); }
+      18% { transform: scale(1.045) rotate(-.7deg); box-shadow: inset 0 0 0 1px rgba(224,238,255,.3), 0 0 34px rgba(134,179,255,.48), 0 0 58px rgba(232,190,107,.2); }
+      34% { transform: scale(1.035) rotate(.65deg); }
+      52% { transform: scale(1.025) rotate(-.35deg); }
+      70% { transform: scale(1.015) rotate(.2deg); }
+    }
+    @keyframes targetCardSparks {
+      0% { opacity: 0; transform: scale(.84) rotate(-4deg); }
+      25% { opacity: .9; }
+      65% { opacity: .55; transform: scale(1.02) rotate(2deg); }
+      100% { opacity: 0; transform: scale(1.12) rotate(5deg); }
+    }
+
+    .selection-total #mySelectedSum {
+      color: #8fa4d6;
+      font-weight: 900;
+    }
+
+    @media (max-width: 1023px) {
+      .upgrade-columns { grid-template-columns: minmax(0, 1fr); }
+      .selection-card { height: 340px; }
+      .selection-stage { height: 207px; }
+      .selection-weapon { max-width: 280px; max-height: 155px; }
+    }
 
     /* ===== SHOP CARDS / HOVER QUANTITY ===== */
     .shop-skin-card {
@@ -419,6 +768,21 @@
       background: #353852;
     }
 
+    .profile-tab-svg-icon {
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 18px;
+    }
+
+    .profile-tab-svg-icon svg {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+
     .profile-inventory-tab.active {
       color: #eef2fb;
       background: #424866;
@@ -435,6 +799,34 @@
       border: 1px solid #4a4966;
       border-radius: 5px;
       background: #25243b;
+    }
+
+    .profile-withdrawal-card {
+      display: grid;
+      grid-template-columns: 88px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 14px;
+      padding: 12px;
+      border: 1px solid #4a4966;
+      border-radius: 5px;
+      background: #25243b;
+    }
+    .profile-inventory-grid.profile-withdrawal-history-grid {
+      grid-template-columns: minmax(0, 1fr);
+      max-height: none;
+      overflow: visible;
+      align-items: stretch;
+    }
+    .profile-withdrawal-image { width: 88px; height: 68px; object-fit: contain; background: #1d1c2b; }
+    .profile-withdrawal-status { font-size: 11px; font-weight: 800; white-space: nowrap; }
+    .profile-withdrawal-status.is-progress { color: #a9b8e4; }
+    .profile-withdrawal-status.is-rejected { color: #fb7185; }
+    .profile-withdrawal-status.is-done { color: #34d399; }
+    .gold-coin-icon { display: inline-block; object-fit: contain; vertical-align: -2px; flex: 0 0 auto; }
+    @media (max-width: 560px) {
+      .profile-withdrawal-card { grid-template-columns: 64px minmax(0, 1fr); gap: 10px; }
+      .profile-withdrawal-image { width: 64px; height: 58px; }
+      .profile-withdrawal-status { grid-column: 2; }
     }
 
     /* ===== GAME HISTORY ===== */
@@ -642,6 +1034,25 @@
       }
     }
 
+    /* Анимация в верхнем балансе — оставляем как была. */
+    .balance-gain-animation {
+      animation: balanceGain .72s cubic-bezier(.2,.8,.2,1);
+      transform-origin: center;
+    }
+
+    @keyframes balanceGain {
+      0% { transform: scale(1); filter: brightness(1); box-shadow: 0 0 0 rgba(227,167,47,0); }
+      25% { transform: scale(1.08); filter: brightness(1.35); box-shadow: 0 0 18px rgba(227,167,47,.38); }
+      55% { transform: scale(.98); filter: brightness(1.12); box-shadow: 0 0 11px rgba(227,167,47,.24); }
+      100% { transform: scale(1); filter: brightness(1); box-shadow: 0 0 0 rgba(227,167,47,0); }
+    }
+
+    /* Для большого баланса в профиле — никаких scale/вспышек,
+       только плавное изменение самого числа. */
+    .balance-count-animation {
+      transition: color .18s ease;
+    }
+
     .profile-skin-card {
       position: relative;
       height: 174px;
@@ -749,23 +1160,72 @@
 
     .profile-skin-actions {
       margin-top: auto;
-      height: 27px;
+      min-height: 34px;
+      padding: 4px 6px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 22px;
-      color: #555b75;
+      gap: 6px;
       border-top: 1px solid rgba(74,73,102,.5);
-      background: rgba(25, 26, 40, .48);
-      font-size: 13px;
+      background: rgba(25, 26, 40, .58);
     }
 
-    .profile-skin-actions span {
-      transition: color .15s ease;
+    .profile-skin-action-btn {
+      flex: 1;
+      min-width: 0;
+      height: 25px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 0 5px;
+      font-size: 8px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: .35px;
+      text-transform: uppercase;
+      transition: transform .16s ease, filter .16s ease, border-color .16s ease, box-shadow .16s ease;
+      cursor: pointer;
     }
 
-    .profile-skin-actions span:hover {
-      color: #8799c5;
+    .profile-skin-action-btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.14);
+    }
+
+    .profile-skin-action-btn:active {
+      transform: translateY(0) scale(.97);
+    }
+
+    .profile-skin-action-sell {
+      color: #d9ffed;
+      background: linear-gradient(135deg, rgba(28, 126, 91, .72), rgba(23, 76, 67, .88));
+      border-color: rgba(68, 211, 157, .28);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+    }
+
+    .profile-skin-action-sell:hover {
+      border-color: rgba(68, 211, 157, .7);
+      box-shadow: 0 0 10px rgba(68, 211, 157, .16);
+    }
+
+    .profile-skin-action-withdraw {
+      color: #e6e2ff;
+      background: linear-gradient(135deg, rgba(92, 78, 154, .72), rgba(54, 48, 91, .9));
+      border-color: rgba(145, 129, 231, .28);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+    }
+
+    .profile-skin-action-withdraw:hover {
+      border-color: rgba(145, 129, 231, .72);
+      box-shadow: 0 0 10px rgba(145, 129, 231, .16);
+    }
+
+    .profile-skin-action-icon {
+      font-size: 10px;
+      opacity: .95;
     }
 
     .profile-inventory-empty {
@@ -963,6 +1423,45 @@
        The old z-50 layer could leave the header visually unblurred. */
     body.auth-is-open > header {
       z-index: 0 !important;
+    }
+
+    body.welcome-is-open { overflow: hidden !important; }
+    body.welcome-is-open > header { z-index: 0 !important; }
+    body.avatar-crop-open { overflow: hidden !important; }
+    body.avatar-crop-open > header { z-index: 0 !important; }
+    #avatarCropModal {
+      position: fixed !important;
+      inset: 0 !important;
+      top: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      height: 100dvh !important;
+      min-height: 100dvh !important;
+      margin: 0 !important;
+      box-sizing: border-box !important;
+      z-index: 2147483646 !important;
+      isolation: isolate !important;
+      background: rgba(5, 5, 12, .78) !important;
+      backdrop-filter: blur(18px) saturate(.70) !important;
+      -webkit-backdrop-filter: blur(18px) saturate(.70) !important;
+    }
+    #welcomeModal {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      height: 100dvh !important;
+      margin: 0 !important;
+      padding: 1rem !important;
+      box-sizing: border-box !important;
+      z-index: 2147483646 !important;
+      isolation: isolate !important;
+      background: rgba(5, 5, 12, .78) !important;
+      backdrop-filter: blur(18px) saturate(.70) !important;
+      -webkit-backdrop-filter: blur(18px) saturate(.70) !important;
     }
 
     #authModal {
@@ -1167,10 +1666,6 @@
     .flag-az { background:linear-gradient(#00a3dd 0 33%,#ed2939 33% 66%,#3f9c35 66%); }
     .flag-kg { background:#e51b23; }
     .flag-kg:after { content:"✹"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#f8d65a; font-size:10px; }
-    .deposit-promo-status { margin-top:8px; min-height:34px; padding:9px 11px; border:1px solid #45445e; background:#242331; color:#8f94aa; font-size:11px; font-weight:800; display:none; align-items:center; gap:8px; }
-    .deposit-promo-status.show { display:flex; }
-    .deposit-promo-status.success { border-color:rgba(32,208,132,.35); background:rgba(32,208,132,.08); color:#35d98f; }
-    .deposit-promo-status.error { border-color:rgba(255,82,99,.35); background:rgba(255,82,99,.08); color:#ff6875; }
     .deposit-payment-methods { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
     .deposit-method {
       height:42px; border:1px solid #45445e; background:#2d2c3d; color:#aeb2c2;
@@ -1202,10 +1697,6 @@
     .deposit-amount-btn:hover,.deposit-amount-btn.active { border-color:#7787b5; background:#34354a; }
     .deposit-custom { width:100%; height:42px; border:1px solid #45445e; background:#242331; color:#f1f3f8; padding:0 12px; font-size:12px; outline:none; }
     .deposit-custom:focus { border-color:#7787b5; }
-    .deposit-promo { width:100%; height:42px; border:1px solid #45445e; background:#242331; color:#f1f3f8; padding:0 12px; font-size:12px; outline:none; }
-    .deposit-promo:focus { border-color:#7787b5; }
-    .deposit-promo-row { display:flex; gap:8px; }
-    .deposit-promo-row button { flex:none; border:0; background:#68749b; color:#fff; font-size:12px; font-weight:800; padding:0 16px; cursor:pointer; }
     .deposit-pay-btn { width:100%; height:44px; border:0; background:#e3a72f; color:#171723; font-size:12px; font-weight:900; text-transform:uppercase; cursor:pointer; }
     .deposit-pay-btn:hover { background:#f0b73e; }
     .deposit-disabled { padding:34px 16px; border:1px dashed #45445e; background:#242331; text-align:center; color:#8f94aa; font-size:12px; }
@@ -1225,12 +1716,111 @@
       white-space: nowrap;
       z-index: 2;
     }
+    .site-logo-image {
+      display: block;
+      width: 210px;
+      height: auto;
+      max-width: 30vw;
+      object-fit: contain;
+    }
     .site-header > nav,
     .site-header > #authSection { position: relative; z-index: 3; }
+    #nav-upgrader,
+    #nav-profile {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1px;
+      min-width: 54px;
+      height: 42px;
+      padding: 0 8px 2px !important;
+      border: 0 !important;
+      color: #9d9bad !important;
+      text-transform: uppercase;
+      font-size: 10px;
+    }
+    #nav-upgrader svg { color: currentColor; width: 20px; height: 20px; }
+    #nav-profile svg { color: currentColor; width: 18px; height: 18px; }
+    #nav-upgrader::after,
+    #nav-profile::after {
+      content: "";
+      position: absolute;
+      left: -3px;
+      right: -3px;
+      bottom: -10px;
+      height: 2px;
+      opacity: 0;
+      border-radius: 999px;
+      background: #8198d2;
+      box-shadow: 0 0 7px 2px rgba(112, 139, 205, .42), 0 4px 12px rgba(81, 108, 177, .18);
+      pointer-events: none;
+      transition: opacity .18s ease;
+    }
+    #nav-upgrader.text-brand-gold,
+    #nav-profile.text-brand-gold { color: #a9b8e4 !important; }
+    #nav-upgrader.text-brand-gold::after,
+    #nav-profile.text-brand-gold::after { opacity: 1; }
     @media (max-width: 767px) {
       .site-logo { position: static; transform: none; margin: 0 auto; }
+      .site-logo-image { width: 185px; max-width: 48vw; }
     }
     @media (max-width:560px){ .deposit-payment-methods,.deposit-amounts{grid-template-columns:1fr;} .deposit-payment-modal{padding:18px!important;} }
+
+    /* Reference inspired upgrader treatment */
+    :root {
+      --ref-ink: #242238;
+      --ref-panel: #29263d;
+      --ref-border: #46415e;
+      --ref-muted: #9290a8;
+      --ref-lilac: #77728e;
+      --ref-green: #07551d;
+    }
+    body { background: linear-gradient(180deg, #393650 0%, #2d293d 48%, #1d1524 100%); }
+    .site-header { background: rgba(38, 36, 56, .88) !important; }
+    .selection-card {
+      height: 288px;
+      padding: 12px 12px 9px;
+      border-color: var(--ref-border);
+      background: radial-gradient(circle at 50% 52%, rgba(132,126,163,.12), transparent 58%), linear-gradient(180deg, rgba(31,30,47,.98), rgba(27,26,42,.98));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.012), 0 10px 28px rgba(7,8,18,.16);
+    }
+    .selection-heading { font-size: 12px; line-height: 15px; letter-spacing: 0; }
+    .selection-subheading { color: #a5a0b8; }
+    .selection-stage { height: 177px; }
+    .selection-weapon { opacity: .27; }
+    .selection-chevrons span { border-color: rgba(244,245,249,.92); }
+    .upgrade-balance-control { background: rgba(63,62,79,.75); border-color: var(--ref-border); }
+    .upgrade-balance-control input[type="range"] { accent-color: #9b98a7; }
+    .selection-total { color: #a6a2b5; }
+    .selection-total #mySelectedSum { color: #e3a72f; }
+    /* Place the balance slider in the open strip directly beneath the input card. */
+    #mySelectionCard { overflow: visible; margin-bottom: 62px; }
+    #mySelectionCard .upgrade-balance-control { bottom: -52px; left: 0; right: 0; z-index: 6; }
+    #mySelectionCard .selection-total { bottom: 9px; color: #fff; }
+    #mySelectionCard .selection-total #mySelectedSum { color: #fff; }
+    .dial-glow { filter: drop-shadow(0 0 18px rgba(151, 133, 171, .18)); }
+    #chanceCircleArc, #chanceCircleArcReverse { stroke: #8d7b67; }
+    #pointerArrow { border-top-color: #c5c3c9 !important; }
+    #chancePercentText { color: #e9e7ed !important; }
+    #chanceStatusText, .relative.w-52.h-52 > span { color: #a5a0b4 !important; }
+    #upgradeBtn {
+      background: linear-gradient(180deg, #075a20 0%, #064719 100%) !important;
+      color: #f3f2f5 !important;
+      border: 1px solid #17642b !important;
+      box-shadow: 0 5px 16px rgba(5, 31, 13, .28);
+    }
+    #upgradeBtn:hover:not(:disabled) { background: linear-gradient(180deg, #087127 0%, #07551d 100%) !important; border-color: #318246 !important; }
+    #upgradeBtn:disabled { background: #194125 !important; border-color: #31533a !important; color: #9ca99e !important; }
+    #multButtonsContainer button, #chanceButtonsContainer button,
+    #multButtonsContainer > *, #chanceButtonsContainer > * { background-color: #373448 !important; border-color: #514c65 !important; color: #aaa6b8 !important; }
+    #multButtonsContainer button:hover, #chanceButtonsContainer button:hover { background-color: #48445a !important; color: #f0eef4 !important; border-color: #77718a !important; }
+    .selection-card.has-selection, .selection-card.has-target {
+      border-color: rgba(151, 136, 174, .72);
+      background: radial-gradient(circle at 50% 55%, rgba(142,128,169,.17), transparent 62%), linear-gradient(180deg, rgba(34,32,52,.99), rgba(27,26,42,.99));
+    }
+    @media (max-width: 1023px) { .selection-card { height: 288px; } .selection-stage { height: 177px; } }
 
 </style>
 </head>
@@ -1240,16 +1830,25 @@
   <header class="site-header border-b border-brand-cardBorder bg-[#191929]/90 backdrop-blur-md px-6 py-3 flex items-center justify-between sticky top-0 z-40">
     <!-- LEFT NAVIGATION -->
     <nav class="hidden md:flex items-center space-x-5 text-xs font-semibold text-slate-300/70">
-      <button id="nav-upgrader" onclick="switchTab('upgrader')" class="text-brand-gold border-b-2 border-brand-gold pb-1 transition">АПГРЕЙДЕР</button>
-      <button id="nav-profile" onclick="switchTab('profile')" class="hover:text-slate-100 transition pb-1">ПРОФИЛЬ</button>
+      <button id="nav-upgrader" onclick="switchTab('upgrader')" class="text-brand-gold border-b-2 border-brand-gold pb-1 transition">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 12.2929C11.6834 11.9024 12.3166 11.9024 12.7071 12.2929L17.7071 17.2929C18.0976 17.6834 18.0976 18.3166 17.7071 18.7071C17.3166 19.0976 16.6834 19.0976 16.2929 18.7071L12 14.4142L7.70711 18.7071C7.31658 19.0976 6.68342 19.0976 6.29289 18.7071C5.90237 18.3166 5.90237 17.6834 6.29289 17.2929L11.2929 12.2929Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 5.29289C11.6834 4.90237 12.3166 4.90237 12.7071 5.29289L17.7071 10.2929C18.0976 10.6834 18.0976 11.3166 17.7071 11.7071C17.3166 12.0976 16.6834 12.0976 16.2929 11.7071L12 7.41421L7.70711 11.7071C7.31658 12.0976 6.68342 12.0976 6.29289 11.7071C5.90237 11.3166 5.90237 10.6834 6.29289 10.2929L11.2929 5.29289Z" fill="currentColor"/></svg>
+        <span>АПГРЕЙД</span>
+      </button>
+      <button id="nav-profile" onclick="switchTab('profile')" class="hover:text-slate-100 transition pb-1">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M14.34 12.35a4.5 4.5 0 1 0-4.68 0c-3.16.96-5.54 3.71-5.96 7.07-.11.89.63 1.58 1.44 1.58h13.72c.81 0 1.55-.69 1.44-1.58-.42-3.36-2.8-6.11-5.96-7.07ZM12 4.5a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm-7.44 15.5c.37-2.96 2.46-5.39 5.25-6.24a5 5 0 0 0 4.38 0c2.79.85 4.88 3.28 5.25 6.24H4.56Z" fill="currentColor"/>
+        </svg>
+        <span>ПРОФИЛЬ</span>
+      </button>
     </nav>
 
     <!-- CENTERED LOGO -->
-    <div onclick="switchTab('upgrader')" class="site-logo flex items-center space-x-2 font-black text-xl tracking-wider text-slate-100 cursor-pointer">
-      <svg class="w-6 h-6 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 11l7-7 7 7M5 19l7-7 7 7"/>
-      </svg>
-      <span>SOGRADER</span>
+    <div onclick="switchTab('upgrader')" class="site-logo cursor-pointer" aria-label="SOGRADER">
+      <img
+        src="SOGRADER-logo-transparent.png"
+        alt="SOGRADER"
+        class="site-logo-image"
+      >
     </div>
 
     <!-- USER AUTH & DEPOSIT SECTION -->
@@ -1263,85 +1862,126 @@
     <div id="tab-upgrader-content" class="space-y-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         <div class="lg:col-span-12">
-          <div class="bg-brand-cardBg/90 backdrop-blur-sm border border-brand-cardBorder rounded-sm p-6 relative overflow-hidden shadow-2xl shadow-black/60">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="bg-transparent relative overflow-hidden">
+        <div class="upgrade-columns">
           
-          <!-- LEFT: SELECTED MY SKINS -->
-          <div class="lg:col-span-3 flex flex-col items-center justify-center p-4 bg-[#25243b]/80 border border-brand-cardBorder rounded-sm h-56 relative">
-            <button id="fastSpinBtn" onclick="toggleFastSpin()" title="Быстрая прокрутка" class="absolute top-2 right-2 text-slate-300/50 hover:text-brand-gold transition p-1 rounded z-10">
+          <!-- LEFT: SELECTED MY SKINS / SELECTION WINDOW -->
+          <div class="selection-card" id="mySelectionCard">
+            <button id="fastSpinBtn" onclick="toggleFastSpin()" title="Быстрая прокрутка" class="selection-fast-btn">
               <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
                 <path d="M13 2L3 14h7v8l10-12h-7z"/>
               </svg>
             </button>
 
-            <span class="text-xs uppercase font-bold text-slate-300/60 mb-2">Выберите скины</span>
-            <div id="selectedMyItemsPreview" class="flex flex-wrap gap-2 justify-center items-center overflow-y-auto max-h-36 custom-scrollbar w-full p-2">
-              <span class="text-xs text-slate-300/40 text-center">Нажмите на скин из инвентаря снизу</span>
+            <div class="selection-heading">ВЫБЕРИТЕ ПРЕДМЕТЫ ИЛИ ПРЕДМЕТЫ И БАЛАНС</div>
+            <div class="selection-subheading">Можно выбрать несколько предметов</div>
+
+            <div class="selection-stage">
+              <div id="selectionEmptyState" class="selection-empty-state">
+                <img src="weapon-placeholder.png" alt="Оружие" class="selection-weapon">
+                <div class="selection-chevrons" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+              <div id="selectedMyItemsPreview" class="selection-items-preview custom-scrollbar"></div>
             </div>
-            <div class="absolute bottom-2 text-[11px] text-slate-300/70">
-              Сумма: <span id="mySelectedSum" class="text-brand-gold font-bold">0.00 G</span>
+
+            <div class="upgrade-balance-control">
+              <div class="flex items-center justify-between gap-2 text-[10px] leading-3 font-semibold">
+                <span class="text-slate-300/60">Добавить баланс</span>
+                <span class="text-slate-200"><span id="upgradeBalanceAmount">0.00</span> <img class="gold-coin-icon" src="https://s3.stand-battle.com/images/coin.webp" alt="" aria-hidden="true" width="12" height="12"> <span class="text-slate-400">(макс. <span id="upgradeBalanceMax">0.00</span>)</span></span>
+              </div>
+              <input id="upgradeBalanceSlider" type="range" min="0" max="0" step="0.01" value="0" disabled oninput="setUpgradeBalance(this.value)" aria-label="Добавить баланс к апгрейду">
+            </div>
+
+            <div class="selection-total">
+              <span>Сумма:</span>
+              <span id="mySelectedSum">0.00 <img class="gold-coin-icon" src="https://s3.stand-battle.com/images/coin.webp" alt="" aria-hidden="true" width="13" height="13"></span>
             </div>
           </div>
 
           <!-- CENTER: DIAL & SPINNER -->
-          <div class="lg:col-span-6 flex flex-col items-center justify-center relative py-2">
+          <div class="flex flex-col items-center justify-center relative py-2">
             <div class="relative w-52 h-52 flex items-center justify-center dial-glow my-3">
               
               <!-- МЕТКИ ПРОЦЕНТОВ (ВПОДТЫК К ОБВОДКЕ, 50% ВЕРТИКАЛЬНЫЕ) -->
               <span class="absolute -top-3.5 font-black text-xs text-brand-gold select-none z-20">100%</span>
-              <span class="absolute -right-3.5 font-black text-xs text-brand-gold select-none z-20 rotate-90">50%</span>
+              <span class="absolute -right-5 font-black text-xs text-brand-gold select-none z-20 rotate-90">50%</span>
               <span class="absolute -bottom-3.5 font-black text-xs text-brand-gold select-none z-20">0%</span>
-              <span class="absolute -left-3.5 font-black text-xs text-brand-gold select-none z-20 -rotate-90">50%</span>
+              <span class="absolute -left-5 font-black text-xs text-brand-gold select-none z-20 -rotate-90">50%</span>
 
-              <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+              <svg class="w-full h-full" viewBox="0 0 100 100">
+                <defs>
+                  <linearGradient id="chanceRimGradient" x1="50" y1="2" x2="50" y2="98" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#278b58"/>
+                    <stop offset="24%" stop-color="#879443"/>
+                    <stop offset="50%" stop-color="#c18a3e"/>
+                    <stop offset="76%" stop-color="#c25d3f"/>
+                    <stop offset="100%" stop-color="#963b55"/>
+                  </linearGradient>
+                </defs>
                 <!-- Внешняя линия-граница -->
-                <circle cx="50" cy="50" r="48" stroke="#4a4966" stroke-width="2" fill="transparent"/>
+                <circle cx="50" cy="50" r="48" stroke="url(#chanceRimGradient)" stroke-width="2" fill="transparent" opacity=".82"/>
                 
                 <!-- Основные дуги рулетки -->
                 <circle cx="50" cy="50" r="41" stroke="#202035" stroke-width="8" fill="transparent"/>
-                <circle id="chanceCircleArc" cx="50" cy="50" r="41" stroke="#e3a72f" stroke-width="8" fill="transparent"
-                  stroke-dasharray="257.61" stroke-dashoffset="257.61" stroke-linecap="butt" class="transition-all duration-300"/>
+                <path id="chanceCircleArc" d="M 50 91 C 72.64 91 91 72.64 91 50 C 91 27.36 72.64 9 50 9" pathLength="128.81" stroke="#8ea1cf" stroke-width="8" fill="none" visibility="hidden"
+                  stroke-dasharray="128.81 128.81" stroke-dashoffset="128.81" stroke-linecap="butt"/>
+                <path id="chanceCircleArcReverse" d="M 50 91 C 27.36 91 9 72.64 9 50 C 9 27.36 27.36 9 50 9" pathLength="128.81" stroke="#8ea1cf" stroke-width="8" fill="none" visibility="hidden"
+                  stroke-dasharray="128.81 128.81" stroke-dashoffset="128.81" stroke-linecap="butt"/>
               </svg>
 
               <!-- СТРЕЛКА СТРОГО ВНУТРИ ПОЛОСЫ-ОБВОДКИ -->
-              <div id="pointerArrowContainer" class="absolute inset-0 flex items-start justify-center transition-transform ease-out z-10">
+              <div id="pointerArrowContainer" class="absolute inset-0 flex items-start justify-center transition-transform ease-out z-10" style="transform: rotate(180deg)">
                 <div id="pointerArrow" class="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[10px] border-t-rose-100 mt-[3px] drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"></div>
               </div>
 
-              <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+              <svg id="dialEmptyPlaceholder" class="absolute w-[82px] h-[94px] pointer-events-none" viewBox="0 0 122 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <g clip-path="url(#dialEmptyClip)" style="mix-blend-mode:soft-light">
+                  <path d="M61.1756 0C62.0393 0.147983 117.214 41.9077 121.773 45.6305C121.94 50.8017 121.799 56.7357 121.798 61.987C121.771 70.4241 121.838 78.8613 122 87.2969C116.702 82.8284 62.9764 42.6302 61.6545 42.3456C61.2272 42.2536 61.0051 42.468 60.6461 42.6672C55.6424 46.6326 49.8301 50.7617 44.6653 54.6017L16.2741 75.8574C11.5089 79.4526 4.48608 84.5531 0.0488887 88.359C-0.121597 74.2389 0.212333 60.0016 0.164764 45.8437L41.437 14.8461C47.8068 10.0352 54.7415 4.57174 61.1756 0Z" fill="white" fill-opacity="0.4"/>
+                  <path d="M61.0701 67.1754C61.7043 67.2215 63.725 68.9558 64.3966 69.4595L73.8329 76.5065L111.659 104.91C111.434 108.724 111.648 114.749 111.686 118.686C111.751 125.553 111.658 132.856 111.919 139.695C105.476 134.613 97.6564 129.045 90.9873 124.098C81.1725 116.741 71.312 109.445 61.4065 102.21C44.4626 114.44 26.996 127.442 10.2655 140C10.4646 128.886 10.3791 116.533 10.2471 105.396C12.044 103.907 14.4868 102.181 16.4139 100.732L28.4525 91.6917L61.0701 67.1754Z" fill="white" fill-opacity="0.4"/>
+                </g>
+                <defs><clipPath id="dialEmptyClip"><rect width="122" height="140" fill="white"/></clipPath></defs>
+              </svg>
+
+              <div id="dialChanceContent" class="hidden absolute inset-0 flex flex-col items-center justify-center text-center">
                 <span id="chancePercentText" class="text-3xl font-black tracking-tight text-slate-100">0.00%</span>
                 <span id="chanceStatusText" class="text-[10px] uppercase font-semibold text-slate-300/60 tracking-wider">Шанс успеха</span>
               </div>
             </div>
 
             <!-- ACTION BUTTON & QUICK MULTIPLIERS -->
-            <div class="w-full max-w-md mt-2 flex flex-col space-y-3">
+            <div class="w-full max-w-md mt-2 lg:mt-[53px] flex flex-col space-y-3">
               <button id="upgradeBtn" onclick="handleStartUpgrade()" class="w-full py-3 bg-brand-gold hover:bg-brand-goldHover text-slate-950 font-black uppercase text-sm tracking-wider rounded-sm shadow-md transition flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 11l7-7 7 7M5 19l7-7 7 7"/></svg>
-                <span id="upgradeBtnText">Прокачать</span>
+                <span id="upgradeBtnText">АПГРЕЙД</span>
               </button>
 
               <div id="resultNotification" class="hidden w-full py-2.5 px-4 rounded-sm text-center font-bold text-xs uppercase tracking-wider transition-all duration-300"></div>
 
-              <div class="flex items-center justify-between bg-[#25243b]/80 border border-brand-cardBorder rounded-sm p-1.5 text-xs">
-                <div id="multButtonsContainer" class="flex items-center space-x-2"></div>
-                <div class="h-4 w-[1px] bg-brand-cardBorder mx-2"></div>
-                <div id="chanceButtonsContainer" class="flex items-center space-x-2"></div>
-
-                <button onclick="openSettingsModal()" class="p-2 text-slate-300/70 hover:text-slate-100 transition ml-2 bg-brand-cardBg hover:bg-brand-cardHover rounded-sm border border-brand-cardBorder" title="Настройки">
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
-                  </svg>
-                </button>
-              </div>
             </div>
           </div>
 
           <!-- RIGHT: TARGET ITEM -->
-          <div class="lg:col-span-3 flex flex-col items-center justify-center p-4 bg-[#25243b]/80 border border-brand-cardBorder rounded-sm h-56 relative">
-            <span class="text-xs uppercase font-bold text-slate-300/60 mb-2">Целевой скин</span>
-            <div id="targetItemPreview" class="flex flex-col items-center justify-center w-full h-full">
-              <span class="text-xs text-slate-300/40 text-center">Выберите скин из каталога справа</span>
+          <div class="flex flex-col">
+            <div class="selection-card" id="targetSelectionCard">
+              <div class="selection-heading">Выберите предмет для апгрейда</div>
+              <div class="selection-stage">
+                <div id="targetSelectionEmpty" class="selection-empty-state target-selection-empty">
+                  <img src="weapon-placeholder.png" alt="Оружие" class="selection-weapon">
+                  <div class="selection-chevrons" aria-hidden="true"><span></span><span></span></div>
+                </div>
+                <div id="targetItemPreview" class="flex flex-col items-center justify-center w-full h-full"></div>
+              </div>
+            </div>
+            <div class="mt-1 w-full min-h-[48px] flex items-center justify-center bg-[#25243b]/80 border border-brand-cardBorder rounded-sm p-1 text-xs">
+              <div id="multButtonsContainer" class="flex items-center space-x-1"></div>
+              <div class="h-4 w-[1px] bg-brand-cardBorder mx-1"></div>
+              <div id="chanceButtonsContainer" class="flex items-center space-x-1"></div>
+              <button onclick="openSettingsModal()" class="p-1.5 text-slate-300/70 hover:text-slate-100 transition ml-1 bg-brand-cardBg hover:bg-brand-cardHover rounded-sm border border-brand-cardBorder" title="Настройки">
+                <span class="text-sm leading-none" aria-hidden="true">⚙</span>
+              </button>
             </div>
           </div>
         </div>
@@ -1384,9 +2024,9 @@
             <div class="flex items-center gap-2 min-w-0">
               <div class="flex items-center bg-[#25243b] border border-brand-cardBorder rounded-sm overflow-hidden p-0.5 shrink-0">
                 <button id="leftTabInvBtn" onclick="setLeftPanelTab('inventory')" title="Инвентарь"
-                  class="p-1.5 bg-[#8799c5] text-[#182033] rounded-sm transition flex items-center justify-center">
-                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M20.5 13.5c-1.2 0-2.3.4-3.2 1.1-2.1 1.6-4.2 3.4-6.8 4.6-2.5 1.1-5.3 1.5-8 1-.8-.1-1.3-.9-1.1-1.7.1-.8.9-1.3 1.7-1.1 2.2.4 4.5.1 6.6-.8 2.2-1 4.1-2.6 6-4.1.7-.6 1.5-1.1 2.4-1.4 1.2-.4 2.5-.3 3.6.3 1.1.6 1.9 1.6 2.1 2.8.2 1.3-.2 2.6-1.1 3.5-1 1-2.3 1.5-3.7 1.5zm0-2c.8 0 1.5-.3 2.1-.8.5-.5 1.4-.7 2.1-.2.6.3 1.1.5 1.5.9.4.4.7.9.8 1.4 1 .8 1.8 1.6 2.7 2.3z"/>
+                  class="is-active p-1.5 bg-[#8798c1] text-[#182033] rounded-sm transition flex items-center justify-center">
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M19.2955 20.567C19.0056 20.4157 18.7272 20.2473 18.4904 20.0182C17.8998 19.4475 17.6081 18.7635 17.7206 17.9325C17.7771 17.5157 17.9674 17.1514 18.1925 16.8034C18.2264 16.7512 18.2562 16.6954 18.2962 16.6481C18.4165 16.5057 18.477 16.3413 18.5215 16.1607C18.7094 15.3994 18.3004 14.6768 17.5489 14.4615C17.3216 14.3965 17.3052 14.3657 17.3787 14.1487C17.6357 13.3915 17.1798 12.4118 16.4398 12.1215C16.3273 12.0774 16.2117 12.0483 16.0968 12.0139C15.9287 11.9637 15.9097 11.9317 15.9529 11.7623C16.0928 11.2119 16.0071 10.7133 15.6065 10.2948C15.213 9.88366 14.7235 9.76543 14.1841 9.89511C13.7292 10.0045 13.286 10.1613 12.872 10.3868C12.4532 10.615 12.4744 10.539 12.2771 10.2383C12.234 10.1725 12.1895 10.1068 12.1522 10.0376C12.0741 9.89287 12.0686 9.74979 12.1898 9.62434C12.2364 9.57611 12.2284 9.54553 12.1887 9.50051C11.1631 8.33769 10.0004 7.36089 8.54345 6.77795C7.28342 6.27389 5.97228 6.11434 4.62479 6.17791C3.67162 6.22282 2.74956 6.43709 1.83087 6.67526C1.55472 6.74678 1.27693 6.81293 1 6.88166C1.03413 6.8523 1.06603 6.81974 1.10233 6.7938C2.74431 5.62544 4.54163 4.79308 6.48953 4.29156C7.74124 3.96947 9.00739 3.91925 10.2833 4.11613C10.4997 4.14955 10.7159 4.18321 10.9325 4.21669C11.3248 4.32181 11.7172 4.42693 12.1095 4.53206C12.1424 4.54863 12.1738 4.56972 12.2083 4.58128C12.9568 4.83042 13.6722 5.15367 14.3599 5.53952C14.4535 5.59199 14.5491 5.68481 14.6419 5.68229C14.7449 5.67963 14.8047 5.54268 14.8901 5.472C14.8997 5.46421 14.9076 5.45447 14.9169 5.44609C14.9635 5.40275 15.0156 5.39941 15.0629 5.43897C15.2025 5.5552 15.3531 5.66197 15.4292 5.83743C15.4989 5.998 15.5882 6.14727 15.6922 6.28781C15.7296 6.33841 15.7635 6.39144 15.7326 6.45967C15.6997 6.53276 15.73 6.54475 15.7989 6.53712C15.8905 6.52703 15.9201 6.57526 15.8895 6.66014C15.8607 6.74002 15.8642 6.78075 15.9693 6.75464C16.0477 6.73507 16.0988 6.79993 16.0615 6.87241C16.0008 6.99132 16.0385 6.99441 16.1449 6.96686C16.2157 6.94862 16.2652 6.99881 16.2325 7.06839C16.1667 7.20865 16.2335 7.19373 16.3326 7.17375C16.4028 7.15974 16.4551 7.20168 16.4214 7.273C16.3572 7.40881 16.4031 7.40869 16.5155 7.37138C16.5888 7.34705 16.6281 7.39974 16.6035 7.47661C16.5722 7.57394 16.5962 7.60079 16.7001 7.57514C16.7849 7.55445 16.8258 7.57575 16.7977 7.66641C16.7877 7.69913 16.7689 7.72408 16.7996 7.75531C16.8328 7.78926 16.862 7.77744 16.8994 7.76163C16.9889 7.72383 17.0135 7.76533 16.9976 7.8505C16.9789 7.95118 17.0046 7.97382 17.1039 7.93841C17.1385 7.92601 17.168 7.91939 17.1951 7.9458C17.2157 7.9658 17.2363 7.99016 17.2193 8.02259C17.2035 8.05296 17.1594 8.07914 17.2057 8.11663C17.2437 8.14751 17.2781 8.13243 17.3191 8.11135C17.3842 8.07813 17.4285 8.10681 17.4162 8.18029C17.3947 8.30968 17.4504 8.31063 17.5481 8.27737C17.6153 8.25429 17.6674 8.27443 17.6462 8.36183C17.6226 8.45964 17.6691 8.48376 17.7429 8.44201C17.8304 8.39207 17.8712 8.41875 17.9023 8.50176C17.918 8.54397 17.937 8.5987 17.9963 8.57658C18.1415 8.52271 18.2249 8.61352 18.3012 8.70634C18.4858 8.93025 18.6657 9.15786 18.8455 9.38563C19.8158 10.6138 20.7433 11.8713 21.4986 13.2481C21.5627 13.3647 21.5859 13.4537 21.459 13.546C21.373 13.6085 21.4006 13.7121 21.5019 13.7433C21.553 13.7591 21.6068 13.7668 21.6599 13.7764C21.7659 13.7958 21.8473 13.8524 21.8804 13.9549C21.9127 14.055 21.8409 14.1164 21.7709 14.1721C21.7372 14.199 21.7094 14.2259 21.7267 14.2765C21.7433 14.3252 21.7813 14.3341 21.8235 14.3402C21.8562 14.3448 21.8904 14.3442 21.9214 14.3541C22.0351 14.3894 22.1407 14.4381 22.1723 14.5691C22.2007 14.6871 22.1339 14.7565 22.0428 14.812C22.0204 14.8259 22.0054 14.8469 22.0114 14.8744C22.02 14.9134 22.0522 14.9243 22.0866 14.9276C22.1893 14.9375 22.2768 14.9835 22.355 15.0463C22.4514 15.1238 22.4636 15.2369 22.4051 15.3337C22.3671 15.3966 22.2501 15.4178 22.2744 15.4943C22.2958 15.5619 22.4051 15.5356 22.4718 15.5705C22.6901 15.685 22.7357 15.8397 22.5851 16.0182C22.5171 16.099 22.5436 16.1219 22.6317 16.1469C22.873 16.216 23.0546 16.5692 22.985 16.8149C22.9664 16.8802 22.9216 16.9195 22.872 16.9578C22.7647 17.041 22.6417 17.0967 22.5122 17.1579C22.6816 17.3733 22.746 17.6133 22.7469 17.8736L22.6629 18.187C22.6342 18.2029 22.6296 18.2331 22.6199 18.2601C22.4172 18.8193 22.242 19.3867 22.0813 19.9595C22.0124 20.2054 22.0016 20.4599 21.9365 20.7048C21.8829 20.9055 21.8011 20.9418 21.621 20.8459C21.3987 20.7277 21.1624 20.6561 20.9115 20.6374C20.5233 20.6086 20.1425 20.7495 19.7528 20.689L19.2955 20.567ZM19.6065 19.9029C19.895 19.9888 20.1822 19.9735 20.4589 19.8623C21.0158 19.6386 21.464 19.272 21.7524 18.745C22.2834 17.7755 21.8556 16.5661 20.4913 16.477C19.5443 16.415 18.5951 17.2605 18.4902 18.2061C18.4037 18.9855 18.8766 19.7043 19.6065 19.9029Z" fill="currentColor"/>
                   </svg>
                 </button>
                 <button id="leftTabShopBtn" onclick="setLeftPanelTab('shop')" title="Магазин"
@@ -1403,6 +2043,7 @@
               <span id="leftPanelCount" class="text-xs text-slate-300/60">0 предм.</span>
             </div>          </div>
           <div id="leftPanelGrid" class="grid grid-cols-3 sm:grid-cols-4 gap-2 overflow-y-auto custom-scrollbar flex-1 pr-1"></div>
+          <div id="shopPagination" class="hidden items-center justify-between border-t border-brand-cardBorder pt-2 mt-2 shrink-0"></div>
         </div>
 
         <!-- ПРАВЫЙ БЛОК: КАТАЛОГ ДЛЯ АПГРЕЙДА (50% ШИРИНЫ) -->
@@ -1420,12 +2061,12 @@
 
               <div class="flex items-center space-x-1 bg-[#25243b] border border-brand-cardBorder px-2 py-1 rounded-sm">
                 <span class="text-[10px] font-bold text-slate-300/40">MIN</span>
-                <input id="minPriceInput" oninput="renderStore()" type="number" placeholder="0" class="w-10 bg-transparent text-slate-100 font-bold focus:outline-none text-[11px]">
+                <input id="minPriceInput" oninput="resetStorePage()" type="number" placeholder="0" class="w-10 bg-transparent text-slate-100 font-bold focus:outline-none text-[11px]">
               </div>
 
               <div class="flex items-center space-x-1 bg-[#25243b] border border-brand-cardBorder px-2 py-1 rounded-sm">
                 <span class="text-[10px] font-bold text-slate-300/40">MAX</span>
-                <input id="maxPriceInput" oninput="renderStore()" type="number" placeholder="∞" class="w-10 bg-transparent text-slate-100 font-bold focus:outline-none text-[11px]">
+                <input id="maxPriceInput" oninput="resetStorePage()" type="number" placeholder="∞" class="w-10 bg-transparent text-slate-100 font-bold focus:outline-none text-[11px]">
               </div>
 
               <button onclick="toggleSearchInput(true)" class="p-1.5 bg-[#25243b] hover:bg-brand-cardHover border border-brand-cardBorder text-slate-300/70 hover:text-slate-100 rounded-sm transition" title="Поиск">
@@ -1437,12 +2078,13 @@
 
             <!-- ПОЛЕ ПОИСКА -->
             <div id="catalogSearchWrapper" class="hidden flex-1 max-w-xs flex items-center space-x-1 ml-2">
-              <input id="searchInput" oninput="renderStore()" type="text" placeholder="Поиск скина..." class="w-full bg-[#25243b] border border-brand-cardBorder px-2 py-1 rounded-sm text-xs text-slate-100 focus:outline-none focus:border-brand-gold">
+              <input id="searchInput" oninput="resetStorePage()" type="text" placeholder="Поиск скина..." class="w-full bg-[#25243b] border border-brand-cardBorder px-2 py-1 rounded-sm text-xs text-slate-100 focus:outline-none focus:border-brand-gold">
               <button onclick="toggleSearchInput(false)" class="p-1 text-slate-300/50 hover:text-slate-100">✕</button>
             </div>
           </div>
 
           <div id="storeGrid" class="grid grid-cols-4 gap-2 overflow-y-auto custom-scrollbar flex-1 pr-1"></div>
+          <div id="storePagination" class="flex items-center justify-between border-t border-brand-cardBorder pt-2 mt-2 shrink-0"></div>
         </div>
       </div>
     </div>
@@ -1453,7 +2095,17 @@
         <!-- USER CARD -->
         <div class="lg:col-span-4 bg-brand-cardBg/90 border border-brand-cardBorder rounded-sm p-3.5 min-h-[220px] flex flex-col justify-between">
           <div class="flex items-start gap-3">
-            <div id="profileAvatar" class="w-16 h-16 bg-[#25243b] border border-brand-cardBorder rounded-sm flex items-center justify-center font-bold text-xl text-brand-gold shrink-0">U</div>
+            <div class="flex flex-col items-center gap-1 shrink-0">
+              <button type="button" onclick="document.getElementById('avatarUploadInput').click()" class="group relative w-16 h-16 overflow-hidden bg-[#25243b] border border-brand-cardBorder rounded-sm flex items-center justify-center font-bold text-xl text-brand-gold" title="Изменить аватар">
+                <span id="profileAvatarInitial">U</span>
+                <img id="profileAvatarImage" onerror="this.classList.add('hidden')" class="hidden absolute inset-0 w-full h-full object-cover" alt="Аватар профиля">
+                <span class="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-black/75 border border-white/20 text-white flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.4998 5.49994L18.3282 8.32837M3 20.9997L3.04745 20.6675C3.21536 19.4922 3.29932 18.9045 3.49029 18.3558C3.65975 17.8689 3.89124 17.4059 4.17906 16.9783C4.50341 16.4963 4.92319 16.0765 5.76274 15.237L17.4107 3.58896C18.1918 2.80791 19.4581 2.80791 20.2392 3.58896C21.0202 4.37001 21.0202 5.63634 20.2392 6.41739L8.37744 18.2791C7.61579 19.0408 7.23497 19.4216 6.8012 19.7244C6.41618 19.9932 6.00093 20.2159 5.56398 20.3879C5.07171 20.5817 4.54375 20.6882 3.48793 20.9012L3 20.9997Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </button>
+              <input id="avatarUploadInput" type="file" accept="image/png,image/jpeg,image/webp" class="hidden" onchange="uploadProfileAvatar(this.files?.[0])">
+              <span id="avatarUploadStatus" class="hidden max-w-24 text-[9px] text-center" role="status" aria-live="polite"></span>
+            </div>
             <div class="min-w-0">
               <h3 id="profileUsername" class="font-bold text-slate-100 text-base truncate">Гость</h3>
               <div class="text-xs text-slate-300/60 mt-1">ID <span id="profileUserId">000000</span></div>
@@ -1464,7 +2116,7 @@
             </div>
           </div>
           <div class="border-t border-brand-cardBorder pt-3">
-            <div id="profileBalance" class="text-2xl font-black text-slate-100">0.00 🪙</div>
+            <div id="profileBalance" class="text-2xl font-black text-slate-100"><span id="profileBalanceValue">0.00</span> <img class="gold-coin-icon" src="https://s3.stand-battle.com/images/coin.webp" alt="" aria-hidden="true" width="22" height="22"></div>
             <div class="flex items-center justify-between gap-2 mt-2">
               <span class="text-[11px] text-slate-300/50">Баланс</span>
               <button onclick="openDepositModal()" class="bg-brand-gold hover:bg-brand-goldHover text-slate-950 font-bold text-xs px-4 py-2 rounded-sm">Пополнить</button>
@@ -1477,11 +2129,11 @@
           <div class="font-bold text-slate-100">Лучший дроп</div>
           <div id="profileBestDropBox" class="flex-1 flex items-center justify-center min-h-[130px]">
             <div class="text-center text-xs text-slate-300/40">
-              <div id="profileBestDropImageWrap" class="h-28 flex items-center justify-center">
-                <img id="profileBestDropImage" src="/img/placeholder.png" class="max-h-28 max-w-[240px] object-contain opacity-70" alt="Лучший дроп">
+              <div id="profileBestDropImageWrap" class="hidden h-28 items-center justify-center">
+                <img id="profileBestDropImage" class="max-h-28 max-w-[240px] object-contain" alt="">
               </div>
-              <div id="profileBestDropName" class="font-bold text-slate-100 mt-1">Нет дропа</div>
-              <div id="profileBestDropPrice" class="text-brand-gold font-bold mt-1">0.00 🪙</div>
+              <div id="profileBestDropName" class="hidden font-bold text-slate-100 mt-1"></div>
+              <div id="profileBestDropPrice" class="hidden text-brand-gold font-bold mt-1"></div>
             </div>
           </div>
         </div>
@@ -1496,20 +2148,34 @@
             <div class="text-4xl font-black text-brand-gold">↗</div>
           </div>
           <div class="bg-brand-cardBg/90 border border-brand-cardBorder rounded-sm p-3 flex flex-col justify-center">
-            <div class="font-bold text-slate-100 mb-2">Личный купон</div>
+            <div class="font-bold text-slate-100 mb-2">Промокод</div>
             <div class="flex gap-2">
-              <input id="promoInput" type="text" placeholder="Введите код купона" class="min-w-0 flex-1 bg-[#25243b] border border-brand-cardBorder px-3 py-2 text-xs rounded-sm focus:outline-none focus:border-brand-gold text-slate-100">
+              <input id="promoInput" type="text" maxlength="32" placeholder="Введите код" class="min-w-0 flex-1 bg-[#25243b] border border-brand-cardBorder px-3 py-2 text-xs rounded-sm focus:outline-none focus:border-brand-gold text-slate-100">
               <button onclick="applyPromoCode()" class="bg-[#68749b] hover:bg-[#7c88ad] text-white text-xs font-bold px-3 py-2 rounded-sm">Применить</button>
             </div>
           </div>
         </div>
       </div>
 
+      <section id="adminPromoPanel" class="hidden bg-brand-cardBg/90 border border-brand-cardBorder rounded-sm p-4">
+        <h3 class="text-sm font-bold uppercase text-slate-100 mb-3">Создать одноразовый промокод</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-[1fr_150px_auto] gap-2">
+          <input id="adminPromoCode" type="text" maxlength="32" placeholder="Код (например, BONUS100)" class="min-w-0 bg-[#25243b] border border-brand-cardBorder px-3 py-2 text-xs rounded-sm focus:outline-none focus:border-brand-gold text-slate-100 uppercase">
+          <input id="adminPromoReward" type="number" min="0.01" max="1000000" step="0.01" placeholder="Награда" class="min-w-0 bg-[#25243b] border border-brand-cardBorder px-3 py-2 text-xs rounded-sm focus:outline-none focus:border-brand-gold text-slate-100">
+          <button onclick="createPromoCode()" class="bg-brand-gold hover:bg-brand-goldHover text-slate-950 text-xs font-bold px-4 py-2 rounded-sm">Создать</button>
+        </div>
+        <p id="adminPromoMessage" class="text-xs text-slate-300/60 mt-2" aria-live="polite"></p>
+      </section>
+
       <!-- PROFILE INVENTORY -->
       <div class="profile-inventory-panel bg-brand-cardBg/90 border border-brand-cardBorder rounded-sm overflow-hidden">
         <div class="profile-inventory-tabs">
           <button id="profileInventoryTab" onclick="setProfileInventoryTab('inventory')" class="profile-inventory-tab active">
-            <span class="profile-tab-icon">◈</span>
+            <span class="profile-tab-icon profile-tab-svg-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.2955 20.567C19.0056 20.4157 18.7272 20.2473 18.4904 20.0182C17.8998 19.4475 17.6081 18.7635 17.7206 17.9325C17.7771 17.5157 17.9674 17.1514 18.1925 16.8034C18.2264 16.7512 18.2562 16.6954 18.2962 16.6481C18.4165 16.5057 18.477 16.3413 18.5215 16.1607C18.7094 15.3994 18.3004 14.6768 17.5489 14.4615C17.3216 14.3965 17.3052 14.3657 17.3787 14.1487C17.6357 13.3915 17.1798 12.4118 16.4398 12.1215C16.3273 12.0774 16.2117 12.0483 16.0968 12.0139C15.9287 11.9637 15.9097 11.9317 15.9529 11.7623C16.0928 11.2119 16.0071 10.7133 15.6065 10.2948C15.213 9.88366 14.7235 9.76543 14.1841 9.89511C13.7292 10.0045 13.286 10.1613 12.872 10.3868C12.4532 10.615 12.4744 10.539 12.2771 10.2383C12.234 10.1725 12.1895 10.1068 12.1522 10.0376C12.0741 9.89287 12.0686 9.74979 12.1898 9.62434C12.2364 9.57611 12.2284 9.54553 12.1887 9.50051C11.1631 8.33769 10.0004 7.36089 8.54345 6.77795C7.28342 6.27389 5.97228 6.11434 4.62479 6.17791C3.67162 6.22282 2.74956 6.43709 1.83087 6.67526C1.55472 6.74678 1.27693 6.81293 1 6.88166C1.03413 6.8523 1.06603 6.81974 1.10233 6.7938C2.74431 5.62544 4.54163 4.79308 6.48953 4.29156C7.74124 3.96947 9.00739 3.91925 10.2833 4.11613C10.4997 4.14955 10.7159 4.18321 10.9325 4.21669C11.3248 4.32181 11.7172 4.42693 12.1095 4.53206C12.1424 4.54863 12.1738 4.56972 12.2083 4.58128C12.9568 4.83042 13.6722 5.15367 14.3599 5.53952C14.4535 5.59199 14.5491 5.68481 14.6419 5.68229C14.7449 5.67963 14.8047 5.54268 14.8901 5.472C14.8997 5.46421 14.9076 5.45447 14.9169 5.44609C14.9635 5.40275 15.0156 5.39941 15.0629 5.43897C15.2025 5.5552 15.3531 5.66197 15.4292 5.83743C15.4989 5.998 15.5882 6.14727 15.6922 6.28781C15.7296 6.33841 15.7635 6.39144 15.7326 6.45967C15.6997 6.53276 15.73 6.54475 15.7989 6.53712C15.8905 6.52703 15.9201 6.57526 15.8895 6.66014C15.8607 6.74002 15.8642 6.78075 15.9693 6.75464C16.0477 6.73507 16.0988 6.79993 16.0615 6.87241C16.0008 6.99132 16.0385 6.99441 16.1449 6.96686C16.2157 6.94862 16.2652 6.99881 16.2325 7.06839C16.1667 7.20865 16.2335 7.19373 16.3326 7.17375C16.4028 7.15974 16.4551 7.20168 16.4214 7.273C16.3572 7.40881 16.4031 7.40869 16.5155 7.37138C16.5888 7.34705 16.6281 7.39974 16.6035 7.47661C16.5722 7.57394 16.5961 7.60079 16.7001 7.57514C16.7849 7.55445 16.8258 7.57575 16.7977 7.66641C16.7877 7.69913 16.7689 7.72408 16.7996 7.75531C16.8328 7.78926 16.862 7.77744 16.8994 7.76163C16.9889 7.72383 17.0135 7.76533 16.9976 7.8505C16.9789 7.95118 17.0046 7.97382 17.1039 7.93841C17.1385 7.92601 17.168 7.91939 17.1951 7.9458C17.2157 7.9658 17.2363 7.99016 17.2193 8.02259C17.2035 8.05296 17.1594 8.07914 17.2057 8.11663C17.2437 8.14751 17.2781 8.13243 17.3191 8.11135C17.3842 8.07813 17.4285 8.10681 17.4162 8.18029C17.3947 8.30968 17.4504 8.31063 17.5481 8.27737C17.6153 8.25429 17.6674 8.27443 17.6462 8.36183C17.6226 8.45964 17.6691 8.48376 17.7429 8.44201C17.8304 8.39207 17.8712 8.41875 17.9023 8.50176C17.918 8.54397 17.9371 8.5987 17.9963 8.57658C18.1415 8.52271 18.2249 8.61352 18.3012 8.70634C18.4858 8.93025 18.6657 9.15786 18.8455 9.38563C19.8158 10.6138 20.7433 11.8713 21.4986 13.2481C21.5627 13.3647 21.5859 13.4537 21.459 13.546C21.373 13.6085 21.4006 13.7121 21.5019 13.7433C21.553 13.7591 21.6068 13.7668 21.6599 13.7764C21.7659 13.7958 21.8473 13.8524 21.8804 13.9549C21.9127 14.055 21.8409 14.1164 21.7709 14.1721C21.7372 14.199 21.7094 14.2259 21.7267 14.2765C21.7433 14.3252 21.7813 14.3341 21.8235 14.3402C21.8562 14.3448 21.8904 14.3442 21.9214 14.3541C22.0351 14.3894 22.1407 14.4381 22.1723 14.5691C22.2007 14.6871 22.1339 14.7565 22.0428 14.812C22.0204 14.8259 22.0054 14.8469 22.0114 14.8744C22.02 14.9134 22.0522 14.9243 22.0866 14.9276C22.1893 14.9375 22.2768 14.9835 22.355 15.0463C22.4514 15.1238 22.4636 15.2369 22.4051 15.3337C22.3671 15.3966 22.2501 15.4178 22.2744 15.4943C22.2958 15.5619 22.4051 15.5356 22.4718 15.5705C22.6901 15.685 22.7357 15.8397 22.5851 16.0182C22.5171 16.099 22.5436 16.1219 22.6317 16.1469C22.873 16.216 23.0546 16.5692 22.985 16.8149C22.9664 16.8802 22.9216 16.9195 22.872 16.9578C22.7647 17.041 22.6417 17.0967 22.5122 17.1579C22.6816 17.3733 22.746 17.6133 22.7469 17.8736L22.6629 18.187C22.6342 18.2029 22.6296 18.2331 22.6199 18.2601C22.4172 18.8193 22.242 19.3867 22.0813 19.9595C22.0124 20.2054 22.0016 20.4599 21.9365 20.7048C21.8829 20.9055 21.8011 20.9418 21.621 20.8459C21.3987 20.7277 21.1624 20.6561 20.9115 20.6374C20.5233 20.6086 20.1425 20.7495 19.7528 20.689L19.2955 20.567ZM19.6065 19.9029C19.895 19.9888 20.1822 19.9735 20.4589 19.8623C21.0158 19.6386 21.464 19.272 21.7524 18.745C22.2834 17.7755 21.8556 16.5661 20.4913 16.477C19.5443 16.415 18.5951 17.2605 18.4902 18.2061C18.4037 18.9855 18.8766 19.7043 19.6065 19.9029Z" fill="currentColor"/>
+              </svg>
+            </span>
             <span>Инвентарь</span>
           </button>
           <button id="profileItemsHistoryTab" onclick="setProfileInventoryTab('items-history')" class="profile-inventory-tab">
@@ -1517,12 +2183,21 @@
             <span>История предметов</span>
           </button>
           <button id="profileGamesHistoryTab" onclick="setProfileInventoryTab('games-history')" class="profile-inventory-tab">
-            <span class="profile-tab-icon">⌃</span>
+            <span class="profile-tab-svg-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 12.2929C11.6834 11.9024 12.3166 11.9024 12.7071 12.2929L17.7071 17.2929C18.0976 17.6834 18.0976 18.3166 17.7071 18.7071C17.3166 19.0976 16.6834 19.0976 16.2929 18.7071L12 14.4142L7.70711 18.7071C7.31658 19.0976 6.68342 19.0976 6.29289 18.7071C5.90237 18.3166 5.90237 17.6834 6.29289 17.2929L11.2929 12.2929Z" fill="currentColor"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 5.29289C11.6834 4.90237 12.3166 4.90237 12.7071 5.29289L17.7071 10.2929C18.0976 10.6834 18.0976 11.3166 17.7071 11.7071C17.3166 12.0976 16.6834 12.0976 16.2929 11.7071L12 7.41421L7.70711 11.7071C7.31658 12.0976 6.68342 12.0976 6.29289 11.7071C5.90237 11.3166 5.90237 10.6834 6.29289 10.2929L11.2929 5.29289Z" fill="currentColor"/>
+              </svg>
+            </span>
             <span>История игр</span>
           </button>
           <button id="profilePaymentsHistoryTab" onclick="setProfileInventoryTab('payments-history')" class="profile-inventory-tab">
             <span class="profile-tab-icon">◌</span>
             <span>История пополнения</span>
+          </button>
+          <button id="profileWithdrawalsHistoryTab" onclick="setProfileInventoryTab('withdrawals-history')" class="profile-inventory-tab">
+            <span class="profile-tab-icon profile-tab-svg-icon" aria-hidden="true"><img src="/img/withdrawal-history.svg" alt="" class="w-[18px] h-[18px]" style="filter: invert(.72) sepia(.12) saturate(.65) hue-rotate(190deg);"></span>
+            <span>История заявок</span>
           </button>
         </div>
 
@@ -1553,7 +2228,7 @@
       <div class="pt-4 border-t border-brand-cardBorder space-y-4">
         <div class="flex items-center justify-between">
           <span class="text-sm font-bold uppercase text-slate-100">Итого</span>
-          <span id="cartTotalPrice" class="text-xl font-black text-brand-gold">0.00 G</span>
+          <span id="cartTotalPrice" class="text-xl font-black text-brand-gold">0.00 <img class="gold-coin-icon" src="https://s3.stand-battle.com/images/coin.webp" alt="" aria-hidden="true" width="17" height="17"></span>
         </div>
 
         <button onclick="checkoutCart()" class="w-full bg-brand-gold hover:bg-brand-goldHover text-slate-950 font-black py-3 rounded-sm uppercase tracking-wider text-sm transition">
@@ -1609,9 +2284,9 @@
           <div class="bg-[#25243b] border border-brand-cardBorder p-3 rounded-sm space-y-2">
             <span class="text-[11px] text-slate-300/60 block font-medium">Проценты (%)</span>
             <div class="flex items-center space-x-2">
-              <input id="settingChance1" type="number" max="70" class="w-full bg-brand-cardBg border border-brand-cardBorder p-1.5 text-xs text-slate-100 rounded-sm text-center font-bold">
-              <input id="settingChance2" type="number" max="70" class="w-full bg-brand-cardBg border border-brand-cardBorder p-1.5 text-xs text-slate-100 rounded-sm text-center font-bold">
-              <input id="settingChance3" type="number" max="70" class="w-full bg-brand-cardBg border border-brand-cardBorder p-1.5 text-xs text-slate-100 rounded-sm text-center font-bold">
+              <input id="settingChance1" type="number" min="1" max="80" class="w-full bg-brand-cardBg border border-brand-cardBorder p-1.5 text-xs text-slate-100 rounded-sm text-center font-bold">
+              <input id="settingChance2" type="number" min="1" max="80" class="w-full bg-brand-cardBg border border-brand-cardBorder p-1.5 text-xs text-slate-100 rounded-sm text-center font-bold">
+              <input id="settingChance3" type="number" min="1" max="80" class="w-full bg-brand-cardBg border border-brand-cardBorder p-1.5 text-xs text-slate-100 rounded-sm text-center font-bold">
             </div>
           </div>
         </div>
@@ -1700,22 +2375,22 @@
         </div>
 
         <div>
-          <div class="text-xs font-bold text-slate-300/70 mb-2">Выберите сумму Gold (G):</div>
+          <div class="text-xs font-bold text-slate-300/70 mb-2">Выберите сумму Gold: <img class="gold-coin-icon" src="https://s3.stand-battle.com/images/coin.webp" alt="" aria-hidden="true" width="12" height="12"></div>
           <div class="deposit-amounts">
-            <button class="deposit-amount-btn" onclick="selectDepositAmount(100)">100 G</button>
-            <button class="deposit-amount-btn" onclick="selectDepositAmount(500)">500 G</button>
-            <button class="deposit-amount-btn" onclick="selectDepositAmount(1000)">1000 G</button>
+          <button class="deposit-amount-btn" data-amount="100" onclick="selectDepositAmount(100)">100 <img class="gold-coin-icon" src="https://s3.stand-battle.com/images/coin.webp" alt="" aria-hidden="true" width="12" height="12"></button>
+          <button class="deposit-amount-btn" data-amount="500" onclick="selectDepositAmount(500)">500 <img class="gold-coin-icon" src="https://s3.stand-battle.com/images/coin.webp" alt="" aria-hidden="true" width="12" height="12"></button>
+          <button class="deposit-amount-btn" data-amount="1000" onclick="selectDepositAmount(1000)">1000 <img class="gold-coin-icon" src="https://s3.stand-battle.com/images/coin.webp" alt="" aria-hidden="true" width="12" height="12"></button>
           </div>
         </div>
         <input id="customDepositInput" type="number" min="1" step="1" placeholder="Или введите свою сумму" class="deposit-custom">
 
         <div>
           <div class="text-xs font-bold text-slate-300/70 mb-2">Промокод</div>
-          <div class="deposit-promo-row">
-            <input id="depositPromoInput" type="text" placeholder="Введите код промокода" class="deposit-promo">
-            <button onclick="applyDepositPromoCode()">Применить</button>
+          <div class="flex gap-2">
+            <input id="depositPromoInput" type="text" maxlength="32" placeholder="Введите код промокода" class="w-full h-[42px] border border-[#45445e] bg-[#242331] text-slate-100 px-3 text-xs outline-none focus:border-[#7787b5]">
+            <button onclick="applyDepositPromoCode()" class="shrink-0 bg-[#68749b] hover:bg-[#7c88ad] text-white text-xs font-bold px-4">Применить</button>
           </div>
-          <div id="depositPromoStatus" class="deposit-promo-status"></div>
+          <div id="depositPromoStatus" class="text-xs mt-2 min-h-4" aria-live="polite"></div>
         </div>
 
         <button onclick="processStarsDeposit()" class="deposit-pay-btn">ОПЛАТИТЬ ЧЕРЕЗ TELEGRAM STARS ⭐</button>
@@ -1740,12 +2415,6 @@
         </p>
       </div>
 
-      <div class="bg-[#25243b] border border-brand-cardBorder rounded-sm p-4">
-        <div class="text-xs text-slate-300/60 uppercase font-semibold">Ваш приветственный подарок</div>
-        <div class="text-3xl font-black text-brand-gold mt-1">+2 G</div>
-        <div class="text-[11px] text-slate-300/50 mt-1">Начальный баланс за регистрацию</div>
-      </div>
-
       <p class="text-xs text-slate-300/60 leading-relaxed">
         Спасибо за регистрацию! Желаем удачных апгрейдов и крутых дропов.
       </p>
@@ -1762,7 +2431,7 @@
         <h3 id="authModalTitle" class="text-sm font-bold uppercase text-slate-100">Авторизация</h3>
         <button onclick="closeAuthModal()" class="text-slate-300/50 hover:text-slate-100">✕</button>
       </div>
-      <div class="space-y-3">
+      <div id="authFields" class="space-y-3">
         <div>
           <label class="block text-xs font-semibold text-slate-300/60 mb-1">Имя пользователя</label>
           <input id="authUsername" type="text" maxlength="12" autocomplete="username"
@@ -1770,7 +2439,7 @@
             class="w-full bg-[#25243b] border border-brand-cardBorder p-2 text-xs text-slate-100 rounded-sm focus:outline-none"
             placeholder="3–12 символов">
           <div id="authUsernameHint" class="mt-1 text-[10px] text-slate-300/50">
-            Только латинские буквы и цифры, 3–12 символов
+            3–12 символов: латинские буквы и цифры, минимум одна строчная буква
           </div>
         </div>
         <div>
@@ -1784,28 +2453,125 @@
           </div>
         </div>
       </div>
+      <div id="authError" class="hidden border border-red-500/30 bg-red-500/10 px-3 py-2 text-xs font-semibold text-red-300" role="alert" aria-live="polite"></div>
+      <div id="googleUsernameChoice" class="hidden space-y-2">
+        <label for="googleUsernameInput" class="block text-xs font-semibold text-slate-300/70">Ник уже занят. Выбери другой (до 16 символов)</label>
+        <input id="googleUsernameInput" type="text" maxlength="32" autocomplete="nickname" oninput="clearAuthError()"
+          class="w-full bg-[#25243b] border border-brand-cardBorder p-2 text-xs text-slate-100 rounded-sm focus:outline-none"
+          placeholder="Новый никнейм">
+        <button type="button" onclick="completeGoogleSignInWithUsername()" class="w-full bg-brand-gold hover:bg-brand-goldHover text-slate-950 font-bold text-xs py-2.5 rounded-sm uppercase">Продолжить</button>
+      </div>
       <div class="pt-2 flex flex-col space-y-2">
         <button id="authSubmitBtn" onclick="submitAuth()" class="w-full bg-brand-gold hover:bg-brand-goldHover text-slate-950 font-bold text-xs py-2.5 rounded-sm uppercase">Войти</button>
+        <div id="googleAuthDivider" class="flex items-center gap-3 py-1 text-[10px] text-slate-300/40" aria-hidden="true">
+          <span class="h-px flex-1 bg-brand-cardBorder"></span><span>или</span><span class="h-px flex-1 bg-brand-cardBorder"></span>
+        </div>
+        <div id="googleSignInHost">
+          <button type="button" onclick="startGoogleSignIn()" class="w-full flex items-center justify-center gap-2 bg-white hover:bg-slate-100 text-slate-800 font-semibold text-xs py-2.5 rounded-sm transition">
+            <span class="text-base font-black text-[#4285F4]" aria-hidden="true">G</span>
+            <span>Войти через Google</span>
+          </button>
+        </div>
+        <p id="googleAuthSetupHint" class="text-[10px] leading-4 text-center text-slate-300/40">Дополнительный способ входа</p>
         <button id="authToggleBtn" onclick="toggleAuthMode()" class="text-xs text-slate-300/60 hover:text-slate-100 text-center">Зарегистрироваться</button>
       </div>
     </div>
   </div>
 
+  <div id="withdrawalModal" class="fixed inset-0 z-[85] hidden items-center justify-center bg-black/80 backdrop-blur-md p-4" onclick="if(event.target===this) closeWithdrawalModal()" aria-hidden="true">
+    <div class="w-full max-w-md max-h-[92vh] overflow-y-auto bg-brand-cardBg border border-brand-cardBorder rounded-sm p-5 shadow-2xl" role="dialog" aria-modal="true" aria-labelledby="withdrawalTitle">
+      <div class="flex items-center justify-between border-b border-brand-cardBorder pb-3 mb-4">
+        <h3 id="withdrawalTitle" class="text-sm font-bold uppercase text-slate-100">Вывод скина</h3>
+        <button type="button" onclick="closeWithdrawalModal()" class="text-slate-300/50 hover:text-slate-100" aria-label="Закрыть">✕</button>
+      </div>
+      <section id="withdrawalStep1" class="space-y-4">
+        <div class="flex items-center gap-3 border border-brand-cardBorder bg-[#25243b] p-3">
+          <img id="withdrawalSkinImage" class="w-20 h-16 object-contain" alt="">
+          <div class="min-w-0"><div id="withdrawalSkinName" class="text-sm font-bold text-slate-100 truncate"></div><div id="withdrawalSkinPrice" class="text-xs text-slate-300/60 mt-1"></div></div>
+        </div>
+        <p class="text-xs leading-5 text-slate-200">Выставьте G22 «Adam» за <strong id="withdrawalListingPrice" class="text-brand-gold"></strong>. Цена включает наценку 20% и случайную поправку до 0.10 <img class="gold-coin-icon" src="https://s3.stand-battle.com/images/coin.webp" alt="" aria-hidden="true" width="12" height="12">.</p>
+        <label class="block text-[11px] font-bold text-slate-300/70">ПАТТЕРН
+          <input id="withdrawalPattern" type="text" maxlength="80" class="mt-1 w-full border border-brand-cardBorder bg-[#25243b] p-2.5 text-sm text-slate-100 outline-none focus:border-[#8198d2]" placeholder="Введите паттерн">
+        </label>
+        <label class="block text-[11px] font-bold text-slate-300/70">СКРИНШОТ С РЫНКА
+          <input id="withdrawalMarketFile" type="file" accept="image/png,image/jpeg,image/webp" class="mt-1 block w-full text-xs text-slate-300 file:mr-3 file:border-0 file:bg-[#36364f] file:px-3 file:py-2 file:text-xs file:text-slate-100" onchange="previewWithdrawalImage('market', this.files?.[0])">
+        </label>
+        <img id="withdrawalMarketPreview" class="hidden max-h-40 max-w-full mx-auto border border-brand-cardBorder object-contain" alt="Предпросмотр скриншота рынка">
+        <p id="withdrawalError" class="hidden text-xs text-red-400" role="alert" aria-live="polite"></p>
+        <button type="button" onclick="continueWithdrawalToAvatar()" class="w-full bg-brand-gold hover:bg-brand-goldHover py-2.5 text-xs font-bold uppercase text-slate-950">Продолжить</button>
+      </section>
+      <section id="withdrawalStep2" class="hidden space-y-4">
+        <h4 class="text-center text-sm font-bold uppercase text-slate-100">Загрузите ваш аватар</h4>
+        <p class="text-center text-xs text-slate-300/60">Загрузите изображение, которое нужно приложить к заявке.</p>
+        <label class="block border border-dashed border-brand-cardBorder bg-[#25243b] p-6 text-center text-xs text-slate-300/70 cursor-pointer hover:border-[#8198d2]">
+          Нажмите, чтобы выбрать изображение
+          <input id="withdrawalAvatarFile" type="file" accept="image/png,image/jpeg,image/webp" class="sr-only" onchange="previewWithdrawalImage('avatar', this.files?.[0])">
+        </label>
+        <img id="withdrawalAvatarPreview" class="hidden max-h-52 max-w-full mx-auto border border-brand-cardBorder object-contain" alt="Предпросмотр аватара">
+        <p id="withdrawalError2" class="hidden text-xs text-red-400" role="alert" aria-live="polite"></p>
+        <div class="grid grid-cols-2 gap-2"><button type="button" onclick="setWithdrawalStep(1)" class="border border-brand-cardBorder bg-[#25243b] py-2.5 text-xs font-bold text-slate-200">Назад</button><button id="withdrawalSubmitBtn" type="button" onclick="submitWithdrawalRequest()" class="bg-brand-gold hover:bg-brand-goldHover py-2.5 text-xs font-bold uppercase text-slate-950">Отправить заявку</button></div>
+      </section>
+      <section id="withdrawalStep3" class="hidden py-8 text-center">
+        <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-emerald-400/50 bg-emerald-500/15 text-4xl text-emerald-400" aria-hidden="true">✓</div>
+        <h4 class="text-lg font-black uppercase text-slate-100">Заявка принята</h4>
+        <p class="mt-2 text-sm text-slate-300/70">Ожидайте до 48 часов</p>
+        <button type="button" onclick="closeWithdrawalModal()" class="mt-6 w-full bg-brand-gold py-2.5 text-xs font-bold uppercase text-slate-950">Готово</button>
+      </section>
+    </div>
+  </div>
+
+  <div id="avatarCropModal" class="fixed inset-0 z-[90] hidden items-center justify-center bg-black/80 backdrop-blur-md p-4" onclick="if(event.target===this) closeAvatarCrop()" aria-hidden="true">
+    <div class="w-full max-w-sm bg-brand-cardBg border border-brand-cardBorder rounded-sm p-5 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-brand-cardBorder pb-3 mb-4">
+        <h3 class="text-sm font-bold uppercase text-slate-100">Кадрирование аватара</h3>
+        <button type="button" onclick="closeAvatarCrop()" class="text-slate-300/50 hover:text-slate-100" aria-label="Закрыть">✕</button>
+      </div>
+      <p class="text-xs text-slate-300/60 text-center mb-3">Перетащите изображение и выберите нужную область</p>
+      <div class="flex justify-center">
+        <canvas id="avatarCropCanvas" width="384" height="384" class="w-full max-w-xs aspect-square border border-brand-cardBorder touch-none cursor-grab active:cursor-grabbing"></canvas>
+      </div>
+      <label for="avatarCropZoom" class="block text-xs text-slate-300/70 mt-4 mb-2">Масштаб</label>
+      <input id="avatarCropZoom" type="range" min="100" max="250" value="100" step="1" oninput="setAvatarCropZoom(this.value)" class="w-full accent-[#8198d2]">
+      <p id="avatarCropError" class="hidden text-xs text-red-400 mt-2" role="alert"></p>
+      <div class="grid grid-cols-2 gap-2 mt-4">
+        <button type="button" onclick="closeAvatarCrop()" class="border border-brand-cardBorder bg-[#25243b] text-slate-200 text-xs font-bold py-2.5">Отмена</button>
+        <button id="avatarCropSaveBtn" type="button" onclick="saveCroppedAvatar()" class="bg-brand-gold hover:bg-brand-goldHover text-slate-950 text-xs font-bold py-2.5">Сохранить</button>
+      </div>
+    </div>
+  </div>
+
+    <script src="/skin-batch.js"></script>
+    <script id="googleIdentityServicesScript" src="https://accounts.google.com/gsi/client" async defer></script>
   <script>
     const API_BASE = '/api';
+    const GOLD_COIN_URL = 'https://s3.stand-battle.com/images/coin.webp';
+    function goldCoinMarkup(size = 12) {
+      const safeSize = Math.max(8, Math.min(24, Number(size) || 12));
+      return `<img class="gold-coin-icon" src="${GOLD_COIN_URL}" alt="" aria-hidden="true" width="${safeSize}" height="${safeSize}" style="width:${safeSize}px;height:${safeSize}px;max-width:none;filter:none;vertical-align:-2px">`;
+    }
+    function goldAmountMarkup(value, size = 12) {
+      return `${Number(value || 0).toFixed(2)} ${goldCoinMarkup(size)}`;
+    }
+    function goldIconsInText(value, size = 12) {
+      return escapeHtml(value).replace(/(\d+(?:[.,]\d+)?)\sG\b/g, (_, amount) => `${amount} ${goldCoinMarkup(size)}`);
+    }
     let currentUser = null;
     let authMode = 'login';
 
     let activeLeftTab = 'inventory'; 
     let selectedMyItems = [];
     let selectedTargetItem = null;
+    let upgradeBalanceAmount = 0;
 
     let isFastSpin = false;
     let customMults = [1.5, 2, 4];
-    let customChances = [25, 50, 70];
+    let customChances = [25, 50, 80];
 
     let sortAscending = true;
     let shopCart = {};
+    let currentShopPage = 1;
+    let currentStorePage = 1;
+    const STORE_PAGE_SIZE = 12;
 
     let streamerMode = localStorage.getItem('sograder_streamer_mode') === '1';
     let streamerObserver = null;
@@ -1839,6 +2605,33 @@
       { id: 'st_22', name: 'Gloves | Retro Wave', price: 3950, rarity: 'nameless', image: '/img/gloves_retro_wave.png' },
       { id: 'st_23', name: 'Kukri | Gold Trim', price: 600, rarity: 'legendary', image: '/img/kukri_gold_trim.png' }
     ];
+    storeSkins.push(...(window.ADDITIONAL_STORE_SKINS || []));
+
+    document.addEventListener('keydown', event => {
+      if (event.key !== 'Enter' || event.repeat || event.isComposing) return;
+
+      const focusedElement = event.target;
+      if (focusedElement instanceof Element && focusedElement.closest('input, textarea, select, button, a, [contenteditable="true"]')) return;
+      if (document.getElementById('tab-upgrader-content')?.classList.contains('hidden')) return;
+
+      const openModalIds = ['authModal', 'depositModal', 'settingsModal', 'welcomeModal', 'cartModal', 'insufficientFundsModal', 'withdrawalModal'];
+      if (openModalIds.some(id => !document.getElementById(id)?.classList.contains('hidden'))) return;
+
+      event.preventDefault();
+      document.getElementById('upgradeBtn')?.click();
+    });
+
+    const upgradeButton = document.getElementById('upgradeBtn');
+    let upgradeButtonAnimationTimer;
+    upgradeButton?.addEventListener('click', () => {
+      clearTimeout(upgradeButtonAnimationTimer);
+      upgradeButton.classList.remove('upgrade-button-pressed');
+      void upgradeButton.offsetWidth;
+      upgradeButton.classList.add('upgrade-button-pressed');
+      upgradeButtonAnimationTimer = setTimeout(() => {
+        upgradeButton.classList.remove('upgrade-button-pressed');
+      }, 450);
+    });
 
     window.onload = async () => {
       initStreamerMode();
@@ -1963,7 +2756,7 @@
             <div class="mt-1">
               <div class="text-[8px] text-slate-100/55 uppercase">${botName}</div>
               <div class="text-[11px] font-black text-white truncate">${name}</div>
-              <div class="text-[10px] font-black text-brand-gold mt-0.5">${Number(skin.price || 0).toFixed(2)} G</div>
+              <div class="text-[10px] font-black text-brand-gold mt-0.5">${goldAmountMarkup(skin.price, 11)}</div>
             </div>
           </div>`;
       }
@@ -1977,7 +2770,7 @@
           <div class="mt-1">
             <div class="text-[8px] text-slate-100/55 truncate">${botName}</div>
             <div class="text-[10px] font-black text-white truncate">${name}</div>
-            <div class="text-[9px] font-black text-brand-gold">${Number(skin.price || 0).toFixed(2)} G</div>
+            <div class="text-[9px] font-black text-brand-gold">${goldAmountMarkup(skin.price, 10)}</div>
           </div>
         </div>`;
     }
@@ -2089,13 +2882,13 @@
       const chanceContainer = document.getElementById('chanceButtonsContainer');
 
       multContainer.innerHTML = customMults.map(m => `
-        <button onclick="applyMultiplier(${m})" class="px-3 py-1.5 bg-brand-cardBg hover:bg-brand-cardHover border border-brand-cardBorder text-rose-200 hover:text-slate-100 font-bold text-xs rounded-sm transition flex items-center justify-center">
+        <button onclick="applyMultiplier(${m})" class="px-2 py-1.5 bg-brand-cardBg hover:bg-brand-cardHover border border-brand-cardBorder text-rose-200 hover:text-slate-100 font-bold text-xs rounded-sm transition flex items-center justify-center">
           x${m}
         </button>
       `).join('');
 
       chanceContainer.innerHTML = customChances.map(c => `
-        <button onclick="applyChance(${c})" class="px-3 py-1.5 bg-brand-cardBg hover:bg-brand-cardHover border border-brand-cardBorder text-rose-200 hover:text-slate-100 font-bold text-xs rounded-sm transition flex items-center justify-center">
+        <button onclick="applyChance(${c})" class="px-2 py-1.5 bg-brand-cardBg hover:bg-brand-cardHover border border-brand-cardBorder text-rose-200 hover:text-slate-100 font-bold text-xs rounded-sm transition flex items-center justify-center">
           ${c}%
         </button>
       `).join('');
@@ -2157,7 +2950,7 @@
 
     function resetSettingsDefaults() {
       customMults = [1.5, 2, 4];
-      customChances = [25, 50, 70];
+      customChances = [25, 50, 80];
       isFastSpin = false;
       openSettingsModal();
     }
@@ -2167,9 +2960,10 @@
       const m2 = parseFloat(document.getElementById('settingMult2').value) || 2;
       const m3 = parseFloat(document.getElementById('settingMult3').value) || 4;
 
-      const c1 = parseFloat(document.getElementById('settingChance1').value) || 25;
-      const c2 = parseFloat(document.getElementById('settingChance2').value) || 50;
-      const c3 = parseFloat(document.getElementById('settingChance3').value) || 70;
+      const clampChance = (value, fallback) => Math.max(1, Math.min(80, parseFloat(value) || fallback));
+      const c1 = clampChance(document.getElementById('settingChance1').value, 25);
+      const c2 = clampChance(document.getElementById('settingChance2').value, 50);
+      const c3 = clampChance(document.getElementById('settingChance3').value, 80);
 
       customMults = [m1, m2, m3];
       customChances = [c1, c2, c3];
@@ -2240,14 +3034,17 @@
       if (currentUser) {
         el.innerHTML = `
           <div class="flex items-center space-x-3 text-xs">
-            <span class="text-slate-100 font-bold cursor-pointer" onclick="switchTab('profile')">${currentUser.username}</span>
-            <div class="bg-[#25243b] border border-brand-cardBorder px-2.5 py-1.5 rounded-sm text-brand-gold font-bold">
-              ${currentUser.balance.toFixed(2)} G
+            <div id="headerBalanceDisplay" class="bg-[#25243b] border border-brand-cardBorder px-2.5 py-1.5 rounded-sm text-brand-gold font-bold">
+              <span id="headerBalanceValue">${Number(currentUser.balance || 0).toFixed(2)}</span> ${goldCoinMarkup(13)}
             </div>
-            <button onclick="openDepositModal()" class="bg-brand-gold hover:bg-brand-goldHover text-slate-950 font-bold px-3 py-1.5 rounded-sm uppercase">
-              + Пополнить
+            <button onclick="openDepositModal()" class="bg-brand-gold hover:bg-brand-goldHover text-slate-950 font-bold px-3 py-1.5 rounded-sm uppercase inline-flex items-center gap-1.5">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10 16V14.0003M10 14.0003V12M10 14.0003L12 14.0005M10 14.0003L8 14M21 12V11.2C21 10.0799 21 9.51984 20.782 9.09202C20.5903 8.71569 20.2843 8.40973 19.908 8.21799C19.4802 8 18.9201 8 17.8 8H3M21 12V16M21 12H19C17.8954 12 17 12.8954 17 14C17 15.1046 17.8954 16 19 16H21M21 16V16.8C21 17.9201 21 18.4802 20.782 18.908C20.5903 19.2843 20.2843 19.5903 19.908 19.782C19.4802 20 18.9201 20 17.8 20H6.2C5.0799 20 4.51984 20 4.09202 19.782C3.71569 19.5903 3.40973 19.2843 3.21799 18.908C3 18.4802 3 17.9201 3 16.8V8M18 8V7.2C18 6.0799 18 5.51984 17.782 5.09202C17.5903 4.71569 17.2843 4.40973 16.908 4.21799C16.4802 4 15.9201 4 14.8 4H6.2C5.07989 4 4.51984 4 4.09202 4.21799C3.71569 4.40973 3.40973 4.71569 3.21799 5.09202C3 5.51984 3 6.0799 3 7.2V8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Пополнить
             </button>
-            <button onclick="logout()" class="text-slate-300/60 hover:text-slate-100 transition">Выйти</button>
+            <button type="button" onclick="switchTab('profile')" class="relative w-9 h-9 rounded-full overflow-hidden bg-[#25243b] border border-brand-cardBorder flex items-center justify-center text-brand-gold font-bold cursor-pointer" title="Открыть профиль" aria-label="Открыть профиль">
+              <span>${escapeHtml(String(currentUser.username || 'U').slice(0, 1).toUpperCase())}</span>
+              ${currentUser.avatar ? `<img src="${escapeHtml(currentUser.avatar)}" alt="" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover">` : ''}
+            </button>
           </div>
         `;
       } else {
@@ -2266,11 +3063,11 @@
       const title = document.getElementById('leftPanelTitle');
 
       if (tab === 'inventory') {
-        invBtn.className = "p-1.5 bg-[#8799c5] text-[#182033] rounded-sm transition flex items-center justify-center";
+        invBtn.className = "is-active p-1.5 bg-[#8798c1] text-[#182033] rounded-sm transition flex items-center justify-center";
         shopBtn.className = "p-1.5 bg-[#2a2b42] text-slate-300/50 hover:text-slate-100 rounded-sm transition flex items-center justify-center";
         title.innerText = 'Мой инвентарь';
       } else {
-        shopBtn.className = "p-1.5 bg-[#8799c5] text-[#182033] rounded-sm transition flex items-center justify-center";
+        shopBtn.className = "is-active p-1.5 bg-[#8798c1] text-[#182033] rounded-sm transition flex items-center justify-center";
         invBtn.className = "p-1.5 bg-[#2a2b42] text-slate-300/50 hover:text-slate-100 rounded-sm transition flex items-center justify-center";
         title.innerText = 'Магазин';
       }
@@ -2283,6 +3080,7 @@
       const minEl = document.getElementById('shopMinPriceInput');
       const maxEl = document.getElementById('shopMaxPriceInput');
       const grid = document.getElementById('leftPanelGrid');
+      const pagination = document.getElementById('shopPagination');
 
       if (!grid) return;
 
@@ -2300,19 +3098,23 @@
         sortAscending ? a.price - b.price : b.price - a.price
       );
 
-      grid.innerHTML = filtered.map(item => {
+      const pageCount = Math.max(1, Math.ceil(filtered.length / STORE_PAGE_SIZE));
+      currentShopPage = Math.min(Math.max(1, currentShopPage), pageCount);
+      const visibleItems = filtered.slice((currentShopPage - 1) * STORE_PAGE_SIZE, currentShopPage * STORE_PAGE_SIZE);
+
+      grid.innerHTML = visibleItems.map(item => {
         const imgSrc = item.image || '/img/placeholder.png';
         const qty = shopCart[item.id] || 0;
 
         return `
-          <div class="shop-skin-card bg-[#25243b] border border-brand-cardBorder rounded-sm relative group overflow-hidden h-32">
+          <div class="shop-skin-card bg-[#25243b] border border-brand-cardBorder rounded-sm relative group overflow-hidden h-28">
             <div class="shop-skin-main h-full p-2 flex flex-col justify-between items-center">
               <div class="flex-1 flex items-center justify-center w-full">
                 <img src="${imgSrc}" class="max-h-14 max-w-full object-contain" alt="${item.name}" />
               </div>
               <div class="text-center w-full mt-1">
                 <span class="text-[10px] font-bold text-slate-100 truncate block w-full">${item.name}</span>
-                <span class="text-xs font-bold text-brand-gold block">${item.price} G</span>
+                <span class="text-xs font-bold text-brand-gold block">${goldAmountMarkup(item.price, 12)}</span>
               </div>
             </div>
 
@@ -2324,10 +3126,44 @@
           </div>
         `;
       }).join('');
+
+      if (pagination) {
+        pagination.classList.remove('hidden');
+        pagination.classList.add('flex');
+        pagination.innerHTML = paginationMarkup(currentShopPage, pageCount, 'changeShopPage');
+      }
+
+    }
+
+    function paginationMarkup(page, pageCount, handlerName) {
+      const arrowButton = (direction, disabled, onclick) => `
+        <button type="button" onclick="${onclick}" ${disabled ? 'disabled' : ''} aria-label="${direction < 0 ? 'Предыдущая страница' : 'Следующая страница'}"
+          class="w-10 h-10 flex items-center justify-center border border-brand-cardBorder bg-[#25243b] text-slate-100 hover:bg-brand-cardHover disabled:opacity-30 disabled:cursor-not-allowed transition">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="${direction < 0 ? 'M15 18l-6-6 6-6' : 'M9 18l6-6-6-6'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>`;
+      return `
+        <span class="text-[11px] text-slate-300/60">Страница ${page} из ${pageCount}</span>
+        <div class="flex items-center gap-2">
+          ${arrowButton(-1, page <= 1, `${handlerName}(${page - 1})`)}
+          ${arrowButton(1, page >= pageCount, `${handlerName}(${page + 1})`)}
+        </div>`;
+    }
+
+    function changeShopPage(page) {
+      currentShopPage = page;
+      renderShopFilters();
+    }
+
+    function resetShopPage() {
+      currentShopPage = 1;
+      renderShopFilters();
     }
 
     function toggleShopSortOrder() {
       sortAscending = !sortAscending;
+      currentShopPage = 1;
       renderShopFilters();
     }
 
@@ -2345,6 +3181,7 @@
         input.focus();
       } else {
         input.value = '';
+        currentShopPage = 1;
         searchWrapper.classList.add('hidden');
         searchWrapper.classList.remove('flex');
         controls.classList.remove('hidden');
@@ -2357,6 +3194,7 @@
       const rightHeader = document.getElementById('leftPanelRightHeader');
 
       if (activeLeftTab === 'inventory') {
+        document.getElementById('shopPagination')?.classList.add('hidden');
         const items = currentUser ? currentUser.inventory : [];
         rightHeader.innerHTML = `<span class="text-xs text-slate-300/60">${items.length} предм.</span>`;
 
@@ -2376,7 +3214,7 @@
               </div>
               <div class="text-center w-full mt-1">
                 <span class="text-[10px] font-bold text-slate-100 truncate block w-full">${item.name}</span>
-                <span class="text-xs font-bold text-brand-gold block">${item.price} G</span>
+                <span class="text-xs font-bold text-brand-gold block">${goldAmountMarkup(item.price, 12)}</span>
               </div>
             </div>
           `;
@@ -2398,13 +3236,13 @@
 
               <div class="flex items-center gap-1 bg-[#25263c] border border-brand-cardBorder px-2 py-1 rounded-sm">
                 <span class="text-[10px] font-bold text-slate-300/40">MIN</span>
-                <input id="shopMinPriceInput" oninput="renderShopFilters()" type="number" placeholder="0"
+                <input id="shopMinPriceInput" oninput="resetShopPage()" type="number" placeholder="0"
                   class="w-10 bg-transparent text-slate-100 font-bold focus:outline-none text-[11px]">
               </div>
 
               <div class="flex items-center gap-1 bg-[#25263c] border border-brand-cardBorder px-2 py-1 rounded-sm">
                 <span class="text-[10px] font-bold text-slate-300/40">MAX</span>
-                <input id="shopMaxPriceInput" oninput="renderShopFilters()" type="number" placeholder="∞"
+                <input id="shopMaxPriceInput" oninput="resetShopPage()" type="number" placeholder="∞"
                   class="w-10 bg-transparent text-slate-100 font-bold focus:outline-none text-[11px]">
               </div>
 
@@ -2418,7 +3256,7 @@
             </div>
 
             <div id="shopSearchWrapper" class="hidden items-center gap-1">
-              <input id="shopSearchInput" oninput="renderShopFilters()" type="text" placeholder="Поиск..."
+              <input id="shopSearchInput" oninput="resetShopPage()" type="text" placeholder="Поиск..."
                 class="w-24 bg-[#25263c] border border-brand-cardBorder px-2 py-1 rounded-sm text-xs text-slate-100 focus:outline-none focus:border-[#8799c5]">
               <button onclick="toggleShopSearchInput(false)" class="p-1 text-slate-300/50 hover:text-slate-100">✕</button>
             </div>
@@ -2507,7 +3345,7 @@
 
       if (itemEntries.length === 0) {
         listContainer.innerHTML = `<div class="text-center text-xs text-slate-300/40 py-8">Корзина пуста</div>`;
-        totalPriceEl.innerText = '0.00 G';
+        totalPriceEl.innerHTML = goldAmountMarkup(0, 17);
         return;
       }
 
@@ -2526,12 +3364,12 @@
               <img src="${imgSrc}" class="w-12 h-12 object-contain" alt="${item.name}" />
               <div>
                 <div class="text-xs font-bold text-slate-100">${item.name}</div>
-                <div class="text-xs font-bold text-brand-gold">${item.price.toFixed(2)} G</div>
+                <div class="text-xs font-bold text-brand-gold">${goldAmountMarkup(item.price, 12)}</div>
               </div>
             </div>
 
             <div class="flex items-center space-x-4">
-              <div class="text-xs font-bold text-slate-100">${itemTotal.toFixed(2)} G</div>
+              <div class="text-xs font-bold text-slate-100">${goldAmountMarkup(itemTotal, 12)}</div>
               
               <div class="flex items-center space-x-1 bg-brand-cardBg border border-brand-cardBorder rounded p-0.5 text-xs text-slate-100">
                 <button onclick="changeCartQty('${skinId}', -1)" class="w-6 h-6 flex items-center justify-center hover:bg-brand-cardHover rounded font-bold transition">-</button>
@@ -2543,7 +3381,7 @@
         `;
       }).join('');
 
-      totalPriceEl.innerText = `${totalPrice.toFixed(2)} G`;
+      totalPriceEl.innerHTML = goldAmountMarkup(totalPrice, 17);
     }
 
     async function checkoutCart() {
@@ -2610,6 +3448,17 @@
 
     function toggleSortOrder() {
       sortAscending = !sortAscending;
+      currentStorePage = 1;
+      renderStore();
+    }
+
+    function changeStorePage(page) {
+      currentStorePage = page;
+      renderStore();
+    }
+
+    function resetStorePage() {
+      currentStorePage = 1;
       renderStore();
     }
 
@@ -2624,6 +3473,7 @@
         searchInput.focus();
       } else {
         searchInput.value = '';
+        currentStorePage = 1;
         searchWrapper.classList.add('hidden');
         controls.classList.remove('hidden');
         renderStore();
@@ -2645,19 +3495,28 @@
 
       filtered.sort((a, b) => sortAscending ? a.price - b.price : b.price - a.price);
 
-      grid.innerHTML = filtered.map(item => {
+      const pageCount = Math.max(1, Math.ceil(filtered.length / STORE_PAGE_SIZE));
+      currentStorePage = Math.min(Math.max(1, currentStorePage), pageCount);
+      const visibleItems = filtered.slice((currentStorePage - 1) * STORE_PAGE_SIZE, currentStorePage * STORE_PAGE_SIZE);
+
+      grid.innerHTML = visibleItems.map(item => {
         const isSelected = selectedTargetItem && selectedTargetItem.id === item.id;
         const imgSrc = item.image || '/img/placeholder.png';
         return `
-          <div onclick="selectTargetItem('${item.id}')" class="bg-[#25243b] border ${isSelected ? 'border-brand-gold' : 'border-brand-cardBorder'} p-2 rounded-sm flex flex-col justify-between items-center cursor-pointer hover:border-rose-400/50 transition h-32">
+          <div onclick="selectTargetItem('${item.id}')" class="bg-[#25243b] border ${isSelected ? 'border-brand-gold' : 'border-brand-cardBorder'} p-2 rounded-sm flex flex-col justify-between items-center cursor-pointer hover:border-rose-400/50 transition h-28">
             <span class="text-[10px] font-bold text-slate-100 truncate w-full text-center">${item.name}</span>
             <div class="flex-1 flex items-center justify-center w-full my-1">
               <img src="${imgSrc}" class="max-h-16 max-w-full object-contain" alt="${item.name}" />
             </div>
-            <span class="text-xs font-bold text-brand-gold text-center w-full">${item.price} G</span>
+            <span class="text-xs font-bold text-brand-gold text-center w-full">${goldAmountMarkup(item.price, 12)}</span>
           </div>
         `;
       }).join('');
+
+      const pagination = document.getElementById('storePagination');
+      if (pagination) {
+        pagination.innerHTML = paginationMarkup(currentStorePage, pageCount, 'changeStorePage');
+      }
     }
 
     function applyMultiplier(mult) {
@@ -2675,87 +3534,170 @@
       const mySum = selectedMyItems.reduce((acc, i) => acc + i.price, 0);
       if (mySum <= 0) return showBanner('Сначала выберите предметы из своего инвентаря!', 'error');
 
-      const requiredTargetPrice = (mySum / targetChance) * 100;
+      const safeTargetChance = Math.max(1, Math.min(80, Number(targetChance) || 80));
+      const requiredTargetPrice = (mySum / safeTargetChance) * 100;
       const closest = storeSkins.reduce((prev, curr) => Math.abs(curr.price - requiredTargetPrice) < Math.abs(prev.price - requiredTargetPrice) ? curr : prev);
       selectedTargetItem = closest;
       renderStore();
       updateGauge();
     }
 
+    let chanceTextAnimationFrame = null;
+    let animatedChanceValue = 0;
+
+    function animateChanceText(targetValue, element) {
+      if (chanceTextAnimationFrame !== null) cancelAnimationFrame(chanceTextAnimationFrame);
+      const startValue = animatedChanceValue;
+      const startedAt = performance.now();
+      const duration = 300;
+
+      const step = now => {
+        const progress = Math.min(1, (now - startedAt) / duration);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        animatedChanceValue = startValue + (targetValue - startValue) * eased;
+        element.innerText = `${animatedChanceValue.toFixed(2)}%`;
+        if (progress < 1) {
+          chanceTextAnimationFrame = requestAnimationFrame(step);
+        } else {
+          animatedChanceValue = targetValue;
+          chanceTextAnimationFrame = null;
+        }
+      };
+
+      chanceTextAnimationFrame = requestAnimationFrame(step);
+    }
+
     function updateGauge() {
       const mySum = selectedMyItems.reduce((acc, i) => acc + i.price, 0);
-      document.getElementById('mySelectedSum').innerText = `${mySum.toFixed(2)} G`;
+      document.getElementById('mySelectedSum').innerHTML = goldAmountMarkup(mySum, 13);
+
+      const balanceSlider = document.getElementById('upgradeBalanceSlider');
+      const balanceAvailable = Number(currentUser?.balance || 0);
+      const canAddBalance = Boolean(selectedTargetItem && selectedMyItems.length > 0);
+      const balanceToReachCap = canAddBalance
+        ? Math.max(0, selectedTargetItem.price * 0.8 - mySum)
+        : 0;
+      const maxBalanceAddition = Math.floor(Math.max(0, Math.min(balanceAvailable, balanceToReachCap)) * 100) / 100;
+      if (balanceSlider) {
+        const balanceControl = balanceSlider.closest('.upgrade-balance-control');
+        balanceSlider.disabled = !canAddBalance;
+        balanceControl?.classList.toggle('is-disabled', !canAddBalance);
+        balanceSlider.max = maxBalanceAddition.toFixed(2);
+        upgradeBalanceAmount = canAddBalance
+          ? Math.min(upgradeBalanceAmount, maxBalanceAddition)
+          : 0;
+        balanceSlider.value = upgradeBalanceAmount.toFixed(2);
+        document.getElementById('upgradeBalanceMax').innerText = maxBalanceAddition.toFixed(2);
+        document.getElementById('upgradeBalanceAmount').innerText = upgradeBalanceAmount.toFixed(2);
+      }
 
       const selectedPreview = document.getElementById('selectedMyItemsPreview');
+      const selectionCard = document.getElementById('mySelectionCard');
       if (selectedMyItems.length === 0) {
-        selectedPreview.innerHTML = `<span class="text-xs text-slate-300/40 text-center">Нажмите на скин из инвентаря снизу</span>`;
+        selectedPreview.innerHTML = '';
+        selectionCard?.classList.remove('has-selection');
       } else {
         selectedPreview.innerHTML = selectedMyItems.map(item => {
           const imgSrc = item.image || '/img/placeholder.png';
           return `
-            <div class="bg-brand-cardBg border border-brand-cardBorder p-1 rounded flex flex-col items-center justify-center w-16 text-center relative group">
-              <img src="${imgSrc}" class="h-8 max-w-full object-contain mb-0.5" alt="${item.name}" />
-              <span class="text-[8px] font-bold text-slate-100 truncate w-full block">${item.name}</span>
-              <span class="text-[9px] font-bold text-brand-gold block">${item.price} G</span>
+            <div class="selection-item-card ${selectedMyItems.length === 1 ? 'selection-item-card-featured' : ''}">
+              <img src="${imgSrc}" alt="${item.name}">
+              <span class="selection-item-name">${item.name}</span>
             </div>
           `;
         }).join('');
+        selectionCard?.classList.add('has-selection');
       }
 
       let rawChance = 0;
       if (selectedTargetItem && mySum > 0) {
-        rawChance = (mySum / selectedTargetItem.price) * 100;
+        rawChance = ((mySum + upgradeBalanceAmount) / selectedTargetItem.price) * 100;
       }
 
       const displayChance = Math.min(rawChance, 100);
+      const hasChanceToShow = Boolean(selectedTargetItem && selectedMyItems.length > 0);
 
       const percentText = document.getElementById('chancePercentText');
       const statusText = document.getElementById('chanceStatusText');
-      const arc = document.getElementById('chanceCircleArc');
+      document.getElementById('dialEmptyPlaceholder')?.classList.toggle('hidden', hasChanceToShow);
+      document.getElementById('dialChanceContent')?.classList.toggle('hidden', !hasChanceToShow);
+      const arcs = [
+        document.getElementById('chanceCircleArc'),
+        document.getElementById('chanceCircleArcReverse')
+      ];
       const btn = document.getElementById('upgradeBtn');
       const btnText = document.getElementById('upgradeBtnText');
       const arrow = document.getElementById('pointerArrow');
 
-      percentText.innerText = `${displayChance.toFixed(2)}%`;
+      if (hasChanceToShow) {
+        animateChanceText(displayChance, percentText);
+      } else {
+        if (chanceTextAnimationFrame !== null) cancelAnimationFrame(chanceTextAnimationFrame);
+        chanceTextAnimationFrame = null;
+        animatedChanceValue = 0;
+        percentText.innerText = '0.00%';
+      }
       const totalDash = 257.61;
 
-      if (rawChance > 70) {
+      if (rawChance > 80.000001) {
         percentText.className = "text-3xl font-black tracking-tight text-red-500";
-        statusText.innerText = "Макс. шанс 70%";
+        statusText.innerText = "Макс. шанс 80%";
         statusText.className = "text-[10px] uppercase font-bold text-red-500 tracking-wider";
         
-        arc.setAttribute('stroke', '#d85b45');
+        arcs.forEach(arc => { arc.style.stroke = '#d85b45'; });
         arrow.className = "w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[10px] border-t-red-500 mt-[3px] drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]";
 
         btn.disabled = true;
-        btnText.innerText = "Шанс выше 70% запрещен";
+        btnText.innerText = "Шанс выше 80% запрещен";
       } else {
         percentText.className = "text-3xl font-black tracking-tight text-slate-100";
         statusText.innerText = "Шанс успеха";
         statusText.className = "text-[10px] uppercase font-semibold text-slate-300/60 tracking-wider";
         
-        arc.setAttribute('stroke', '#8ea1cf');
+        arcs.forEach(arc => { arc.style.stroke = '#8ea1cf'; });
         arrow.className = "w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[10px] border-t-rose-100 mt-[3px] drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]";
 
         btn.disabled = false;
-        btnText.innerText = "Прокачать";
+        btnText.innerText = "АПГРЕЙД";
       }
 
-      arc.style.strokeDashoffset = totalDash - (totalDash * (displayChance / 100));
+      const sideArcLength = 128.81;
+      const arcVisible = hasChanceToShow && displayChance >= 0.5;
+      const arcOffset = arcVisible ? sideArcLength * (1 - displayChance / 100) : sideArcLength;
+      arcs.forEach(arc => {
+        arc.style.transition = arcVisible
+          ? 'stroke-dashoffset 300ms ease, visibility 0s'
+          : 'none';
+        arc.style.strokeDashoffset = arcOffset;
+        arc.style.visibility = arcVisible ? 'visible' : 'hidden';
+      });
 
       const targetBox = document.getElementById('targetItemPreview');
+      const targetCard = document.getElementById('targetSelectionCard');
       if (selectedTargetItem) {
+        targetCard?.classList.add('has-target');
         const imgSrc = selectedTargetItem.image || '/img/placeholder.png';
         targetBox.innerHTML = `
-          <div class="text-center flex flex-col items-center justify-center">
-            <img src="${imgSrc}" class="max-h-20 max-w-full object-contain mb-2" alt="${selectedTargetItem.name}" />
-            <span class="text-xs font-bold text-slate-100 block">${selectedTargetItem.name}</span>
-            <span class="text-sm font-black text-brand-gold block mt-1">${selectedTargetItem.price} G</span>
+          <div class="target-item-display text-center flex flex-col items-center justify-center">
+            <img src="${imgSrc}" class="mb-1" alt="${selectedTargetItem.name}" />
+            <span class="target-item-name">${selectedTargetItem.name}</span>
+            <span class="target-item-price font-black text-brand-gold block">${goldAmountMarkup(selectedTargetItem.price, 15)}</span>
           </div>
         `;
       } else {
-        targetBox.innerHTML = `<span class="text-xs text-slate-300/40 text-center">Выберите скин из каталога справа</span>`;
+        targetCard?.classList.remove('has-target');
+        targetBox.innerHTML = '';
       }
+    }
+
+    function setUpgradeBalance(value) {
+      if (!selectedTargetItem || selectedMyItems.length === 0) {
+        upgradeBalanceAmount = 0;
+        updateGauge();
+        return;
+      }
+      upgradeBalanceAmount = Math.max(0, Number(value) || 0);
+      updateGauge();
     }
 
     function toggleSelectMyItem(id) {
@@ -2763,7 +3705,12 @@
       if (!item) return;
       const idx = selectedMyItems.findIndex(i => i.id === id);
       if (idx > -1) selectedMyItems.splice(idx, 1);
-      else selectedMyItems.push(item);
+      else {
+        if (selectedMyItems.length >= 5) {
+          return showBanner('В один апгрейд можно добавить не более 5 предметов', 'error');
+        }
+        selectedMyItems.push(item);
+      }
       renderLeftPanel();
       updateGauge();
     }
@@ -2813,7 +3760,7 @@
             <div class="text-xs font-bold text-slate-100">Пополнение баланса</div>
             <div class="text-[10px] text-slate-300/45 mt-1">${escapeHtml(formatProfileDate(item.date))}</div>
           </div>
-          <div class="text-xs font-black text-emerald-400 whitespace-nowrap">+${Number(item.goldAmount || 0).toFixed(2)} G</div>
+          <div class="text-xs font-black text-emerald-400 whitespace-nowrap">+${goldAmountMarkup(item.goldAmount, 12)}</div>
         </div>
       `).join('');
     }
@@ -2846,7 +3793,7 @@
               </div>
               <div class="text-right whitespace-nowrap">
                 <div class="text-[10px] text-slate-300/55">Шанс ${chance}%</div>
-                <div class="text-xs font-bold text-brand-gold">${targetPrice} G</div>
+                <div class="text-xs font-bold text-brand-gold">${goldAmountMarkup(targetPrice, 12)}</div>
               </div>
             </div>
             <div class="text-[10px] text-slate-300/40 mt-1">${escapeHtml(formatProfileDate(item.date))}</div>
@@ -2855,13 +3802,183 @@
       }).join('');
     }
 
+    let avatarCropBitmap = null;
+    let avatarCropBaseScale = 1;
+    let avatarCropZoom = 1;
+    let avatarCropOffsetX = 0;
+    let avatarCropOffsetY = 0;
+    let avatarCropPointer = null;
+    const AVATAR_CROP_SIZE = 384;
+
+    function showAvatarStatus(message, isError = false) {
+      const status = document.getElementById('avatarUploadStatus');
+      status.textContent = message;
+      status.className = `max-w-24 text-[9px] text-center ${isError ? 'text-red-400' : 'text-emerald-400'}`;
+      window.clearTimeout(status.hideTimer);
+      status.hideTimer = window.setTimeout(() => status.classList.add('hidden'), 5000);
+    }
+
+    async function uploadProfileAvatar(file) {
+      const input = document.getElementById('avatarUploadInput');
+      if (!file) return;
+      if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+        showAvatarStatus('Выберите JPG, PNG или WebP', true);
+        input.value = '';
+        return;
+      }
+      if (file.size > 10 * 1024 * 1024) {
+        showAvatarStatus('Файл должен быть меньше 10 МБ', true);
+        input.value = '';
+        return;
+      }
+
+      try {
+        avatarCropBitmap?.close?.();
+        avatarCropBitmap = await createImageBitmap(file);
+        avatarCropBaseScale = Math.max(
+          AVATAR_CROP_SIZE / avatarCropBitmap.width,
+          AVATAR_CROP_SIZE / avatarCropBitmap.height
+        );
+        avatarCropZoom = 1;
+        avatarCropOffsetX = 0;
+        avatarCropOffsetY = 0;
+        document.getElementById('avatarCropZoom').value = '100';
+        document.getElementById('avatarCropError').classList.add('hidden');
+        const modal = document.getElementById('avatarCropModal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-layer-open');
+        document.body.classList.add('avatar-crop-open');
+        drawAvatarCrop();
+      } catch (error) {
+        showAvatarStatus('Не удалось открыть изображение', true);
+        input.value = '';
+      }
+    }
+
+    function clampAvatarCropOffsets() {
+      if (!avatarCropBitmap) return;
+      const scale = avatarCropBaseScale * avatarCropZoom;
+      const overflowX = Math.max(0, (avatarCropBitmap.width * scale - AVATAR_CROP_SIZE) / 2);
+      const overflowY = Math.max(0, (avatarCropBitmap.height * scale - AVATAR_CROP_SIZE) / 2);
+      avatarCropOffsetX = Math.max(-overflowX, Math.min(overflowX, avatarCropOffsetX));
+      avatarCropOffsetY = Math.max(-overflowY, Math.min(overflowY, avatarCropOffsetY));
+    }
+
+    function drawAvatarCrop() {
+      if (!avatarCropBitmap) return;
+      clampAvatarCropOffsets();
+      const canvas = document.getElementById('avatarCropCanvas');
+      const context = canvas.getContext('2d');
+      const scale = avatarCropBaseScale * avatarCropZoom;
+      const width = avatarCropBitmap.width * scale;
+      const height = avatarCropBitmap.height * scale;
+      context.clearRect(0, 0, AVATAR_CROP_SIZE, AVATAR_CROP_SIZE);
+      context.imageSmoothingEnabled = true;
+      context.imageSmoothingQuality = 'high';
+      context.drawImage(
+        avatarCropBitmap,
+        (AVATAR_CROP_SIZE - width) / 2 + avatarCropOffsetX,
+        (AVATAR_CROP_SIZE - height) / 2 + avatarCropOffsetY,
+        width,
+        height
+      );
+    }
+
+    function setAvatarCropZoom(value) {
+      avatarCropZoom = Math.max(1, Math.min(2.5, Number(value) / 100));
+      drawAvatarCrop();
+    }
+
+    const avatarCropCanvas = document.getElementById('avatarCropCanvas');
+    avatarCropCanvas.addEventListener('pointerdown', event => {
+      if (!avatarCropBitmap) return;
+      avatarCropCanvas.setPointerCapture(event.pointerId);
+      avatarCropPointer = { x: event.clientX, y: event.clientY };
+    });
+    avatarCropCanvas.addEventListener('pointermove', event => {
+      if (!avatarCropPointer || !avatarCropBitmap) return;
+      const rect = avatarCropCanvas.getBoundingClientRect();
+      const scaleX = AVATAR_CROP_SIZE / rect.width;
+      const scaleY = AVATAR_CROP_SIZE / rect.height;
+      avatarCropOffsetX += (event.clientX - avatarCropPointer.x) * scaleX;
+      avatarCropOffsetY += (event.clientY - avatarCropPointer.y) * scaleY;
+      avatarCropPointer = { x: event.clientX, y: event.clientY };
+      drawAvatarCrop();
+    });
+    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(type => {
+      avatarCropCanvas.addEventListener(type, () => { avatarCropPointer = null; });
+    });
+
+    function closeAvatarCrop() {
+      const modal = document.getElementById('avatarCropModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-layer-open');
+      document.body.classList.remove('avatar-crop-open');
+      document.getElementById('avatarUploadInput').value = '';
+      document.getElementById('avatarCropError').classList.add('hidden');
+      avatarCropBitmap?.close?.();
+      avatarCropBitmap = null;
+      avatarCropPointer = null;
+    }
+
+    async function saveCroppedAvatar() {
+      if (!avatarCropBitmap) return;
+      const error = document.getElementById('avatarCropError');
+      const saveButton = document.getElementById('avatarCropSaveBtn');
+      const canvas = document.getElementById('avatarCropCanvas');
+      saveButton.disabled = true;
+      saveButton.textContent = 'Сохраняю…';
+      error.classList.add('hidden');
+
+      try {
+        const output = document.createElement('canvas');
+        output.width = 384;
+        output.height = 384;
+        output.getContext('2d').drawImage(canvas, 0, 0, 384, 384);
+        const dataUrl = output.toDataURL('image/webp', 0.82);
+        const token = localStorage.getItem('upgrader_token');
+        const response = await fetch(`${API_BASE}/user/avatar`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+          body: JSON.stringify({ dataUrl })
+        });
+        const result = await response.json();
+        if (!response.ok || !result.success) throw new Error(result.message || 'Не удалось сохранить аватар');
+
+        currentUser.avatar = result.avatar;
+        closeAvatarCrop();
+        renderHeaderAuth();
+        renderProfilePage();
+        showAvatarStatus('Аватар обновлён');
+      } catch (errorValue) {
+        error.textContent = errorValue.message || 'Не удалось загрузить изображение';
+        error.classList.remove('hidden');
+      } finally {
+        saveButton.disabled = false;
+        saveButton.textContent = 'Сохранить';
+      }
+    }
+
     function renderProfilePage() {
       if (!currentUser) return openAuthModal('login');
 
+      document.getElementById('adminPromoPanel')?.classList.toggle(
+        'hidden',
+        String(currentUser.username || '').toLowerCase() !== 'admin'
+      );
+
       document.getElementById('profileUsername').innerText = currentUser.username;
       document.getElementById('profileUserId').innerText = currentUser.id;
-      document.getElementById('profileAvatar').innerText = currentUser.username[0].toUpperCase();
-      document.getElementById('profileBalance').innerText = `${Number(currentUser.balance || 0).toFixed(2)} 🪙`;
+      document.getElementById('profileAvatarInitial').innerText = String(currentUser.username || 'U')[0].toUpperCase();
+      const profileAvatarImage = document.getElementById('profileAvatarImage');
+      profileAvatarImage.classList.toggle('hidden', !currentUser.avatar);
+      if (currentUser.avatar) profileAvatarImage.src = currentUser.avatar;
+      else profileAvatarImage.removeAttribute('src');
+      document.getElementById('profileBalanceValue').innerText = Number(currentUser.balance || 0).toFixed(2);
       document.getElementById('profileUpgradesCount').innerText = `${currentUser.upgradesCount || 0} раз`;
 
       let bestItem = currentUser.bestDrop || null;
@@ -2873,27 +3990,39 @@
       const bestName = document.getElementById('profileBestDropName');
       const bestPrice = document.getElementById('profileBestDropPrice');
       const bestImage = document.getElementById('profileBestDropImage');
+      const bestImageWrap = document.getElementById('profileBestDropImageWrap');
       if (bestItem) {
         bestName.innerText = bestItem.name;
-        bestPrice.innerText = `${Number(bestItem.price || 0).toFixed(2)} 🪙`;
-        bestImage.src = bestItem.image || '/img/placeholder.png';
+      bestPrice.innerHTML = goldAmountMarkup(bestItem.price, 15);
+        bestImage.src = bestItem.image || '';
         bestImage.alt = bestItem.name;
-        bestImage.classList.remove('opacity-70');
+        bestImageWrap.classList.remove('hidden');
+        bestImageWrap.classList.add('flex');
+        bestName.classList.remove('hidden');
+        bestPrice.classList.remove('hidden');
       } else {
         bestName.innerText = 'Нет дропа';
-        bestPrice.innerText = '0.00 🪙';
-        bestImage.src = '/img/placeholder.png';
-        bestImage.alt = 'Лучший дроп';
-        bestImage.classList.add('opacity-70');
+        bestPrice.innerHTML = goldAmountMarkup(0, 15);
+        bestImage.removeAttribute('src');
+        bestImage.alt = '';
+        bestImageWrap.classList.add('hidden');
+        bestImageWrap.classList.remove('flex');
+        bestName.classList.remove('hidden');
+        bestPrice.classList.remove('hidden');
       }
 
       renderProfileInventoryTab();
     }
 
     let profileInventoryTab = 'inventory';
+    let withdrawalHistoryRefreshTimer = null;
 
     function setProfileInventoryTab(tab) {
       profileInventoryTab = tab;
+      if (withdrawalHistoryRefreshTimer) {
+        clearInterval(withdrawalHistoryRefreshTimer);
+        withdrawalHistoryRefreshTimer = null;
+      }
 
       document.querySelectorAll('.profile-inventory-tab').forEach(btn => {
         btn.classList.remove('active');
@@ -2906,11 +4035,21 @@
             ? 'profileItemsHistoryTab'
             : tab === 'games-history'
               ? 'profileGamesHistoryTab'
+            : tab === 'withdrawals-history'
+              ? 'profileWithdrawalsHistoryTab'
               : 'profilePaymentsHistoryTab';
 
       const activeBtn = document.getElementById(activeId);
       if (activeBtn) activeBtn.classList.add('active');
       renderProfileInventoryTab();
+      if (tab === 'withdrawals-history') {
+        withdrawalHistoryRefreshTimer = setInterval(() => {
+          if (!document.getElementById('tab-profile-content')?.classList.contains('hidden')) {
+            const grid = document.getElementById('profileInventoryGrid');
+            if (grid && profileInventoryTab === 'withdrawals-history') renderWithdrawalHistory(grid);
+          }
+        }, 10000);
+      }
     }
 
     function getProfileItemRarityClass(item) {
@@ -2943,7 +4082,7 @@
         return `
           <div class="profile-skin-card ${rarityClass}" title="${escapeHtml(item.name)}">
             <div class="profile-skin-price">
-              ${Number(item.price || 0).toFixed(2)} <span>G</span>
+              ${goldAmountMarkup(item.price, 12)}
             </div>
 
             <div class="profile-skin-image-wrap">
@@ -2959,12 +4098,337 @@
             </div>
 
             <div class="profile-skin-actions">
-              <span title="Предмет">◉</span>
-              <span title="Выбрать для апгрейда">⌃</span>
+              <button type="button"
+                      class="profile-skin-action-btn profile-skin-action-sell"
+                      onclick="sellInventoryItem('${escapeHtml(item.id)}', event)"
+                      title="Продать предмет за ${Number(item.price || 0).toFixed(2)} G">
+                <span class="profile-skin-action-icon">↗</span>
+                <span>Продать</span>
+              </button>
+              <button type="button"
+                      class="profile-skin-action-btn profile-skin-action-withdraw"
+                      onclick="withdrawInventoryItem('${escapeHtml(item.id)}', event)"
+                      title="Вывести предмет">
+                <span class="profile-skin-action-icon">⇩</span>
+                <span>Вывод</span>
+              </button>
             </div>
           </div>
         `;
       }).join('');
+    }
+
+    function animateBalanceCount(el, fromValue, toValue, suffix) {
+      if (!el) return;
+
+      const from = Number(fromValue);
+      const to = Number(toValue);
+      if (!Number.isFinite(to)) return;
+
+      const start = Number.isFinite(from) ? from : 0;
+      const difference = to - start;
+
+      if (Math.abs(difference) < 0.001) {
+        el.textContent = `${to.toFixed(2)}${suffix}`;
+        return;
+      }
+
+      // Короткая и заметная анимация изменения суммы.
+      const duration = 700;
+      const startedAt = performance.now();
+
+      el.classList.add('balance-count-animation');
+      el.textContent = `${start.toFixed(2)}${suffix}`;
+
+      function tick(now) {
+        const progress = Math.min((now - startedAt) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 2.2);
+        const value = start + difference * eased;
+
+        el.textContent = `${value.toFixed(2)}${suffix}`;
+
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          el.textContent = `${to.toFixed(2)}${suffix}`;
+          setTimeout(() => el.classList.remove('balance-count-animation'), 120);
+        }
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    function animateBalanceGain(fromValue, toValue) {
+      // Верхний баланс: СТАРУЮ красивую анимацию scale/brightness сохраняем,
+      // но теперь дополнительно плавно прокручиваем само число за ~0.7 сек.
+      const headerBalance = document.getElementById('headerBalanceDisplay');
+      if (headerBalance) {
+        headerBalance.classList.remove('balance-gain-animation');
+        void headerBalance.offsetWidth;
+        headerBalance.classList.add('balance-gain-animation');
+        setTimeout(() => headerBalance.classList.remove('balance-gain-animation'), 800);
+
+        animateBalanceCount(document.getElementById('headerBalanceValue'), fromValue, toValue, '');
+      }
+    }
+
+    function animateProfileBalanceCount(fromValue, toValue) {
+      const el = document.getElementById('profileBalanceValue');
+      if (!el) return;
+
+      // Та же короткая анимация изменения числа, что и в верхнем балансе.
+      animateBalanceCount(el, fromValue, toValue, '');
+    }
+
+    async function sellInventoryItem(itemId, event) {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      if (!currentUser) return openAuthModal('login');
+
+      const item = (Array.isArray(currentUser.inventory) ? currentUser.inventory : [])
+        .find(i => i && i.id === itemId);
+
+      if (!item) return showBanner('Предмет уже отсутствует в инвентаре', 'error');
+
+      const token = localStorage.getItem('upgrader_token');
+      if (!token) return openAuthModal('login');
+
+      const previousBalance = Number(currentUser.balance || 0);
+
+      try {
+        const res = await fetch(`${API_BASE}/inventory/sell`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ itemId })
+        });
+
+        const data = await res.json();
+
+        if (!data.success) {
+          return showBanner(data.message || 'Не удалось продать предмет', 'error');
+        }
+
+        const soldPrice = Number(data.soldPrice || item.price || 0);
+        currentUser.balance = Number(data.newBalance || 0);
+        currentUser.inventory = Array.isArray(data.updatedInventory) ? data.updatedInventory : [];
+
+        renderHeaderAuth();
+        renderProfilePage();
+        renderLeftPanel();
+
+        // В шапке сохраняем старую визуальную анимацию + короткий счётчик.
+        // В профиле — такой же счётчик, теперь примерно за 0.7 сек.
+        animateBalanceGain(previousBalance, currentUser.balance);
+        animateProfileBalanceCount(previousBalance, currentUser.balance);
+
+        showBanner(`ПРОДАНО! ${item.name} — +${soldPrice.toFixed(2)} G`, 'success');
+      } catch (err) {
+        console.error('Ошибка продажи предмета:', err);
+        showBanner('Ошибка при продаже предмета', 'error');
+      }
+    }
+
+    let activeWithdrawal = null;
+
+    function setWithdrawalStep(step) {
+      [1, 2, 3].forEach(number => {
+        document.getElementById(`withdrawalStep${number}`)?.classList.toggle('hidden', number !== step);
+      });
+      const modal = document.getElementById('withdrawalModal');
+      if (modal) modal.dataset.step = String(step);
+      const title = document.getElementById('withdrawalTitle');
+      if (title) title.textContent = step === 1 ? 'Вывод скина' : step === 2 ? 'Аватар для заявки' : 'Заявка принята';
+    }
+
+    function setWithdrawalError(message, step = 1) {
+      const error = document.getElementById(step === 1 ? 'withdrawalError' : 'withdrawalError2');
+      if (!error) return;
+      error.textContent = message;
+      error.classList.toggle('hidden', !message);
+    }
+
+    function closeWithdrawalModal() {
+      const modal = document.getElementById('withdrawalModal');
+      modal?.classList.add('hidden');
+      modal?.classList.remove('flex');
+      modal?.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-layer-open');
+      ['withdrawalPattern', 'withdrawalMarketFile', 'withdrawalAvatarFile'].forEach(id => {
+        const input = document.getElementById(id);
+        if (input) input.value = '';
+      });
+      ['withdrawalMarketPreview', 'withdrawalAvatarPreview'].forEach(id => {
+        const image = document.getElementById(id);
+        if (image) {
+          if (image.src.startsWith('blob:')) URL.revokeObjectURL(image.src);
+          image.removeAttribute('src');
+          image.classList.add('hidden');
+        }
+      });
+      setWithdrawalError('');
+      setWithdrawalError('', 2);
+      activeWithdrawal = null;
+    }
+
+    async function openWithdrawalModal(item) {
+      const token = localStorage.getItem('upgrader_token');
+      if (!token) { openAuthModal(); return; }
+      const response = await fetch(`${API_BASE}/withdrawal/quote`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify({ itemId: item.id })
+      });
+      const data = await response.json();
+      if (!response.ok || !data.success) throw new Error(data.message || 'Не удалось начать оформление вывода');
+      activeWithdrawal = { quote: data.quote, item: data.item, listingPrice: Number(data.listingPrice) };
+      const image = document.getElementById('withdrawalSkinImage');
+      image.src = data.item.image || '/img/placeholder.png';
+      image.alt = data.item.name || 'Скин';
+      document.getElementById('withdrawalSkinName').textContent = data.item.name || 'Скин';
+      document.getElementById('withdrawalSkinPrice').innerHTML = `Цена в инвентаре: ${goldAmountMarkup(data.item.price, 11)}`;
+      document.getElementById('withdrawalListingPrice').innerHTML = goldAmountMarkup(data.listingPrice, 14);
+      setWithdrawalStep(1);
+      const modal = document.getElementById('withdrawalModal');
+      modal?.classList.remove('hidden');
+      modal?.classList.add('flex');
+      modal?.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-layer-open');
+    }
+
+    async function compressWithdrawalImage(file, maxDimension) {
+      if (!file || !/^image\/(png|jpeg|webp)$/.test(file.type)) throw new Error('Выберите изображение PNG, JPG или WebP');
+      if (file.size > 20 * 1024 * 1024) throw new Error('Исходное изображение должно быть меньше 20 МБ');
+      const bitmap = await createImageBitmap(file);
+      const ratio = Math.min(1, maxDimension / Math.max(bitmap.width, bitmap.height));
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.max(1, Math.round(bitmap.width * ratio));
+      canvas.height = Math.max(1, Math.round(bitmap.height * ratio));
+      const context = canvas.getContext('2d');
+      context.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+      bitmap.close?.();
+      let dataUrl = '';
+      for (const quality of [0.84, 0.75, 0.66, 0.58, 0.5]) {
+        dataUrl = canvas.toDataURL('image/webp', quality);
+        if (dataUrl.length * 0.75 <= 1.5 * 1024 * 1024) return dataUrl;
+      }
+      throw new Error('Не удалось сжать изображение до 1,5 МБ. Выберите изображение поменьше');
+    }
+
+    function previewWithdrawalImage(kind, file) {
+      setWithdrawalError('', kind === 'market' ? 1 : 2);
+      const image = document.getElementById(kind === 'market' ? 'withdrawalMarketPreview' : 'withdrawalAvatarPreview');
+      if (!image) return;
+      if (!file) { image.removeAttribute('src'); image.classList.add('hidden'); return; }
+      if (!/^image\/(png|jpeg|webp)$/.test(file.type)) {
+        setWithdrawalError('Выберите изображение PNG, JPG или WebP', kind === 'market' ? 1 : 2);
+        return;
+      }
+      if (image.src.startsWith('blob:')) URL.revokeObjectURL(image.src);
+      image.src = URL.createObjectURL(file);
+      image.classList.remove('hidden');
+    }
+
+    async function continueWithdrawalToAvatar() {
+      setWithdrawalError('');
+      const pattern = document.getElementById('withdrawalPattern')?.value.trim() || '';
+      const marketFile = document.getElementById('withdrawalMarketFile')?.files?.[0];
+      if (!pattern || pattern.length > 80) return setWithdrawalError('Введите паттерн (до 80 символов)');
+      if (!marketFile) return setWithdrawalError('Загрузите скриншот с рынка');
+      try {
+        const marketScreenshot = await compressWithdrawalImage(marketFile, 1280);
+        activeWithdrawal = { ...activeWithdrawal, pattern, marketScreenshot };
+        setWithdrawalStep(2);
+      } catch (error) {
+        setWithdrawalError(error.message || 'Не удалось обработать скриншот');
+      }
+    }
+
+    async function submitWithdrawalRequest() {
+      setWithdrawalError('', 2);
+      if (!activeWithdrawal?.quote || !activeWithdrawal?.marketScreenshot) return setWithdrawalError('Начните оформление заново', 2);
+      const avatarFile = document.getElementById('withdrawalAvatarFile')?.files?.[0];
+      if (!avatarFile) return setWithdrawalError('Загрузите аватар', 2);
+      const submitButton = document.getElementById('withdrawalSubmitBtn');
+      if (submitButton?.disabled) return;
+      submitButton.disabled = true;
+      submitButton.textContent = 'Отправляем…';
+      try {
+        const avatar = await compressWithdrawalImage(avatarFile, 512);
+        const token = localStorage.getItem('upgrader_token');
+        const response = await fetch(`${API_BASE}/withdrawal/submit`, {
+          method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+          body: JSON.stringify({ quote: activeWithdrawal.quote, pattern: activeWithdrawal.pattern, marketScreenshot: activeWithdrawal.marketScreenshot, avatar })
+        });
+        const data = await response.json();
+        if (!response.ok || !data.success) throw new Error(data.message || 'Не удалось отправить заявку');
+        if (currentUser) currentUser.inventory = Array.isArray(data.updatedInventory) ? data.updatedInventory : [];
+        renderProfilePage();
+        renderLeftPanel();
+        setWithdrawalStep(3);
+      } catch (error) {
+        setWithdrawalError(error.message || 'Не удалось отправить заявку', 2);
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Отправить заявку';
+      }
+    }
+
+    async function renderWithdrawalHistory(container) {
+      container.innerHTML = '<div class="profile-inventory-empty"><div class="text-xs text-slate-300/50">Загружаем историю заявок…</div></div>';
+      try {
+        const token = localStorage.getItem('upgrader_token');
+        const response = await fetch(`${API_BASE}/withdrawal/history`, { headers: { 'Authorization': `Bearer ${token}` } });
+        const data = await response.json();
+        if (!response.ok || !data.success) throw new Error(data.message || 'Не удалось загрузить историю');
+        if (profileInventoryTab !== 'withdrawals-history') return;
+        const requests = Array.isArray(data.history) ? data.history : [];
+        if (!requests.length) {
+          container.innerHTML = '<div class="profile-inventory-empty"><div class="profile-empty-icon"><img src="/img/withdrawal-history.svg" alt="" class="w-8 h-8 opacity-60"></div><div class="text-xs text-slate-300/40">Заявок на вывод пока нет</div></div>';
+          return;
+        }
+        container.innerHTML = requests.map(request => {
+          const status = request.status === 'withdrawn'
+            ? { label: 'ВЫВЕДЕНО', css: 'is-done' }
+            : request.status === 'rejected'
+              ? { label: 'ОТКЛОНЕНО', css: 'is-rejected' }
+              : { label: 'В ПРОЦЕССЕ', css: 'is-progress' };
+          const reason = request.status === 'rejected' && request.reason
+            ? `<div class="mt-1 text-[10px] text-red-300/70">Причина: ${escapeHtml(request.reason)}</div>`
+            : '';
+          return `<article class="profile-withdrawal-card">
+            <img class="profile-withdrawal-image" src="${escapeHtml(request.itemImage || '/img/placeholder.png')}" alt="${escapeHtml(request.itemName || 'Скин')}" onerror="this.src='/img/placeholder.png'">
+            <div class="min-w-0"><div class="truncate text-xs font-bold text-slate-100" title="${escapeHtml(request.itemName || 'Скин')}">${escapeHtml(request.itemName || 'Скин')}</div>
+              <div class="mt-1 text-[10px] text-slate-300/60">Цена скина: <span class="text-slate-100">${goldAmountMarkup(request.itemPrice, 10)}</span></div>
+              <div class="text-[10px] text-slate-300/60">Цена выставления: <span class="text-slate-100">${goldAmountMarkup(request.listingPrice, 10)}</span></div>
+              ${request.createdAt ? `<div class="mt-1 text-[10px] text-slate-300/35">${escapeHtml(formatProfileDate(request.createdAt))}</div>` : ''}${reason}</div>
+            <div class="profile-withdrawal-status ${status.css}">${status.label}</div>
+          </article>`;
+        }).join('');
+      } catch (error) {
+        if (profileInventoryTab === 'withdrawals-history') container.innerHTML = `<div class="profile-inventory-empty"><div class="text-xs text-red-300/70">${escapeHtml(error.message || 'Не удалось загрузить историю')}</div></div>`;
+      }
+    }
+
+    async function withdrawInventoryItem(itemId, event) {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      const item = (Array.isArray(currentUser?.inventory) ? currentUser.inventory : [])
+        .find(i => i && String(i.id) === String(itemId));
+
+      if (!item) return showBanner('Предмет не найден', 'error');
+      try {
+        await openWithdrawalModal(item);
+      } catch (error) {
+        showBanner(error.message || 'Не удалось открыть вывод', 'error');
+      }
     }
 
     function renderProfileInventoryTab() {
@@ -2972,10 +4436,17 @@
       if (!pGrid || !currentUser) return;
 
       pGrid.classList.remove('profile-games-history-grid');
+      pGrid.classList.remove('profile-withdrawal-history-grid');
 
       const inventory = Array.isArray(currentUser.inventory)
         ? currentUser.inventory
         : [];
+
+      if (profileInventoryTab === 'withdrawals-history') {
+        pGrid.classList.add('profile-withdrawal-history-grid');
+        renderWithdrawalHistory(pGrid);
+        return;
+      }
 
       if (profileInventoryTab === 'inventory') {
         renderProfileInventoryCards(inventory);
@@ -3003,26 +4474,19 @@
               <div class="text-xs font-bold text-slate-100">Пополнение баланса</div>
               <div class="text-[10px] text-slate-300/45 mt-1">${escapeHtml(formatProfileDate(item.date))}</div>
             </div>
-            <div class="text-xs font-black text-emerald-400 whitespace-nowrap">+${Number(item.goldAmount || 0).toFixed(2)} G</div>
+            <div class="text-xs font-black text-emerald-400 whitespace-nowrap">+${goldAmountMarkup(item.goldAmount, 12)}</div>
           </div>
         `).join('');
         return;
       }
 
-      const history = Array.isArray(currentUser.upgradeHistory)
-        ? currentUser.upgradeHistory
-        : [];
-
-      if (!history.length) {
-        renderProfileInventoryCards([]);
-        return;
-      }
-
-      /* История предметов: только фото + название. */
+      /* История предметов — это отдельная история владения.
+         Здесь должны быть предметы, которые были или есть в инвентаре,
+         а не цели, выбранные для апгрейда. */
       if (profileInventoryTab === 'items-history') {
-        const itemHistory = history
-          .map(item => item?.targetItem)
-          .filter(item => item && (item.name || item.image));
+        const itemHistory = Array.isArray(currentUser.itemHistory)
+          ? currentUser.itemHistory.slice(0, 200)
+          : [];
 
         if (!itemHistory.length) {
           pGrid.innerHTML = `
@@ -3042,6 +4506,15 @@
             <div class="profile-item-history-name">${escapeHtml(item.name || 'Скин')}</div>
           </div>
         `).join('');
+        return;
+      }
+
+      const history = Array.isArray(currentUser.upgradeHistory)
+        ? currentUser.upgradeHistory
+        : [];
+
+      if (!history.length) {
+        renderProfileInventoryCards([]);
         return;
       }
 
@@ -3094,7 +4567,7 @@
               <div class="profile-game-meta">
                 <div class="profile-game-meta-box">
                   <div class="profile-game-meta-label">Ваша ставка</div>
-                  <div class="profile-game-meta-value">${inputTotal.toFixed(2)} G</div>
+                  <div class="profile-game-meta-value">${goldAmountMarkup(inputTotal, 13)}</div>
                 </div>
                 <div class="profile-game-meta-box">
                   <div class="profile-game-meta-label">Шанс</div>
@@ -3109,10 +4582,22 @@
       }
     }
 
-    async function applyPromoCode() {
-      const code = document.getElementById('promoInput').value.trim();
-      if (!code) return showBanner('Введите купон', 'error');
+    async function redeemPromoCode(inputId) {
+      const input = document.getElementById(inputId);
+      const code = input?.value.trim();
+      const status = inputId === 'depositPromoInput' ? document.getElementById('depositPromoStatus') : null;
+      const report = (text, isError = false) => {
+        if (status) {
+          status.innerHTML = goldIconsInText(text);
+          status.className = `text-xs mt-2 min-h-4 ${isError ? 'text-red-400' : 'text-emerald-400'}`;
+        } else {
+          showBanner(text, isError ? 'error' : 'success');
+        }
+      };
+      if (!code) return report('Введите промокод', true);
       const token = localStorage.getItem('upgrader_token');
+      if (!token) return openAuthModal('login');
+
       try {
         const res = await fetch(`${API_BASE}/user/promo`, {
           method: 'POST',
@@ -3120,20 +4605,60 @@
           body: JSON.stringify({ code })
         });
         const data = await res.json();
-        if (data.success) {
-          showBanner(`Купон применен! Зачислено ${data.added} Gold`, 'success');
-          currentUser.balance = data.newBalance;
-          renderHeaderAuth();
-          renderProfilePage();
-        } else showBanner(data.message, 'error');
+        if (!res.ok || !data.success) return report(data.message || 'Промокод не найден или уже использован', true);
+
+        currentUser.balance = Number(data.newBalance || 0);
+        input.value = '';
+        renderHeaderAuth();
+        if (!document.getElementById('tab-profile-content').classList.contains('hidden')) renderProfilePage();
+        report(`Промокод активирован: +${Number(data.added).toFixed(2)} G`);
       } catch (err) {
-        showBanner('Ошибка при активации купона', 'error');
+        report('Не удалось применить промокод', true);
+      }
+    }
+
+    function applyPromoCode() { return redeemPromoCode('promoInput'); }
+    function applyDepositPromoCode() { return redeemPromoCode('depositPromoInput'); }
+
+    async function createPromoCode() {
+      const codeInput = document.getElementById('adminPromoCode');
+      const rewardInput = document.getElementById('adminPromoReward');
+      const message = document.getElementById('adminPromoMessage');
+      const code = String(codeInput?.value || '').trim().toUpperCase();
+      const reward = Number(rewardInput?.value);
+      if (!/^[A-Z0-9_-]{3,32}$/.test(code)) {
+        message.textContent = 'Код: от 3 до 32 латинских букв, цифр, дефисов или подчёркиваний.';
+        message.className = 'text-xs text-red-400 mt-2';
+        return;
+      }
+      if (!Number.isFinite(reward) || reward <= 0 || reward > 1000000) {
+        message.innerHTML = goldIconsInText('Укажите награду от 0.01 до 1 000 000 G.');
+        message.className = 'text-xs text-red-400 mt-2';
+        return;
+      }
+
+      const token = localStorage.getItem('upgrader_token');
+      try {
+        const res = await fetch(`${API_BASE}/admin/promos`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+          body: JSON.stringify({ code, reward })
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success) throw new Error(data.message || 'Не удалось создать промокод');
+        message.innerHTML = goldIconsInText(`Создан код ${data.code} на ${Number(data.reward).toFixed(2)} G. Он одноразовый.`);
+        message.className = 'text-xs text-emerald-400 mt-2';
+        codeInput.value = '';
+        rewardInput.value = '';
+      } catch (err) {
+        message.textContent = err.message || 'Не удалось создать промокод';
+        message.className = 'text-xs text-red-400 mt-2';
       }
     }
 
     function showBanner(msg, type) {
       const el = document.getElementById('resultNotification');
-      el.innerText = msg;
+      el.innerHTML = goldIconsInText(msg);
       el.classList.remove('hidden', 'bg-emerald-500/20', 'border-emerald-500', 'text-emerald-400', 'bg-red-500/20', 'border-red-500', 'text-red-400');
 
       if (type === 'success') {
@@ -3154,26 +4679,45 @@
         const res = await fetch(`${API_BASE}/upgrade`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-          body: JSON.stringify({ selectedItemIds: selectedMyItems.map(i => i.id), targetItem: selectedTargetItem })
+          body: JSON.stringify({ selectedItemIds: selectedMyItems.map(i => i.id), targetItem: selectedTargetItem, addedBalance: upgradeBalanceAmount })
         });
         const data = await res.json();
         if (data.success) {
+          // Сервер списывает добавленный баланс до розыгрыша, поэтому сразу
+          // синхронизируем интерфейс независимо от результата апгрейда.
+          if (Number.isFinite(Number(data.newBalance))) {
+            currentUser.balance = Number(data.newBalance);
+            renderHeaderAuth();
+          }
           const arrow = document.getElementById('pointerArrowContainer');
           const animDuration = isFastSpin ? 600 : 3500;
+          const dialChance = Math.max(0, Math.min(100, Number(data.chance) || 0));
+          let pointerProgress;
+          if (data.isWin) {
+            pointerProgress = Math.random() * dialChance;
+          } else {
+            const outsideRange = 100 - dialChance;
+            const outsideMargin = Math.min(0.5, outsideRange / 2);
+            pointerProgress = dialChance + outsideMargin + Math.random() * (outsideRange - outsideMargin);
+          }
+          const pointerDirection = Math.random() < 0.5 ? -1 : 1;
+          const pointerAngle = 180 + pointerDirection * pointerProgress * 1.8;
           
           arrow.style.transitionDuration = '0ms';
-          arrow.style.transform = `rotate(0deg)`;
+          arrow.style.transform = `rotate(180deg)`;
 
           setTimeout(() => {
             arrow.style.transitionDuration = `${animDuration}ms`;
-            arrow.style.transform = `rotate(${3600 + (data.rolled / 100) * 360}deg)`;
+            arrow.style.transform = `rotate(${3600 + pointerAngle}deg)`;
           }, 20);
 
           setTimeout(() => {
             if (data.isWin) {
-              showBanner(`ПОБЕДА! Вы выбили ${selectedTargetItem.name}`, 'success');
-            } else {
-              showBanner('НЕУДАЧА! Предметы сгорели', 'error');
+              const targetCard = document.getElementById('targetSelectionCard');
+              targetCard.classList.remove('upgrade-win-celebration');
+              void targetCard.offsetWidth;
+              targetCard.classList.add('upgrade-win-celebration');
+              setTimeout(() => targetCard.classList.remove('upgrade-win-celebration'), 1100);
             }
 
             currentUser.inventory = data.updatedInventory;
@@ -3181,6 +4725,7 @@
             currentUser.upgradesCount = Number(data.upgradesCount || currentUser.upgradesCount || 0);
             if (Array.isArray(data.upgradeHistory)) currentUser.upgradeHistory = data.upgradeHistory;
             selectedMyItems = [];
+            upgradeBalanceAmount = 0;
             renderLeftPanel();
             updateGauge();
           }, animDuration + 100);
@@ -3208,7 +4753,7 @@
       document.getElementById('depositCountryMenu')?.classList.add('hidden');
       document.getElementById('depositCountryArrow').textContent='⌄';
     }
-    function selectDepositAmount(amt) { document.getElementById('customDepositInput').value = amt; document.querySelectorAll('.deposit-amount-btn').forEach(b => b.classList.toggle('active', b.textContent.trim() === `${amt} G`)); }
+    function selectDepositAmount(amt) { document.getElementById('customDepositInput').value = amt; document.querySelectorAll('.deposit-amount-btn').forEach(b => b.classList.toggle('active', Number(b.dataset.amount) === Number(amt))); }
     
     function toggleDepositCountries() {
       const menu = document.getElementById('depositCountryMenu');
@@ -3235,70 +4780,6 @@
         document.getElementById(`depositMethod${m[0].toUpperCase()+m.slice(1)}`).classList.toggle('active', m === method);
         document.getElementById(`deposit${m[0].toUpperCase()+m.slice(1)}Content`).classList.toggle('hidden', m !== method);
       });
-    }
-
-    function previewDepositPromoCode() {
-      // Статус промокода намеренно не показываем во время ввода.
-      // Проверка выполняется только после нажатия «Применить».
-    }
-
-    async function applyDepositPromoCode() {
-      const input = document.getElementById('depositPromoInput');
-      const status = document.getElementById('depositPromoStatus');
-      const code = input.value.trim();
-
-      if (!code) {
-        status.className = 'deposit-promo-status show error';
-        status.textContent = '✕  Введите промокод';
-        return;
-      }
-
-      const token = localStorage.getItem('upgrader_token');
-      if (!token) {
-        status.className = 'deposit-promo-status show error';
-        status.textContent = '✕  Войдите в аккаунт, чтобы применить промокод';
-        return openAuthModal('login');
-      }
-
-      const button = document.querySelector('.deposit-promo-row button');
-      const oldText = button ? button.textContent : '';
-      if (button) {
-        button.disabled = true;
-        button.textContent = 'Проверка...';
-      }
-
-      try {
-        const res = await fetch(`${API_BASE}/user/promo`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
-          body: JSON.stringify({ code })
-        });
-        const data = await res.json();
-
-        if (data.success) {
-          const added = Number(data.added || 0);
-          status.className = 'deposit-promo-status show success';
-          status.innerHTML = `✓ &nbsp; Промокод применён — <strong>+${added} G</strong> к балансу`;
-          currentUser.balance = data.newBalance;
-          renderHeaderAuth();
-          renderProfilePage();
-          input.value = '';
-        } else {
-          status.className = 'deposit-promo-status show error';
-          status.textContent = `✕  ${data.message || 'Промокод не найден'}`;
-        }
-      } catch (err) {
-        status.className = 'deposit-promo-status show error';
-        status.textContent = '✕  Ошибка при проверке промокода';
-      } finally {
-        if (button) {
-          button.disabled = false;
-          button.textContent = oldText || 'Применить';
-        }
-      }
     }
 
     async function processStarsDeposit() {
@@ -3349,9 +4830,169 @@
     }
 
     let authCloseTimer = null;
+    let googleSignInSetupPromise = null;
+    let googleAuthSetupMessage = 'Вход через Google пока не настроен на сервере';
+    let pendingGoogleCredential = null;
+
+    function resetGoogleUsernameChoice() {
+      pendingGoogleCredential = null;
+      document.getElementById('googleUsernameChoice').classList.add('hidden');
+      document.getElementById('authFields').classList.remove('hidden');
+      document.getElementById('authSubmitBtn').classList.remove('hidden');
+      document.getElementById('authToggleBtn').classList.remove('hidden');
+      document.getElementById('googleAuthDivider').classList.remove('hidden');
+      document.getElementById('googleSignInHost').classList.remove('hidden');
+      document.getElementById('googleAuthSetupHint').classList.remove('hidden');
+      document.getElementById('googleUsernameInput').value = '';
+    }
+
+    function showGoogleUsernameChoice(credential) {
+      pendingGoogleCredential = credential;
+      document.getElementById('authModalTitle').textContent = 'Выберите никнейм';
+      document.getElementById('authFields').classList.add('hidden');
+      document.getElementById('authSubmitBtn').classList.add('hidden');
+      document.getElementById('authToggleBtn').classList.add('hidden');
+      document.getElementById('googleAuthDivider').classList.add('hidden');
+      document.getElementById('googleSignInHost').classList.add('hidden');
+      document.getElementById('googleAuthSetupHint').classList.add('hidden');
+      document.getElementById('googleUsernameChoice').classList.remove('hidden');
+      showAuthError('Имя и фамилия из Google уже заняты. Придумай другой ник.');
+      setTimeout(() => document.getElementById('googleUsernameInput').focus(), 50);
+    }
+
+    function finishGoogleSignIn(data) {
+      localStorage.setItem('upgrader_token', data.token);
+      currentUser = data.user;
+      pendingGoogleCredential = null;
+      closeAuthModal();
+      renderHeaderAuth();
+      renderLeftPanel();
+      if (data.isNewUser) openWelcomeModal(data.user.username);
+    }
+
+    function setupGoogleSignIn() {
+      if (googleSignInSetupPromise) return googleSignInSetupPromise;
+
+      googleSignInSetupPromise = (async () => {
+        const response = await fetch(`${API_BASE}/auth/google/config`);
+        const config = await response.json();
+        if (!response.ok) throw new Error('Не удалось проверить настройки входа через Google');
+        if (!config.clientId) {
+          googleAuthSetupMessage = 'Добавьте GOOGLE_CLIENT_ID в переменные окружения сервера, чтобы включить вход';
+          document.getElementById('googleAuthSetupHint').textContent = googleAuthSetupMessage;
+          return false;
+        }
+
+        const googleScript = document.getElementById('googleIdentityServicesScript');
+        if (!window.google?.accounts?.id) {
+          await new Promise((resolve, reject) => {
+            if (!googleScript) return reject(new Error('Не найден скрипт Google Identity Services'));
+            const timeout = setTimeout(() => reject(new Error('Google Identity Services не загрузился')), 10000);
+            googleScript.addEventListener('load', () => { clearTimeout(timeout); resolve(); }, { once: true });
+            googleScript.addEventListener('error', () => {
+              clearTimeout(timeout);
+              reject(new Error('Не удалось загрузить Google Identity Services'));
+            }, { once: true });
+            if (window.google?.accounts?.id) { clearTimeout(timeout); resolve(); }
+          });
+        }
+
+        if (!window.google?.accounts?.id) throw new Error('Google Identity Services недоступен');
+        window.google.accounts.id.initialize({
+          client_id: config.clientId,
+          callback: handleGoogleCredential,
+          auto_select: false,
+          cancel_on_tap_outside: true
+        });
+
+        const host = document.getElementById('googleSignInHost');
+        host.innerHTML = '';
+        window.google.accounts.id.renderButton(host, {
+          type: 'standard',
+          theme: 'outline',
+          size: 'large',
+          text: 'continue_with',
+          shape: 'rectangular',
+          locale: 'ru',
+          width: String(Math.min(320, Math.max(220, host.clientWidth || 300)))
+        });
+        document.getElementById('googleAuthSetupHint').classList.add('hidden');
+        return true;
+      })().catch(error => {
+        console.warn('Вход через Google недоступен:', error);
+        googleAuthSetupMessage = error.message || 'Не удалось подключить Google';
+        document.getElementById('googleAuthSetupHint').textContent = googleAuthSetupMessage;
+        return false;
+      });
+
+      return googleSignInSetupPromise;
+    }
+
+    async function startGoogleSignIn() {
+      if (!(await setupGoogleSignIn())) showAuthError(googleAuthSetupMessage);
+    }
+
+    async function handleGoogleCredential(googleResponse) {
+      const credential = String(googleResponse?.credential || '');
+      if (!credential) return showAuthError('Google не вернул данные для входа');
+      clearAuthError();
+
+      try {
+        const response = await fetch(`${API_BASE}/auth/google`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ credential })
+        });
+        const data = await response.json();
+        if (response.status === 409 && data.code === 'USERNAME_TAKEN') {
+          return showGoogleUsernameChoice(credential);
+        }
+        if (!response.ok || !data.success) {
+          return showAuthError(data.message || 'Не удалось войти через Google');
+        }
+
+        finishGoogleSignIn(data);
+      } catch (error) {
+        showAuthError('Ошибка соединения. Попробуйте войти через Google ещё раз.');
+      }
+    }
+
+    async function completeGoogleSignInWithUsername() {
+      if (!pendingGoogleCredential) return showAuthError('Повтори вход через Google');
+      const username = document.getElementById('googleUsernameInput').value.trim();
+      if (!username || Array.from(username).length > 16 || !/^[\p{L}\p{N} ._'’-]+$/u.test(username)) {
+        return showAuthError('Ник должен содержать до 16 букв, цифр или пробелов');
+      }
+
+      const button = document.querySelector('#googleUsernameChoice button');
+      button.disabled = true;
+      button.textContent = 'Создаём аккаунт…';
+      clearAuthError();
+      try {
+        const response = await fetch(`${API_BASE}/auth/google`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ credential: pendingGoogleCredential, username })
+        });
+        const data = await response.json();
+        if (response.status === 409 && data.code === 'USERNAME_TAKEN') {
+          return showAuthError('Этот ник уже занят. Выбери другой.');
+        }
+        if (!response.ok || !data.success) {
+          return showAuthError(data.message || 'Не удалось создать аккаунт');
+        }
+        finishGoogleSignIn(data);
+      } catch (error) {
+        showAuthError('Ошибка соединения. Попробуй ещё раз.');
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Продолжить';
+      }
+    }
 
     function openAuthModal(m) {
       authMode = m;
+      resetGoogleUsernameChoice();
 
       const title = document.getElementById('authModalTitle');
       const submitBtn = document.getElementById('authSubmitBtn');
@@ -3371,6 +5012,7 @@
 
       document.getElementById('authUsername').value = '';
       document.getElementById('authPassword').value = '';
+      clearAuthError();
       resetAuthHints();
 
       document.body.classList.add('auth-is-open');
@@ -3378,6 +5020,7 @@
       modal.classList.remove('hidden', 'auth-modal-closing');
       modal.classList.add('auth-modal-visible');
       modal.setAttribute('aria-hidden', 'false');
+      setupGoogleSignIn();
 
       // Перезапускаем анимацию даже при быстром переключении Войти/Регистрация.
       modal.classList.remove('auth-modal-visible');
@@ -3417,16 +5060,33 @@
       el.className = `mt-1 text-[10px] ${isError ? 'text-red-400' : 'text-slate-300/50'}`;
     }
 
+    function showAuthError(message) {
+      const error = document.getElementById('authError');
+      error.textContent = message || 'Проверьте введённые данные';
+      error.classList.remove('hidden');
+    }
+
+    function clearAuthError() {
+      const error = document.getElementById('authError');
+      error.textContent = '';
+      error.classList.add('hidden');
+    }
+
     function resetAuthHints() {
-      setAuthHint('authUsernameHint', 'Только латинские буквы и цифры, 3–12 символов');
+      setAuthHint('authUsernameHint', authMode === 'register'
+        ? '3–12 символов, минимум одна строчная латинская буква'
+        : 'Только латинские буквы и цифры, 3–12 символов');
       setAuthHint('authPasswordHint', '6–32 символа: латинские буквы + цифры, минимум 1 буква и 1 цифра');
     }
 
     function validateAuthFields() {
+      clearAuthError();
       const username = document.getElementById('authUsername').value;
       const password = document.getElementById('authPassword').value;
 
-      const usernameValid = /^[A-Za-z0-9]{3,12}$/.test(username);
+      const usernameFormatValid = /^[A-Za-z0-9]{3,12}$/.test(username);
+      const usernameHasLowercase = /[a-z]/.test(username);
+      const usernameValid = usernameFormatValid && (authMode !== 'register' || usernameHasLowercase);
       const passwordValid = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z0-9]{6,32}$/.test(password);
 
       if (!username) {
@@ -3437,6 +5097,8 @@
         setAuthHint('authUsernameHint', 'Никнейм слишком длинный — максимум 12 символов', true);
       } else if (!/^[A-Za-z0-9]+$/.test(username)) {
         setAuthHint('authUsernameHint', 'Используйте только латинские буквы и цифры', true);
+      } else if (authMode === 'register' && !/[a-z]/.test(username)) {
+        setAuthHint('authUsernameHint', 'Добавьте минимум одну строчную латинскую букву', true);
       } else {
         setAuthHint('authUsernameHint', 'Никнейм подходит');
       }
@@ -3468,11 +5130,13 @@
         usernameEl.textContent = username || 'игрок';
       }
 
+      document.body.classList.add('welcome-is-open');
       modal.classList.remove('hidden');
     }
 
     function closeWelcomeModal() {
       document.getElementById('welcomeModal').classList.add('hidden');
+      document.body.classList.remove('welcome-is-open');
     }
 
     async function submitAuth() {
@@ -3482,19 +5146,21 @@
       const validation = validateAuthFields();
 
       if (!validation.usernameValid) {
-        return showBanner('Проверьте никнейм', 'error');
+        return showAuthError('Проверьте никнейм');
       }
 
       // Формат пароля строго проверяем при регистрации.
       // При входе проверяем только наличие пароля, чтобы старые аккаунты
       // с ранее созданными паролями не потеряли доступ.
       if (authMode === 'register' && !validation.passwordValid) {
-        return showBanner('Проверьте пароль', 'error');
+        return showAuthError('Проверьте пароль');
       }
 
       if (!password) {
-        return showBanner('Введите пароль', 'error');
+        return showAuthError('Введите пароль');
       }
+
+      clearAuthError();
 
       try {
         const res = await fetch(`${API_BASE}/auth/${authMode}`, {
@@ -3516,10 +5182,10 @@
             openWelcomeModal(data.user.username);
           }
         } else {
-          showBanner(data.message, 'error');
+          showAuthError(data.message || 'Не удалось выполнить вход или регистрацию');
         }
       } catch (err) {
-        showBanner('Ошибка авторизации', 'error');
+        showAuthError('Ошибка соединения. Попробуйте ещё раз.');
       }
     }
 
