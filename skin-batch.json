@@ -3,35 +3,35 @@
     "id": "st_24",
     "name": "M4A1 \"Kitsune\"",
     "price": 1.0,
-    "rarity": "epic",
+    "rarity": "uncommon",
     "image": "/img/skins_batch/st_24.png"
   },
   {
     "id": "st_25",
     "name": "G22 \"Yellow Line\"",
     "price": 1.08,
-    "rarity": "epic",
+    "rarity": "rare",
     "image": "/img/skins_batch/st_25.png"
   },
   {
     "id": "st_26",
     "name": "AKR12 \"Spring\"",
     "price": 1.68,
-    "rarity": "epic",
+    "rarity": "rare",
     "image": "/img/skins_batch/st_26.png"
   },
   {
     "id": "st_27",
     "name": "Desert Eagle \"Thunder Storm\"",
     "price": 2.0,
-    "rarity": "epic",
+    "rarity": "common",
     "image": "/img/skins_batch/st_27.png"
   },
   {
     "id": "st_28",
     "name": "Box \"Fable\"",
     "price": 2.13,
-    "rarity": "epic",
+    "rarity": "common",
     "image": "/img/skins_batch/st_28.png"
   },
   {
@@ -45,14 +45,14 @@
     "id": "st_30",
     "name": "Desert Eagle \"Winner\"",
     "price": 3.3,
-    "rarity": "epic",
+    "rarity": "rare",
     "image": "/img/skins_batch/st_30.png"
   },
   {
     "id": "st_31",
     "name": "Box \"Revenge\"",
     "price": 3.5,
-    "rarity": "epic",
+    "rarity": "rare",
     "image": "/img/skins_batch/st_31.png"
   },
   {
@@ -73,7 +73,7 @@
     "id": "st_34",
     "name": "G22 \"Inferno\"",
     "price": 4.87,
-    "rarity": "epic",
+    "rarity": "rare",
     "image": "/img/skins_batch/st_34.png"
   },
   {
@@ -94,7 +94,7 @@
     "id": "st_37",
     "name": "Charm \"Brick\"",
     "price": 5.89,
-    "rarity": "epic",
+    "rarity": "uncommon",
     "image": "/img/skins_batch/st_37.png"
   },
   {
@@ -115,7 +115,7 @@
     "id": "st_40",
     "name": "F/S \"Enforcer\"",
     "price": 6.88,
-    "rarity": "epic",
+    "rarity": "uncommon",
     "image": "/img/skins_batch/st_40.png"
   },
   {
@@ -150,7 +150,7 @@
     "id": "st_45",
     "name": "UMP45 \"Shark\"",
     "price": 8.92,
-    "rarity": "epic",
+    "rarity": "uncommon",
     "image": "/img/skins_batch/st_45.png"
   },
   {
@@ -173,5 +173,334 @@
     "price": 9.9,
     "rarity": "epic",
     "image": "/img/skins_batch/st_48.png"
+  },
+  {
+    "id": "st_49",
+    "name": "Crate \"Division\"",
+    "price": 10.0,
+    "rarity": "rare",
+    "image": "/img/skins_batch/st_49.png"
+  },
+  {
+    "id": "st_50",
+    "name": "P90 \"Data Flow\"",
+    "price": 10.44,
+    "rarity": "epic",
+    "image": "/img/skins_batch/st_50.png"
+  },
+  {
+    "id": "st_51",
+    "name": "Sticker \"Wait what\"",
+    "price": 10.84,
+    "rarity": "uncommon",
+    "image": "/img/skins_batch/st_51.png"
+  },
+  {
+    "id": "st_52",
+    "name": "Chibi \"Smuggler\"",
+    "price": 11.14,
+    "rarity": "legendary",
+    "image": "/img/skins_batch/st_52.png"
+  },
+  {
+    "id": "st_53",
+    "name": "Chibi \"War\"",
+    "price": 11.49,
+    "rarity": "epic",
+    "image": "/img/skins_batch/st_53.png"
+  },
+  {
+    "id": "st_54",
+    "name": "SPAS \"Taint\"",
+    "price": 11.8,
+    "rarity": "legendary",
+    "image": "/img/skins_batch/st_54.png"
+  },
+  {
+    "id": "st_55",
+    "name": "MP5 \"Northern Fury\"",
+    "price": 12.0,
+    "rarity": "uncommon",
+    "image": "/img/skins_batch/st_55.png"
+  },
+  {
+    "id": "st_56",
+    "name": "VAL \"Joker\"",
+    "price": 12.36,
+    "rarity": "uncommon",
+    "image": "/img/skins_batch/st_56.png"
+  },
+  {
+    "id": "st_57",
+    "name": "M16 \"Sharpshooter\"",
+    "price": 12.61,
+    "rarity": "uncommon",
+    "image": "/img/skins_batch/st_57.png"
+  },
+  {
+    "id": "st_58",
+    "name": "M4 \"Lizard\"",
+    "price": 12.97,
+    "rarity": "legendary",
+    "image": "/img/skins_batch/st_58.png"
+  },
+  {
+    "id": "st_59",
+    "name": "Sticker \"AWM Master\"",
+    "price": 13.15,
+    "rarity": "uncommon",
+    "image": "/img/skins_batch/st_59.png"
+  },
+  {
+    "id": "st_60",
+    "name": "AKR12 \"Transistor\"",
+    "price": 13.38,
+    "rarity": "rare",
+    "image": "/img/skins_batch/st_60.png"
+  },
+  {
+    "id": "st_61",
+    "name": "MP7 \"Space Blaster\"",
+    "price": 13.73,
+    "rarity": "epic",
+    "image": "/img/skins_batch/st_61.png"
+  },
+  {
+    "id": "st_62",
+    "name": "Charm \"Nightmare\"",
+    "price": 14.0,
+    "rarity": "epic",
+    "image": "/img/skins_batch/st_62.png"
+  },
+  {
+    "id": "st_63",
+    "name": "Charm \"Haradashi\"",
+    "price": 14.4,
+    "rarity": "uncommon",
+    "image": "/img/skins_batch/st_63.png"
+  },
+  {
+    "id": "st_64",
+    "name": "Sticker \"Wyrm\"",
+    "price": 14.87,
+    "rarity": "uncommon",
+    "image": "/img/skins_batch/st_64.png"
+  },
+  {
+    "id": "st_65",
+    "name": "Famas \"Beagle\"",
+    "price": 15.0,
+    "rarity": "epic",
+    "image": "/img/skins_batch/st_65.png"
+  },
+  {
+    "id": "st_66",
+    "name": "Sticker \"Ice Hot\"",
+    "price": 15.17,
+    "rarity": "epic",
+    "image": "/img/skins_batch/st_66.png"
+  },
+  {
+    "id": "st_67",
+    "name": "Charm \"Origin Box\"",
+    "price": 15.4,
+    "rarity": "epic",
+    "image": "/img/skins_batch/st_67.png"
+  },
+  {
+    "id": "st_68",
+    "name": "FN FAL \"Astral Rift\"",
+    "price": 15.79,
+    "rarity": "legendary",
+    "image": "/img/skins_batch/st_68.png"
+  },
+  {
+    "id": "st_69",
+    "name": "Sticker \"Mirage Color\"",
+    "price": 16.0,
+    "rarity": "epic",
+    "image": "/img/skins_batch/st_69.png"
+  },
+  {
+    "id": "st_70",
+    "name": "FabM \"Gangster\"",
+    "price": 16.24,
+    "rarity": "legendary",
+    "image": "/img/skins_batch/st_70.png"
+  },
+  {
+    "id": "st_71",
+    "name": "Sticker \"Cyclops\"",
+    "price": 16.67,
+    "rarity": "uncommon",
+    "image": "/img/skins_batch/st_71.png"
+  },
+  {
+    "id": "st_72",
+    "name": "MP7 \"Revival\"",
+    "price": 16.87,
+    "rarity": "epic",
+    "image": "/img/skins_batch/st_72.png"
+  },
+  {
+    "id": "st_73",
+    "name": "SPAS \"Dangerous\"",
+    "price": 17.0,
+    "rarity": "legendary",
+    "image": "/img/skins_batch/st_73.png"
+  },
+  {
+    "id": "st_74",
+    "name": "M40 \"Quake\"",
+    "price": 17.39,
+    "rarity": "epic",
+    "image": "/img/skins_batch/st_74.png"
+  },
+  {
+    "id": "st_75",
+    "name": "Charm \"Keychain\"",
+    "price": 17.8,
+    "rarity": "epic",
+    "image": "/img/skins_batch/st_75.png"
+  },
+  {
+    "id": "st_76",
+    "name": "M4 \"Grand Prix\"",
+    "price": 18.0,
+    "rarity": "epic",
+    "image": "/img/skins_batch/st_76.png"
+  },
+  {
+    "id": "st_77",
+    "name": "M4 \"Demon\"",
+    "price": 18.24,
+    "rarity": "uncommon",
+    "image": "/img/skins_batch/st_77.png"
+  },
+  {
+    "id": "st_78",
+    "name": "Charm \"Zombiegirl\"",
+    "price": 18.66,
+    "rarity": "epic",
+    "image": "/img/skins_batch/st_78.png"
+  },
+  {
+    "id": "st_79",
+    "name": "AKR12 \"Flow\"",
+    "price": 19.0,
+    "rarity": "uncommon",
+    "image": "/img/skins_batch/st_79.png"
+  },
+  {
+    "id": "st_80",
+    "name": "MP7 \"Rebellion\"",
+    "price": 19.35,
+    "rarity": "uncommon",
+    "image": "/img/skins_batch/st_80.png"
+  },
+  {
+    "id": "st_81",
+    "name": "Sticker \"67\"",
+    "price": 19.67,
+    "rarity": "uncommon",
+    "image": "/img/skins_batch/st_81.png"
+  },
+  {
+    "id": "st_82",
+    "name": "Crate \"Dynasty\"",
+    "price": 20.0,
+    "rarity": "common",
+    "image": "/img/skins_batch/st_82.png"
+  },
+  {
+    "id": "st_83",
+    "name": "FAMAS \"Ritual\"",
+    "price": 20.32,
+    "rarity": "legendary",
+    "image": "/img/skins_batch/st_83.png"
+  },
+  {
+    "id": "st_84",
+    "name": "M60 \"Grunge\"",
+    "price": 20.68,
+    "rarity": "legendary",
+    "image": "/img/skins_batch/st_84.png"
+  },
+  {
+    "id": "st_85",
+    "name": "AWM \"Poseidon\"",
+    "price": 21.0,
+    "rarity": "epic",
+    "image": "/img/skins_batch/st_85.png"
+  },
+  {
+    "id": "st_86",
+    "name": "Charm \"Mr Bowler\"",
+    "price": 21.25,
+    "rarity": "uncommon",
+    "image": "/img/skins_batch/st_86.png"
+  },
+  {
+    "id": "st_87",
+    "name": "Sticker \"Nice Skill\"",
+    "price": 21.77,
+    "rarity": "uncommon",
+    "image": "/img/skins_batch/st_87.png"
+  },
+  {
+    "id": "st_88",
+    "name": "FAMAS \"Feral\"",
+    "price": 22.0,
+    "rarity": "legendary",
+    "image": "/img/skins_batch/st_88.png"
+  },
+  {
+    "id": "st_89",
+    "name": "Charm \"Reactor\"",
+    "price": 22.4,
+    "rarity": "legendary",
+    "image": "/img/skins_batch/st_89.png"
+  },
+  {
+    "id": "st_90",
+    "name": "Charm \"Cutting Pliers\"",
+    "price": 22.88,
+    "rarity": "uncommon",
+    "image": "/img/skins_batch/st_90.png"
+  },
+  {
+    "id": "st_91",
+    "name": "M40 \"Disguise\"",
+    "price": 23.0,
+    "rarity": "epic",
+    "image": "/img/skins_batch/st_91.png"
+  },
+  {
+    "id": "st_92",
+    "name": "AWM \"Scratch\"",
+    "price": 23.46,
+    "rarity": "uncommon",
+    "image": "/img/skins_batch/st_92.png"
+  },
+  {
+    "id": "st_93",
+    "name": "TEC-9 \"Splash\"",
+    "price": 24.0,
+    "rarity": "uncommon",
+    "image": "/img/skins_batch/st_93.png"
+  },
+  {
+    "id": "st_94",
+    "name": "M4 \"PRO\"",
+    "price": 24.39,
+    "rarity": "uncommon",
+    "image": "/img/skins_batch/st_94.png"
+  },
+  {
+    "id": "st_95",
+    "name": "Sticker \"Voidhound\"",
+    "price": 24.75,
+    "rarity": "uncommon",
+    "image": "/img/skins_batch/st_95.png"
   }
 ]

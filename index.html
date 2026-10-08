@@ -30,6 +30,31 @@
       color: #e5e7eb; 
       font-family: 'Oswald', 'Arial Narrow', system-ui, sans-serif; 
     }
+    .site-stats-bar {
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      padding: 5px 24px;
+      box-sizing: border-box;
+      background: rgba(50, 53, 78, .94);
+      border-bottom: 1px solid rgba(161, 171, 206, .16);
+      color: #aab8df;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .site-stat-item { display: inline-flex; align-items: center; gap: 9px; white-space: nowrap; }
+    .site-stat-value { color: #aebbe2; font-size: 15px; font-weight: 800; font-variant-numeric: tabular-nums; }
+    .site-stat-label { color: #aab8df; font-size: 12px; font-weight: 700; }
+    .site-stat-icon { width: 19px; height: 19px; color: #929fca; }
+    @media (max-width: 520px) {
+      .site-stats-bar { min-height: 34px; gap: 14px; padding: 4px 12px; }
+      .site-stat-item { gap: 5px; }
+      .site-stat-label { font-size: 10px; }
+      .site-stat-value { font-size: 13px; }
+      .site-stat-icon { width: 16px; height: 16px; }
+    }
     .custom-scrollbar::-webkit-scrollbar { width: 5px; }
     .custom-scrollbar::-webkit-scrollbar-track { background: #25243b; }
     .custom-scrollbar::-webkit-scrollbar-thumb { background: #4a4966; border-radius: 2px; }
@@ -642,19 +667,119 @@
       .selection-weapon { max-width: 280px; max-height: 155px; }
     }
 
+    /* ===== SHARED SKIN TILE STYLE ===== */
+    .skin-tile-card {
+      --skin-tile-band: linear-gradient(110deg, #50585c 0%, #707778 52%, #90948f 100%);
+      position: relative;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      height: auto;
+      min-width: 0;
+      overflow: hidden;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: #403e43;
+      color: #f4f5f7;
+      transition: filter .16s ease, outline-color .16s ease;
+    }
+
+    .skin-tile-card:hover { filter: brightness(1.035); }
+    .skin-tile-card.is-selected { outline: 2px solid #e3a72f; outline-offset: -2px; }
+
+    /* Store and upgrade catalog use a taller tile so long names fit on two lines. */
+    .shop-skin-card,
+    #storeGrid .skin-tile-card {
+      aspect-ratio: auto;
+      height: 140px;
+      min-height: 140px;
+    }
+
+    .shop-panel-expanded,
+    .catalog-panel-expanded {
+      height: auto !important;
+      min-height: 720px;
+    }
+
+    #leftPanelGrid.store-page-grid,
+    #storeGrid {
+      overflow: visible;
+    }
+    .skin-tile-rarity-common { --skin-tile-band: linear-gradient(110deg, #50585c 0%, #707778 52%, #90948f 100%); }
+    .skin-tile-rarity-uncommon { --skin-tile-band: linear-gradient(110deg, #092764 0%, #0b307b 52%, #0c3992 100%); }
+    .skin-tile-rarity-rare { --skin-tile-band: linear-gradient(110deg, #2862a5 0%, #3672c3 52%, #467ddd 100%); }
+    .skin-tile-rarity-epic { --skin-tile-band: linear-gradient(110deg, #55127f 0%, #803fb5 52%, #ac6ceb 100%); }
+    .skin-tile-rarity-legendary { --skin-tile-band: linear-gradient(110deg, #82105f 0%, #a51d80 52%, #e33ab8 100%); }
+    .skin-tile-rarity-arcane { --skin-tile-band: linear-gradient(110deg, #5c0c0d 0%, #961b0e 52%, #d12a0f 100%); }
+    .skin-tile-rarity-nameless { --skin-tile-band: linear-gradient(110deg, #54340f 0%, #83521b 52%, #d28b2b 100%); }
+
+    .skin-tile-stage {
+      position: relative;
+      display: flex;
+      flex: 1 1 auto;
+      min-height: 0;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 7px 4px;
+    }
+
+    .skin-tile-image {
+      display: block;
+      max-width: 94%;
+      max-height: 68px;
+      object-fit: contain;
+    }
+
+    .skin-tile-price {
+      position: absolute;
+      z-index: 2;
+      top: 8px;
+      left: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .skin-tile-name {
+      display: flex;
+      flex: 0 0 40px;
+      align-items: center;
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+      padding: 3px 7px;
+      overflow: hidden;
+      background: var(--skin-tile-band);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1.15;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      text-overflow: ellipsis;
+    }
+
     /* ===== SHOP CARDS / HOVER QUANTITY ===== */
     .shop-skin-card {
-      box-sizing: border-box;
-      border-width: 1px !important;
-      border-style: solid !important;
-      transition: border-color .18s ease, box-shadow .18s ease;
+      transition: filter .16s ease, box-shadow .18s ease;
       transform: none !important;
     }
 
     .shop-skin-card:hover {
-      border-color: #6e789b !important;
       transform: none !important;
-      box-shadow: 0 4px 14px rgba(20, 22, 40, .24);
+      box-shadow: 0 0 7px rgba(160, 178, 225, .16);
+    }
+
+    .shop-skin-card.is-in-cart {
+      border: 2px solid #e3a72f !important;
+      outline: none;
     }
 
     .shop-card-hover {
@@ -663,14 +788,26 @@
       background: rgba(28, 29, 47, .78);
       backdrop-filter: blur(7px) saturate(.8);
       -webkit-backdrop-filter: blur(7px) saturate(.8);
-      border-top: 1px solid rgba(142, 161, 207, .30);
+      z-index: 4;
       transform: translateY(5px);
       box-sizing: border-box;
       transition: opacity .16s ease, transform .16s ease;
     }
 
-    .shop-skin-card:hover .shop-card-hover,
-    .shop-skin-card:focus-within .shop-card-hover {
+    .shop-skin-card.is-in-cart .shop-card-hover {
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 40px;
+      box-sizing: border-box;
+      background: rgba(107, 132, 188, .42);
+      border-top: 1px solid rgba(224, 232, 255, .3);
+      backdrop-filter: blur(8px) saturate(1.15);
+      -webkit-backdrop-filter: blur(8px) saturate(1.15);
+    }
+
+    .shop-skin-card.is-in-cart .shop-card-hover {
       opacity: 1;
       pointer-events: auto;
       transform: translateY(0);
@@ -692,6 +829,14 @@
       transition: background .15s ease, border-color .15s ease, transform .1s ease;
     }
 
+    .shop-skin-card.is-in-cart .shop-qty-btn {
+      width: 25px;
+      height: 24px;
+      border-color: rgba(230, 237, 255, .3);
+      background: rgba(213, 224, 255, .34);
+      color: #fff;
+    }
+
     .shop-qty-btn:hover {
       background: #59698f;
       border-color: #8ea1cf;
@@ -709,6 +854,11 @@
       color: #f0f2f7;
       font-weight: 900;
       user-select: none;
+    }
+
+    .shop-skin-card.is-in-cart .shop-qty-value {
+      font-size: 16px;
+      text-shadow: 0 1px 4px rgba(13, 24, 52, .45);
     }
 
     #leftPanelTitle {
@@ -1053,40 +1203,27 @@
       transition: color .18s ease;
     }
 
-    .profile-skin-card {
-      position: relative;
-      height: 174px;
-      min-width: 0;
-      overflow: hidden;
-      border: 1px solid #4a4966;
-      border-radius: 5px;
-      background:
-        radial-gradient(circle at 50% 48%, rgba(86, 89, 124, .16), transparent 48%),
-        linear-gradient(145deg, #292a42 0%, #202134 100%);
-      display: flex;
-      flex-direction: column;
-      cursor: default;
-      transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease;
-    }
+    .profile-skin-card { cursor: default; }
 
     .profile-skin-card:hover {
-      transform: translateY(-2px);
-      border-color: #8799c5;
       box-shadow: 0 8px 20px rgba(16, 17, 30, .34);
     }
 
-    .profile-rarity-common { border-color: #4a4966; }
-    .profile-rarity-epic { border-color: #6574c2; }
-    .profile-rarity-legendary { border-color: #8799c5; }
-    .profile-rarity-arcane { border-color: #8d68bf; }
-    .profile-rarity-nameless { border-color: #a06b9d; }
+    .profile-rarity-common { --skin-tile-band: linear-gradient(110deg, #50585c 0%, #707778 52%, #90948f 100%); }
+    .profile-rarity-uncommon { --skin-tile-band: linear-gradient(110deg, #092764 0%, #0b307b 52%, #0c3992 100%); }
+    .profile-rarity-rare { --skin-tile-band: linear-gradient(110deg, #2862a5 0%, #3672c3 52%, #467ddd 100%); }
+    .profile-rarity-epic { --skin-tile-band: linear-gradient(110deg, #55127f 0%, #803fb5 52%, #ac6ceb 100%); }
+    .profile-rarity-legendary { --skin-tile-band: linear-gradient(110deg, #82105f 0%, #a51d80 52%, #e33ab8 100%); }
+    .profile-rarity-arcane { --skin-tile-band: linear-gradient(110deg, #5c0c0d 0%, #961b0e 52%, #d12a0f 100%); }
+    .profile-rarity-nameless { --skin-tile-band: linear-gradient(110deg, #54340f 0%, #83521b 52%, #d28b2b 100%); }
 
     .profile-skin-price {
       position: absolute;
       top: 7px;
-      right: 8px;
+      left: 8px;
+      right: auto;
       z-index: 3;
-      color: #e3a72f;
+      color: #fff;
       font-size: 11px;
       line-height: 1;
       font-weight: 900;
@@ -1100,43 +1237,30 @@
 
     .profile-skin-image-wrap {
       position: relative;
-      height: 112px;
-      margin: 22px 5px 0;
+      flex: 1 1 auto;
+      min-height: 0;
+      margin: 0;
+      padding: 18px 7px 4px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
     }
 
-    .profile-skin-bg-mark {
-      position: absolute;
-      inset: 8px 14px 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(104, 117, 184, .13);
-      font-size: 86px;
-      font-weight: 900;
-      line-height: 1;
-      pointer-events: none;
-    }
-
     .profile-skin-image {
       position: relative;
       z-index: 1;
       max-width: 92%;
-      max-height: 100px;
+      max-height: 68px;
       object-fit: contain;
       filter: drop-shadow(0 8px 10px rgba(0,0,0,.32));
       transition: transform .16s ease;
     }
 
-    .profile-skin-card:hover .profile-skin-image {
-      transform: scale(1.035);
-    }
+    .profile-skin-card:hover .profile-skin-image { transform: scale(1.035); }
 
     .profile-skin-info {
-      padding: 4px 8px 0;
+      display: none;
       min-width: 0;
       text-align: center;
     }
@@ -1159,16 +1283,35 @@
     }
 
     .profile-skin-actions {
-      margin-top: auto;
-      min-height: 34px;
-      padding: 4px 6px;
+      position: absolute;
+      z-index: 5;
+      inset-inline: 0;
+      bottom: 0;
+      height: 40px;
+      box-sizing: border-box;
+      padding: 5px 7px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      border-top: 1px solid rgba(74,73,102,.5);
-      background: rgba(25, 26, 40, .58);
+      gap: 7px;
+      background: rgba(107, 132, 188, .42);
+      -webkit-backdrop-filter: blur(8px) saturate(1.15);
+      backdrop-filter: blur(8px) saturate(1.15);
+      border-top: 1px solid rgba(224, 232, 255, .3);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .15s ease;
     }
+
+    .profile-skin-card:hover .profile-skin-actions,
+    .profile-skin-card:focus-within .profile-skin-actions { opacity: 1; pointer-events: auto; }
+
+    .profile-skin-card:hover .skin-tile-name,
+    .profile-skin-card:focus-within .skin-tile-name {
+      filter: blur(4px);
+    }
+
+    .profile-skin-card .skin-tile-name { transition: filter .15s ease; }
 
     .profile-skin-action-btn {
       flex: 1;
@@ -1186,17 +1329,17 @@
       font-weight: 900;
       letter-spacing: .35px;
       text-transform: uppercase;
-      transition: transform .16s ease, filter .16s ease, border-color .16s ease, box-shadow .16s ease;
+      white-space: nowrap;
+      transition: filter .16s ease, border-color .16s ease, box-shadow .16s ease;
       cursor: pointer;
     }
 
     .profile-skin-action-btn:hover {
-      transform: translateY(-1px);
       filter: brightness(1.14);
     }
 
     .profile-skin-action-btn:active {
-      transform: translateY(0) scale(.97);
+      filter: brightness(.96);
     }
 
     .profile-skin-action-sell {
@@ -1388,9 +1531,7 @@
         padding: 9px;
       }
 
-      .profile-skin-card {
-        height: 160px;
-      }
+      .profile-skin-card { height: auto; }
 
       .profile-inventory-tabs {
         overflow-x: auto;
@@ -1410,6 +1551,7 @@
     body.modal-layer-open > header {
       z-index: 0 !important;
     }
+    body.withdrawal-modal-open > header { z-index: 0 !important; }
     body.modal-layer-open {
       overflow: hidden !important;
     }
@@ -1701,6 +1843,188 @@
     .deposit-pay-btn:hover { background:#f0b73e; }
     .deposit-disabled { padding:34px 16px; border:1px dashed #45445e; background:#242331; text-align:center; color:#8f94aa; font-size:12px; }
 
+    /* Updated deposit window layout; payment choices and handlers stay as configured. */
+    .deposit-payment-modal {
+      width: min(760px, 100%);
+      max-height: calc(100dvh - 32px);
+      overflow-y: auto;
+      padding: 26px !important;
+      background: #292a37;
+      border-color: #42424f;
+      scrollbar-color: #5d5f70 #292a37;
+    }
+    .deposit-payment-modal > .flex.items-center.justify-between {
+      min-height: 42px;
+      border-color: #454653 !important;
+      padding-bottom: 12px;
+    }
+    .deposit-payment-modal > .flex.items-center.justify-between h3 {
+      font-size: 22px;
+      letter-spacing: .01em;
+    }
+    .deposit-payment-modal > .flex.items-center.justify-between button {
+      font-size: 30px;
+      line-height: 1;
+    }
+    .deposit-payment-modal .deposit-country-button,
+    .deposit-payment-modal .deposit-method,
+    .deposit-payment-modal .deposit-amount-btn,
+    .deposit-payment-modal .deposit-custom,
+    .deposit-payment-modal #depositPromoInput {
+      border-color: #454653;
+      background-color: #30313d;
+    }
+    .deposit-payment-modal .deposit-country-button { min-height: 50px; }
+    .deposit-payment-modal .deposit-method { height: 44px; }
+    .deposit-payment-modal .deposit-provider-card {
+      min-height: 108px;
+      background: #242530;
+      border-color: #454653;
+    }
+    .deposit-payment-modal .deposit-amounts {
+      gap: 10px;
+    }
+    .deposit-payment-modal .deposit-amount-panel {
+      display: grid;
+      gap: 10px;
+      padding: 12px 10px 10px;
+      background: #403e43;
+    }
+    .deposit-payment-modal .deposit-amount-entry {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 12px;
+      padding: 7px 10px;
+      border: 1px solid #565663;
+      background: #30313d;
+    }
+    .deposit-payment-modal .deposit-amount-entry.is-invalid {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 1px rgba(239, 68, 68, .22);
+    }
+    .deposit-payment-modal .deposit-amount-entry .deposit-custom {
+      min-width: 0;
+      border: 0;
+      padding: 0 4px;
+      background: transparent;
+    }
+    .deposit-amount-estimate {
+      display: grid;
+      gap: 3px;
+      min-width: 150px;
+      text-align: right;
+      color: #9ca2b5;
+      font-size: 10px;
+      line-height: 1.25;
+      white-space: nowrap;
+    }
+    .deposit-amount-credit { color: #f1f3f8; font-weight: 800; }
+    .deposit-amount-credit img { width: 13px; height: 13px; vertical-align: -2px; }
+    @media (max-width: 480px) {
+      .deposit-payment-modal .deposit-amount-entry { grid-template-columns: minmax(0,1fr); gap: 4px; }
+      .deposit-amount-estimate { text-align: left; }
+    }
+    .deposit-payment-modal .deposit-amount-title {
+      color: #f1f3f8;
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+    .deposit-payment-modal .deposit-amount-btn {
+      min-height: 42px;
+      background: #34343f;
+    }
+    .deposit-payment-modal .deposit-amount-btn.active {
+      border-color: #9aaddb !important;
+      background: #8298c9 !important;
+      color: #fff !important;
+      box-shadow: inset 0 0 0 1px rgba(232, 239, 255, .18), 0 0 10px rgba(120, 150, 217, .18);
+    }
+    .deposit-payment-modal .deposit-custom { height: 46px; box-sizing: border-box; }
+    .deposit-payment-modal #depositPromoInput { height: 44px; }
+    .deposit-payment-modal .deposit-promo-panel {
+      margin-top: 10px;
+      padding: 8px 10px;
+      background: #403e43;
+    }
+    .deposit-payment-modal #depositPromoStatus:empty { display: none; }
+    .deposit-payment-modal .deposit-promo-entry {
+      display: flex;
+      width: 100%;
+      min-height: 44px;
+      box-sizing: border-box;
+      overflow: hidden;
+      border: 1px solid #565663;
+      background: #30313d;
+    }
+    .deposit-payment-modal .deposit-promo-entry:focus-within {
+      border-color: #7787b5;
+    }
+    .deposit-payment-modal .deposit-promo-entry #depositPromoInput {
+      flex: 1 1 auto;
+      width: 0;
+      min-width: 0;
+      height: auto;
+      border: 0 !important;
+      outline: 0;
+      background: transparent;
+      padding: 0 12px;
+    }
+    .deposit-payment-modal .deposit-promo-apply {
+      flex: 0 0 auto;
+      align-self: stretch;
+      margin: 0;
+      padding: 0 16px;
+      border: 0 !important;
+      border-radius: 0;
+      box-shadow: none;
+      background: transparent !important;
+      color: #9aaddb;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .deposit-payment-modal .deposit-promo-apply:hover {
+      background: transparent !important;
+      color: #d5def6;
+    }
+    .deposit-payment-modal .deposit-pay-btn {
+      height: 52px;
+      margin-top: 4px;
+      font-size: 13px;
+    }
+    .deposit-payment-modal .deposit-pay-btn:disabled {
+      background: #41414c;
+      color: #9294a1;
+      cursor: not-allowed;
+      filter: saturate(.45);
+      opacity: .8;
+    }
+    @media (max-width:560px) {
+      .deposit-payment-modal { max-height: calc(100dvh - 20px); padding: 18px !important; }
+      .deposit-payment-modal > .flex.items-center.justify-between h3 { font-size: 18px; }
+    }
+
+    /* Keep the currently selected category visibly highlighted across the site. */
+    .profile-inventory-tab,
+    .deposit-method {
+      transition: background-color .16s ease, border-color .16s ease, color .16s ease, box-shadow .16s ease;
+    }
+    .profile-inventory-tab.active,
+    .deposit-method.active {
+      color: #fff !important;
+      background: #8298c9 !important;
+      border-color: #9aaddb !important;
+      box-shadow: inset 0 0 0 1px rgba(232, 239, 255, .18), 0 0 10px rgba(120, 150, 217, .18);
+    }
+    .profile-inventory-tab:not(.active),
+    .deposit-method:not(.active) {
+      background: #2d2c3d;
+      color: #aeb2c2;
+    }
+
     /* Фиксируем ширину viewport при переходе между вкладками.
        Иначе при появлении/исчезновении вертикального скроллбара центр
        логотипа и правый блок могут немного уезжать вправо/влево. */
@@ -1825,6 +2149,19 @@
 </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between select-none">
+
+  <div class="site-stats-bar" aria-label="Статистика сайта">
+    <div class="site-stat-item">
+      <svg class="site-stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.9759 12.3084C16.8815 12.3084 15.8543 12.5384 14.9903 12.9284C18.0143 13.8384 20.1551 16.0184 20.2127 18.5684C21.7871 18.3584 23.4863 17.7384 23.4863 16.0484C23.4863 14.0184 20.9615 12.3084 17.9759 12.3084Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M17.9471 10.8684H17.9663C20.0111 10.8684 21.6815 9.12843 21.6815 7.00843C21.6815 4.87843 20.0111 3.13843 17.9663 3.13843C17.5631 3.13843 17.1791 3.20843 16.8143 3.32843C17.4767 4.34843 17.8607 5.57843 17.8607 6.90843C17.8703 8.25843 17.4671 9.55843 16.7087 10.6384C17.1023 10.7884 17.5151 10.8684 17.9471 10.8684Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M8.51991 12.9184C7.65591 12.5384 6.62871 12.3084 5.54391 12.3084C2.55831 12.3084 0.0335083 14.0184 0.0335083 16.0484C0.0335083 17.7384 1.72311 18.3484 3.29751 18.5684C3.34551 16.0184 5.48631 13.8384 8.51991 12.9184Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M5.54392 10.8684H5.57272C6.00472 10.8684 6.41752 10.7884 6.81112 10.6384C6.08152 9.59843 5.64952 8.30843 5.64952 6.90843C5.64952 5.57843 6.03352 4.34843 6.69592 3.32843C6.33112 3.20843 5.94712 3.13843 5.54392 3.13843C3.49912 3.13843 1.83832 4.87843 1.83832 7.00843C1.83832 9.12843 3.49912 10.8684 5.54392 10.8684Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.7547 13.9454C7.95216 13.9454 4.73904 16.1014 4.73904 18.6534C4.73904 21.9534 10.019 21.9534 11.7547 21.9534C14.7672 21.9534 18.7723 21.6134 18.7723 18.6744C18.7723 16.1104 15.5582 13.9454 11.7547 13.9454Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.7557 11.7745H11.7874C13.0306 11.7705 14.1979 11.2615 15.0734 10.3425C15.9499 9.42351 16.4299 8.20451 16.4251 6.91151C16.4251 4.22851 14.3314 2.04651 11.7557 2.04651C9.18096 2.04651 7.0872 4.22851 7.0872 6.91151C7.0872 9.59251 9.18096 11.7745 11.7557 11.7745Z" fill="currentColor"></path></svg>
+      <span id="siteOnlineCount" class="site-stat-value">0</span>
+      <span class="site-stat-label">ОНЛАЙН</span>
+    </div>
+    <div class="site-stat-item">
+      <svg class="site-stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 12.2929C11.6834 11.9024 12.3166 11.9024 12.7071 12.2929L17.7071 17.2929C18.0976 17.6834 18.0976 18.3166 17.7071 18.7071C17.3166 19.0976 16.6834 19.0976 16.2929 18.7071L12 14.4142L7.70711 18.7071C7.31658 19.0976 6.68342 19.0976 6.29289 18.7071C5.90237 18.3166 5.90237 17.6834 6.29289 17.2929L11.2929 12.2929Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 5.29289C11.6834 4.90237 12.3166 4.90237 12.7071 5.29289L17.7071 10.2929C18.0976 10.6834 18.0976 11.3166 17.7071 11.7071C17.3166 12.0976 16.6834 12.0976 16.2929 11.7071L12 7.41421L7.70711 11.7071C7.31658 12.0976 6.68342 12.0976 6.29289 11.7071C5.90237 11.3166 5.90237 10.6834 6.29289 10.2929L11.2929 5.29289Z" fill="currentColor"></path></svg>
+      <span id="siteUpgradeCount" class="site-stat-value">0</span>
+      <span class="site-stat-label">АПГРЕЙДОВ</span>
+    </div>
+  </div>
 
   <!-- TOP NAVIGATION HEADER -->
   <header class="site-header border-b border-brand-cardBorder bg-[#191929]/90 backdrop-blur-md px-6 py-3 flex items-center justify-between sticky top-0 z-40">
@@ -2018,7 +2355,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         <!-- ЛЕВЫЙ БЛОК: ИНВЕНТАРЬ / МАГАЗИН (50% ШИРИНЫ) -->
-        <div class="lg:col-span-6 bg-brand-cardBg/90 backdrop-blur-sm border border-brand-cardBorder rounded-sm p-4 flex flex-col h-[500px]">
+        <div id="leftPanelContainer" class="lg:col-span-6 bg-brand-cardBg/90 backdrop-blur-sm border border-brand-cardBorder rounded-sm p-4 flex flex-col h-[500px]">
           <div class="flex items-center justify-between pb-3 border-b border-brand-cardBorder mb-3">
             
             <div class="flex items-center gap-2 min-w-0">
@@ -2047,7 +2384,7 @@
         </div>
 
         <!-- ПРАВЫЙ БЛОК: КАТАЛОГ ДЛЯ АПГРЕЙДА (50% ШИРИНЫ) -->
-        <div class="lg:col-span-6 bg-brand-cardBg/90 backdrop-blur-sm border border-brand-cardBorder rounded-sm p-4 flex flex-col h-[500px]">
+        <div id="catalogPanelContainer" class="catalog-panel-expanded lg:col-span-6 bg-brand-cardBg/90 backdrop-blur-sm border border-brand-cardBorder rounded-sm p-4 flex flex-col h-[500px]">
           <div class="flex items-center justify-between pb-3 border-b border-brand-cardBorder mb-3 min-h-[36px]">
             <h2 class="text-xs font-bold uppercase text-slate-100 shrink-0">Каталог для апгрейда</h2>
 
@@ -2083,7 +2420,7 @@
             </div>
           </div>
 
-          <div id="storeGrid" class="grid grid-cols-4 gap-2 overflow-y-auto custom-scrollbar flex-1 pr-1"></div>
+          <div id="storeGrid" class="grid grid-cols-4 gap-2 flex-1 pr-1"></div>
           <div id="storePagination" class="flex items-center justify-between border-t border-brand-cardBorder pt-2 mt-2 shrink-0"></div>
         </div>
       </div>
@@ -2139,18 +2476,26 @@
         </div>
 
         <!-- STATS -->
-        <div class="lg:col-span-3 grid grid-rows-2 gap-3">
-          <div class="bg-brand-cardBg/90 border border-brand-cardBorder rounded-sm p-3 flex items-center justify-between min-h-[104px]">
+        <div class="lg:col-span-3 grid grid-rows-[auto_auto_auto] gap-2">
+          <div class="bg-brand-cardBg/90 border border-brand-cardBorder rounded-sm p-3 flex items-center justify-between min-h-[72px]">
+            <div class="min-w-0">
+              <div class="font-bold text-slate-100">Выведено:</div>
+              <div id="profileWithdrawnCount" class="text-xs text-slate-300/60 mt-1">0 предметов</div>
+              <div id="profileWithdrawnTotal" class="text-sm font-bold text-brand-gold mt-0.5">0.00 <img class="gold-coin-icon inline-block align-[-2px]" src="https://s3.stand-battle.com/images/coin.webp" alt="" aria-hidden="true" width="14" height="14"></div>
+            </div>
+            <div class="text-3xl font-black text-brand-gold">⇩</div>
+          </div>
+          <div class="bg-brand-cardBg/90 border border-brand-cardBorder rounded-sm p-3 flex items-center justify-between min-h-[72px]">
             <div>
               <div class="font-bold text-slate-100">Апгрейдов:</div>
               <div id="profileUpgradesCount" class="text-sm text-slate-300/60 mt-1">0 раз</div>
             </div>
             <div class="text-4xl font-black text-brand-gold">↗</div>
           </div>
-          <div class="bg-brand-cardBg/90 border border-brand-cardBorder rounded-sm p-3 flex flex-col justify-center">
-            <div class="font-bold text-slate-100 mb-2">Промокод</div>
+          <div class="bg-brand-cardBg/90 border border-brand-cardBorder rounded-sm p-3 flex flex-col justify-center min-h-[84px]">
+            <div class="font-bold text-slate-100 mb-2">Личный купон</div>
             <div class="flex gap-2">
-              <input id="promoInput" type="text" maxlength="32" placeholder="Введите код" class="min-w-0 flex-1 bg-[#25243b] border border-brand-cardBorder px-3 py-2 text-xs rounded-sm focus:outline-none focus:border-brand-gold text-slate-100">
+              <input id="promoInput" type="text" maxlength="32" placeholder="Введите код купона" class="min-w-0 flex-1 bg-[#25243b] border border-brand-cardBorder px-3 py-2 text-xs rounded-sm focus:outline-none focus:border-brand-gold text-slate-100">
               <button onclick="applyPromoCode()" class="bg-[#68749b] hover:bg-[#7c88ad] text-white text-xs font-bold px-3 py-2 rounded-sm">Применить</button>
             </div>
           </div>
@@ -2374,26 +2719,31 @@
           </div>
         </div>
 
-        <div>
-          <div class="text-xs font-bold text-slate-300/70 mb-2">Выберите сумму Gold: <img class="gold-coin-icon" src="https://s3.stand-battle.com/images/coin.webp" alt="" aria-hidden="true" width="12" height="12"></div>
+        <div class="deposit-amount-panel">
+          <div class="deposit-amount-title">Сумма пополнения</div>
+          <div class="deposit-amount-entry" id="depositAmountEntry">
+            <input id="customDepositInput" type="number" min="10" step="1" placeholder="Введите сумму Gold" class="deposit-custom" oninput="updateDepositEstimate()" aria-describedby="depositAmountEstimate">
+            <div class="deposit-amount-estimate" id="depositAmountEstimate" aria-live="polite">
+              <span>Мин. сумма пополнения: 10 ⭐</span>
+              <span class="deposit-amount-credit">К зачислению: <strong id="depositCreditEstimate">0.00</strong> <img class="gold-coin-icon" src="https://s3.stand-battle.com/images/coin.webp" alt="Gold" width="13" height="13"></span>
+            </div>
+          </div>
           <div class="deposit-amounts">
           <button class="deposit-amount-btn" data-amount="100" onclick="selectDepositAmount(100)">100 <img class="gold-coin-icon" src="https://s3.stand-battle.com/images/coin.webp" alt="" aria-hidden="true" width="12" height="12"></button>
           <button class="deposit-amount-btn" data-amount="500" onclick="selectDepositAmount(500)">500 <img class="gold-coin-icon" src="https://s3.stand-battle.com/images/coin.webp" alt="" aria-hidden="true" width="12" height="12"></button>
           <button class="deposit-amount-btn" data-amount="1000" onclick="selectDepositAmount(1000)">1000 <img class="gold-coin-icon" src="https://s3.stand-battle.com/images/coin.webp" alt="" aria-hidden="true" width="12" height="12"></button>
           </div>
         </div>
-        <input id="customDepositInput" type="number" min="1" step="1" placeholder="Или введите свою сумму" class="deposit-custom">
 
-        <div>
-          <div class="text-xs font-bold text-slate-300/70 mb-2">Промокод</div>
-          <div class="flex gap-2">
-            <input id="depositPromoInput" type="text" maxlength="32" placeholder="Введите код промокода" class="w-full h-[42px] border border-[#45445e] bg-[#242331] text-slate-100 px-3 text-xs outline-none focus:border-[#7787b5]">
-            <button onclick="applyDepositPromoCode()" class="shrink-0 bg-[#68749b] hover:bg-[#7c88ad] text-white text-xs font-bold px-4">Применить</button>
+        <div class="deposit-promo-panel">
+          <div class="deposit-promo-entry">
+            <input id="depositPromoInput" type="text" maxlength="32" placeholder="Введите код промокода" class="text-slate-100 text-xs">
+            <button type="button" onclick="applyDepositPromoCode()" class="deposit-promo-apply">Применить</button>
           </div>
           <div id="depositPromoStatus" class="text-xs mt-2 min-h-4" aria-live="polite"></div>
         </div>
 
-        <button onclick="processStarsDeposit()" class="deposit-pay-btn">ОПЛАТИТЬ ЧЕРЕЗ TELEGRAM STARS ⭐</button>
+        <button id="processStarsDepositBtn" onclick="processStarsDeposit()" class="deposit-pay-btn" disabled>ОПЛАТИТЬ ЧЕРЕЗ TELEGRAM STARS ⭐</button>
       </div>
 
       <div id="depositCryptoContent" class="deposit-disabled hidden">Оплата криптовалютой пока недоступна.</div>
@@ -2478,7 +2828,7 @@
     </div>
   </div>
 
-  <div id="withdrawalModal" class="fixed inset-0 z-[85] hidden items-center justify-center bg-black/80 backdrop-blur-md p-4" onclick="if(event.target===this) closeWithdrawalModal()" aria-hidden="true">
+  <div id="withdrawalModal" class="fixed inset-0 z-[85] hidden items-center justify-center bg-black/80 backdrop-blur-md p-4" style="position:fixed!important;inset:0!important;top:0!important;right:0!important;bottom:0!important;left:0!important;width:100vw!important;height:100vh!important;min-height:100dvh!important;z-index:99999!important;background:rgba(8,8,15,.68)!important;backdrop-filter:blur(18px) saturate(.70)!important;-webkit-backdrop-filter:blur(18px) saturate(.70)!important;" onclick="if(event.target===this) closeWithdrawalModal()" aria-hidden="true">
     <div class="w-full max-w-md max-h-[92vh] overflow-y-auto bg-brand-cardBg border border-brand-cardBorder rounded-sm p-5 shadow-2xl" role="dialog" aria-modal="true" aria-labelledby="withdrawalTitle">
       <div class="flex items-center justify-between border-b border-brand-cardBorder pb-3 mb-4">
         <h3 id="withdrawalTitle" class="text-sm font-bold uppercase text-slate-100">Вывод скина</h3>
@@ -2545,12 +2895,54 @@
   <script>
     const API_BASE = '/api';
     const GOLD_COIN_URL = 'https://s3.stand-battle.com/images/coin.webp';
+    let siteVisitorSessionId = null;
+    let siteStatsTimer = null;
+    const siteStatsNumberFormat = new Intl.NumberFormat('ru-RU');
+
+    function getSiteVisitorSessionId() {
+      if (siteVisitorSessionId) return siteVisitorSessionId;
+      try {
+        const savedId = localStorage.getItem('sograder_visitor_session');
+        if (/^[A-Za-z0-9_-]{16,80}$/.test(savedId || '')) {
+          siteVisitorSessionId = savedId;
+          return siteVisitorSessionId;
+        }
+        siteVisitorSessionId = window.crypto?.randomUUID
+          ? window.crypto.randomUUID().replace(/-/g, '')
+          : `visitor_${Date.now().toString(36)}_${Math.random().toString(36).slice(2)}`;
+        localStorage.setItem('sograder_visitor_session', siteVisitorSessionId);
+      } catch {
+        siteVisitorSessionId = `visitor_${Date.now().toString(36)}_${Math.random().toString(36).slice(2)}`;
+      }
+      return siteVisitorSessionId;
+    }
+
+    async function refreshSiteStats() {
+      try {
+        const response = await fetch(`${API_BASE}/site-stats/heartbeat`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sessionId: getSiteVisitorSessionId() })
+        });
+        if (!response.ok) return;
+        const stats = await response.json();
+        if (!stats.success) return;
+        const onlineEl = document.getElementById('siteOnlineCount');
+        const upgradesEl = document.getElementById('siteUpgradeCount');
+        if (onlineEl) onlineEl.textContent = siteStatsNumberFormat.format(Number(stats.online) || 0);
+        if (upgradesEl) upgradesEl.textContent = siteStatsNumberFormat.format(Number(stats.totalUpgrades) || 0);
+      } catch {
+        // Счётчики остаются на последнем полученном значении при потере связи.
+      }
+    }
+
     function goldCoinMarkup(size = 12) {
       const safeSize = Math.max(8, Math.min(24, Number(size) || 12));
       return `<img class="gold-coin-icon" src="${GOLD_COIN_URL}" alt="" aria-hidden="true" width="${safeSize}" height="${safeSize}" style="width:${safeSize}px;height:${safeSize}px;max-width:none;filter:none;vertical-align:-2px">`;
     }
     function goldAmountMarkup(value, size = 12) {
-      return `${Number(value || 0).toFixed(2)} ${goldCoinMarkup(size)}`;
+      const amount = Number(value || 0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+      return `${amount} ${goldCoinMarkup(size)}`;
     }
     function goldIconsInText(value, size = 12) {
       return escapeHtml(value).replace(/(\d+(?:[.,]\d+)?)\sG\b/g, (_, amount) => `${amount} ${goldCoinMarkup(size)}`);
@@ -2571,7 +2963,7 @@
     let shopCart = {};
     let currentShopPage = 1;
     let currentStorePage = 1;
-    const STORE_PAGE_SIZE = 12;
+    const STORE_PAGE_SIZE = 16;
 
     let streamerMode = localStorage.getItem('sograder_streamer_mode') === '1';
     let streamerObserver = null;
@@ -2582,7 +2974,7 @@
 
     let storeSkins = [
       { id: 'st_1', name: 'AKR Dragon', price: 352, rarity: 'arcane', image: '/img/AKR_dragon.png' },
-      { id: 'st_2', name: 'Karambit Gold', price: 12000, rarity: 'nameless', image: '/img/karambit_gold.png' },
+      { id: 'st_2', name: 'Karambit Gold', price: 88400, rarity: 'nameless', image: '/img/karambit_gold.png' },
       { id: 'st_3', name: 'AKR Treasure Hunter', price: 7000, rarity: 'arcane', image: '/img/akr_treasure.png' },
       { id: 'st_4', name: 'AWM Sport', price: 2800, rarity: 'legendary', image: '/img/awm_sport.png' },
       
@@ -2634,6 +3026,9 @@
     });
 
     window.onload = async () => {
+      void refreshSiteStats();
+      if (siteStatsTimer) clearInterval(siteStatsTimer);
+      siteStatsTimer = setInterval(refreshSiteStats, 15000);
       initStreamerMode();
       await checkAuthStatus();
       renderQuickButtons();
@@ -3107,21 +3502,20 @@
         const qty = shopCart[item.id] || 0;
 
         return `
-          <div class="shop-skin-card bg-[#25243b] border border-brand-cardBorder rounded-sm relative group overflow-hidden h-28">
-            <div class="shop-skin-main h-full p-2 flex flex-col justify-between items-center">
-              <div class="flex-1 flex items-center justify-center w-full">
-                <img src="${imgSrc}" class="max-h-14 max-w-full object-contain" alt="${item.name}" />
-              </div>
-              <div class="text-center w-full mt-1">
-                <span class="text-[10px] font-bold text-slate-100 truncate block w-full">${item.name}</span>
-                <span class="text-xs font-bold text-brand-gold block">${goldAmountMarkup(item.price, 12)}</span>
-              </div>
+          <div onclick="changeCartQty('${item.id}', 1, event)"
+               onkeydown="if(event.target===event.currentTarget&&(event.key==='Enter'||event.key===' ')){event.preventDefault();changeCartQty('${item.id}',1,event)}"
+               role="group" tabindex="0" aria-label="Добавить ${escapeHtml(item.name)} в корзину"
+               class="shop-skin-card skin-tile-card ${getSkinTileRarityClass(item)} ${qty > 0 ? 'is-in-cart' : ''} group cursor-pointer">
+            <div class="skin-tile-stage">
+              <span class="skin-tile-price">${goldAmountMarkup(item.price, 10)}</span>
+              <img src="${imgSrc}" class="skin-tile-image" alt="${escapeHtml(item.name)}" />
             </div>
+            <div class="skin-tile-name" title="${escapeHtml(item.name)}">${escapeHtml(item.name)}</div>
 
-            <div class="shop-card-hover absolute inset-x-0 bottom-0 h-9 flex items-center justify-center gap-2 px-2">
-              <button onclick="changeCartQty('${item.id}', -1)" aria-label="Уменьшить количество" class="shop-qty-btn">−</button>
+            <div class="shop-card-hover absolute inset-x-0 bottom-7 h-9 flex items-center justify-center gap-2 px-2">
+              <button onclick="changeCartQty('${item.id}', -1, event)" aria-label="Уменьшить количество" class="shop-qty-btn">−</button>
               <span class="shop-qty-value">${qty}</span>
-              <button onclick="changeCartQty('${item.id}', 1)" aria-label="Увеличить количество" class="shop-qty-btn">+</button>
+              <button onclick="changeCartQty('${item.id}', 1, event)" aria-label="Увеличить количество" class="shop-qty-btn">+</button>
             </div>
           </div>
         `;
@@ -3192,6 +3586,9 @@
     function renderLeftPanel() {
       const grid = document.getElementById('leftPanelGrid');
       const rightHeader = document.getElementById('leftPanelRightHeader');
+      const showingShop = activeLeftTab === 'shop';
+      grid?.classList.toggle('store-page-grid', showingShop);
+      document.getElementById('leftPanelContainer')?.classList.toggle('shop-panel-expanded', showingShop);
 
       if (activeLeftTab === 'inventory') {
         document.getElementById('shopPagination')?.classList.add('hidden');
@@ -3276,7 +3673,8 @@
       }
     }
 
-    function changeCartQty(skinId, delta) {
+    function changeCartQty(skinId, delta, event) {
+      event?.stopPropagation?.();
       const current = shopCart[skinId] || 0;
       const next = current + delta;
       if (next <= 0) {
@@ -3503,12 +3901,12 @@
         const isSelected = selectedTargetItem && selectedTargetItem.id === item.id;
         const imgSrc = item.image || '/img/placeholder.png';
         return `
-          <div onclick="selectTargetItem('${item.id}')" class="bg-[#25243b] border ${isSelected ? 'border-brand-gold' : 'border-brand-cardBorder'} p-2 rounded-sm flex flex-col justify-between items-center cursor-pointer hover:border-rose-400/50 transition h-28">
-            <span class="text-[10px] font-bold text-slate-100 truncate w-full text-center">${item.name}</span>
-            <div class="flex-1 flex items-center justify-center w-full my-1">
-              <img src="${imgSrc}" class="max-h-16 max-w-full object-contain" alt="${item.name}" />
+          <div onclick="selectTargetItem('${item.id}')" class="skin-tile-card ${getSkinTileRarityClass(item)} ${isSelected ? 'is-selected' : ''} cursor-pointer">
+            <div class="skin-tile-stage">
+              <span class="skin-tile-price">${goldAmountMarkup(item.price, 10)}</span>
+              <img src="${imgSrc}" class="skin-tile-image" alt="${escapeHtml(item.name)}" />
             </div>
-            <span class="text-xs font-bold text-brand-gold text-center w-full">${goldAmountMarkup(item.price, 12)}</span>
+            <div class="skin-tile-name" title="${escapeHtml(item.name)}">${escapeHtml(item.name)}</div>
           </div>
         `;
       }).join('');
@@ -4058,7 +4456,20 @@
       if (rarity === 'arcane') return 'profile-rarity-arcane';
       if (rarity === 'legendary') return 'profile-rarity-legendary';
       if (rarity === 'epic') return 'profile-rarity-epic';
+      if (rarity === 'rare') return 'profile-rarity-rare';
+      if (rarity === 'uncommon') return 'profile-rarity-uncommon';
       return 'profile-rarity-common';
+    }
+
+    function getSkinTileRarityClass(item) {
+      const rarity = String(item?.rarity || '').toLowerCase();
+      if (rarity === 'nameless') return 'skin-tile-rarity-nameless';
+      if (rarity === 'arcane') return 'skin-tile-rarity-arcane';
+      if (rarity === 'legendary') return 'skin-tile-rarity-legendary';
+      if (rarity === 'epic') return 'skin-tile-rarity-epic';
+      if (rarity === 'rare') return 'skin-tile-rarity-rare';
+      if (rarity === 'uncommon') return 'skin-tile-rarity-uncommon';
+      return 'skin-tile-rarity-common';
     }
 
     function renderProfileInventoryCards(items) {
@@ -4080,22 +4491,16 @@
         const rarityClass = getProfileItemRarityClass(item);
 
         return `
-          <div class="profile-skin-card ${rarityClass}" title="${escapeHtml(item.name)}">
-            <div class="profile-skin-price">
-              ${goldAmountMarkup(item.price, 12)}
-            </div>
+          <div class="profile-skin-card skin-tile-card ${rarityClass}" title="${escapeHtml(item.name)}">
 
-            <div class="profile-skin-image-wrap">
-              <div class="profile-skin-bg-mark">⌃</div>
+            <div class="profile-skin-image-wrap skin-tile-stage">
+              <div class="profile-skin-price skin-tile-price">${goldAmountMarkup(item.price, 10)}</div>
               <img src="${escapeHtml(imgSrc)}"
-                   class="profile-skin-image"
+                   class="profile-skin-image skin-tile-image"
                    alt="${escapeHtml(item.name)}" />
             </div>
 
-            <div class="profile-skin-info">
-              <div class="profile-skin-name">${escapeHtml(item.name)}</div>
-              <div class="profile-skin-status">В инвентаре</div>
-            </div>
+            <div class="skin-tile-name" title="${escapeHtml(item.name)}">${escapeHtml(item.name)}</div>
 
             <div class="profile-skin-actions">
               <button type="button"
@@ -4259,6 +4664,7 @@
       modal?.classList.remove('flex');
       modal?.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('modal-layer-open');
+      document.body.classList.remove('withdrawal-modal-open');
       ['withdrawalPattern', 'withdrawalMarketFile', 'withdrawalAvatarFile'].forEach(id => {
         const input = document.getElementById(id);
         if (input) input.value = '';
@@ -4294,10 +4700,12 @@
       document.getElementById('withdrawalListingPrice').innerHTML = goldAmountMarkup(data.listingPrice, 14);
       setWithdrawalStep(1);
       const modal = document.getElementById('withdrawalModal');
+      if (modal) document.body.appendChild(modal);
       modal?.classList.remove('hidden');
       modal?.classList.add('flex');
       modal?.setAttribute('aria-hidden', 'false');
       document.body.classList.add('modal-layer-open');
+      document.body.classList.add('withdrawal-modal-open');
     }
 
     async function compressWithdrawalImage(file, maxDimension) {
@@ -4724,6 +5132,10 @@
             if (data.bestDrop) currentUser.bestDrop = data.bestDrop;
             currentUser.upgradesCount = Number(data.upgradesCount || currentUser.upgradesCount || 0);
             if (Array.isArray(data.upgradeHistory)) currentUser.upgradeHistory = data.upgradeHistory;
+            if (Number.isFinite(Number(data.totalUpgrades))) {
+              const totalUpgradesEl = document.getElementById('siteUpgradeCount');
+              if (totalUpgradesEl) totalUpgradesEl.textContent = siteStatsNumberFormat.format(Number(data.totalUpgrades));
+            }
             selectedMyItems = [];
             upgradeBalanceAmount = 0;
             renderLeftPanel();
@@ -4753,7 +5165,28 @@
       document.getElementById('depositCountryMenu')?.classList.add('hidden');
       document.getElementById('depositCountryArrow').textContent='⌄';
     }
-    function selectDepositAmount(amt) { document.getElementById('customDepositInput').value = amt; document.querySelectorAll('.deposit-amount-btn').forEach(b => b.classList.toggle('active', Number(b.dataset.amount) === Number(amt))); }
+    function updateDepositEstimate() {
+      const input = document.getElementById('customDepositInput');
+      const value = Number(input?.value);
+      const hasValue = String(input?.value || '').trim() !== '';
+      const amountIsValid = Number.isFinite(value) && value >= 10 && Number.isInteger(value);
+      const amountEntry = document.getElementById('depositAmountEntry');
+      const payButton = document.getElementById('processStarsDepositBtn');
+      amountEntry?.classList.toggle('is-invalid', hasValue && !amountIsValid);
+      if (payButton) payButton.disabled = !amountIsValid;
+      const estimate = document.getElementById('depositCreditEstimate');
+      if (estimate) estimate.textContent = Number.isFinite(value) && value > 0
+        ? value.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+        : '0.00';
+      document.querySelectorAll('.deposit-amount-btn').forEach(button => {
+        button.classList.toggle('active', Number(button.dataset.amount) === value);
+      });
+    }
+
+    function selectDepositAmount(amt) {
+      document.getElementById('customDepositInput').value = amt;
+      updateDepositEstimate();
+    }
     
     function toggleDepositCountries() {
       const menu = document.getElementById('depositCountryMenu');
@@ -4789,6 +5222,8 @@
       if (!Number.isFinite(amt) || amt <= 0) {
         return showBanner('Укажите корректную сумму', 'error');
       }
+
+      if (amt < 10) return;
 
       if (!Number.isInteger(amt)) {
         return showBanner('Для оплаты Stars укажите целое количество G', 'error');

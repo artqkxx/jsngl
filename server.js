@@ -31,6 +31,8 @@ const DB_PATH = path.join(__dirname, 'db.json');
 const AVATAR_UPLOAD_DIR = process.env.AVATAR_UPLOAD_DIR || path.join(__dirname, 'uploads', 'avatars');
 const MAX_AVATAR_BYTES = 2 * 1024 * 1024;
 const GOOGLE_AVATAR_HOST = /^lh\d+\.googleusercontent\.com$/i;
+const onlineVisitorSessions = new Map();
+const ONLINE_SESSION_TTL_MS = 45_000;
 
 async function cacheGoogleAvatar(userId, pictureUrl) {
   try {
@@ -89,6 +91,7 @@ const WITHDRAWAL_ADMIN_USERNAME = String(process.env.WITHDRAWAL_ADMIN_USERNAME |
 const MAX_WITHDRAWAL_IMAGE_BYTES = 1.5 * 1024 * 1024;
 
 const STARS_TO_GOLD_RATE = 1;
+const MIN_STARS_DEPOSIT = 10;
 
 async function telegramApi(method, payload, timeoutMs = 15000) {
   const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/${method}`, {
@@ -232,6 +235,42 @@ function writeDB(data) {
   }
 }
 
+function ensureSiteStats(db) {
+  if (!db.siteStats || typeof db.siteStats !== 'object' || Array.isArray(db.siteStats)) {
+    db.siteStats = {};
+  }
+  const totalUpgrades = db.siteStats.totalUpgrades;
+  if (!Number.isSafeInteger(totalUpgrades) || totalUpgrades < 0) {
+    db.siteStats.totalUpgrades = (Array.isArray(db.users) ? db.users : []).reduce((sum, user) => {
+      const count = Number(user?.upgradesCount || 0);
+      return sum + (Number.isSafeInteger(count) && count > 0 ? count : 0);
+    }, 0);
+  }
+  return db.siteStats;
+}
+
+app.post('/api/site-stats/heartbeat', (req, res) => {
+  const sessionId = String(req.body?.sessionId || '');
+  if (!/^[A-Za-z0-9_-]{16,80}$/.test(sessionId)) {
+    return res.status(400).json({ success: false, message: 'Некорректный идентификатор сессии' });
+  }
+
+  const now = Date.now();
+  for (const [id, lastSeen] of onlineVisitorSessions) {
+    if (now - lastSeen > ONLINE_SESSION_TTL_MS) onlineVisitorSessions.delete(id);
+  }
+  onlineVisitorSessions.set(sessionId, now);
+
+  const db = readDB();
+  const hadTotal = Number.isSafeInteger(db.siteStats?.totalUpgrades) && db.siteStats.totalUpgrades >= 0;
+  const stats = ensureSiteStats(db);
+  if (!hadTotal && !writeDB(db)) {
+    return res.status(500).json({ success: false, message: 'Не удалось инициализировать статистику' });
+  }
+
+  return res.json({ success: true, online: onlineVisitorSessions.size, totalUpgrades: stats.totalUpgrades });
+});
+
 function findUserById(id) {
   const db = readDB();
 
@@ -283,7 +322,7 @@ const storeSkins = [
   {
     id: 'st_2',
     name: 'Karambit Gold',
-    price: 12000,
+    price: 88400,
     rarity: 'nameless',
     image: '/img/karambit_gold.png'
   },
@@ -880,6 +919,13 @@ app.post(
           goldAmount /
           STARS_TO_GOLD_RATE
         );
+
+      if (starsAmount < MIN_STARS_DEPOSIT) {
+        return res.json({
+          success: false,
+          message: `Минимальная сумма пополнения — ${MIN_STARS_DEPOSIT} Telegram Stars`
+        });
+      }
 
       const payload =
         JSON.stringify({
@@ -2182,7 +2228,16 @@ app.post(
         50
       );
 
-    if (!saveUser(req.user)) {
+    const db = readDB();
+    const userIndex = db.users.findIndex(user => user.id === req.user.id);
+    if (userIndex < 0) {
+      return res.status(404).json({ success: false, message: 'Пользователь не найден' });
+    }
+    db.users[userIndex] = req.user;
+    const siteStats = ensureSiteStats(db);
+    siteStats.totalUpgrades += 1;
+
+    if (!writeDB(db)) {
       return res.status(500).json({
         success: false,
         message: 'Не удалось сохранить апгрейд и списать баланс. Попробуйте ещё раз.'
@@ -2214,6 +2269,9 @@ app.post(
 
       upgradesCount:
         req.user.upgradesCount,
+
+      totalUpgrades:
+        siteStats.totalUpgrades,
 
       upgradeHistory:
         req.user.upgradeHistory,
